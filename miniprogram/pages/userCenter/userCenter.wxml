@@ -1,0 +1,27 @@
+<view class='container'>
+  <view class='head-box'>
+    <view class='user-info'>
+      <image class='user-img' wx:if="{{info.avatarUrl}}" src="{{info.avatarUrl}}"></image>
+      <view wx:else class='user-img'>帅</view>
+      <view class='user-nickname' wx:if="{{info.nickName}}">{{info.nickName}}</view>
+      <van-button wx:else class='get-info' type="info" open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击授权登录</van-button>
+    </view>
+  </view>
+  <view class='cell-box'>
+    <view class='flex-row flex-row-between cell-item'>
+      <view class='flex-row'>
+        <image src="../../images/my-template-icon.png" class='cell-img'></image>
+        <view>我的简历模版</view>
+      </view>
+      <image src='../../images/arrow_right.png' class='arrow-img'></image>
+    </view>
+
+    <view class='flex-row flex-row-between cell-item'>
+      <view class='flex-row'>
+        <image src="../../images/my-template-icon.png" class='cell-img'></image>
+        <view>我的简历模版</view>
+      </view>
+      <image src='../../images/arrow_right.png' class='arrow-img'></image>
+    </view>
+  </view>
+</view>

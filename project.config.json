@@ -10,6 +10,7 @@
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
+		"nodeModules": true,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
@@ -21,9 +22,10 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"nodeModules": true
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
-	"appid": "wx41365e82926163c2",
+	"appid": "wx7c44380cb6aacc7a",
 	"projectname": "resume_wxcloud",
 	"libVersion": "2.10.4",
 	"simulatorType": "wechat",
@@ -45,13 +47,26 @@
 		"game": {
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 0,
 			"list": [
 				{
+					"id": 0,
+					"name": "模版A_01",
+					"pathName": "templateA/pages/templateA_01/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
 					"id": -1,
-					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide"
+					"name": "pages/userCenter/userCenter",
+					"pathName": "pages/userCenter/userCenter",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

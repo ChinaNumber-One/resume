@@ -1,0 +1,67 @@
+.head-box {
+  background-color: #e7525c;
+  width: 100%;
+  height: 300rpx;
+  box-sizing: border-box;
+  padding-top: 100rpx;
+}
+.user-info {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 36rpx 0;
+  background: #fff;
+  border-radius: 24rpx;
+  box-shadow: 2rpx 2rpx 8rpx 4rpx rgba(0,0,0,.1);
+}
+.container {
+  background-color: #eee;
+}
+.user-img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 80rpx;
+  font-size: 96rpx;
+  line-height: 160rpx;
+  text-align: center;
+  color: #333;
+}
+.user-nickname {
+  font-size: 32rpx;
+  color: #333;
+  margin-top: 32rpx;
+  margin-bottom: 12rpx;
+}
+.get-info {
+  background: none;
+  padding: 0;
+  font-size: 32rpx;
+  color: #333;
+  border: none;
+}
+.get-info button {
+  background: none;
+  border: none;
+  font-size: 32rpx;
+}
+.cell-box {
+  margin-top: 168rpx;
+  background: #fff;
+  padding: 0 32rpx;
+}
+.cell-img {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 32rpx;
+}
+.arrow-img {
+  height: 40rpx;
+  width: 40rpx;
+}
+.cell-item {
+  height: 88rpx;
+  font-size: 28rpx;
+}

@@ -1,41 +1,22 @@
-<!--index.wxml-->
 <view class="container">
-	<image src="../../images/bottom.png" class='bottom-img animate__animated animate__delay-0-5s animate__fadeInUp'></image>
-	<image src="../../images/image-1.png" class='image-1 animate__animated animate__delay-1s animate__fadeInUpBig'></image>
-	<image src="../../images/image-2.png" class='image-2 animate__animated animate__delay-1s animate__fadeInUpBig'></image>
-	<image src="../../images/image-3.png" class='image-3 animate__animated animate__delay-1s animate__fadeInDownBig'></image>
-	<image src="../../images/image-4.png" class='image-4 animate__animated animate__delay-1s animate__fadeInDownBig'></image>
-	<image src="../../images/image-5.png" class='image-5 animate__animated animate__delay-1-5s animate__fadeInUpBig'></image>
-	<view class='page-box'>
-		<view class='page-title'>
-      <image src='../../images/image-6.png' class="image-6 animate__animated animate__delay-2s animate__fadeInDown"></image>
-			<view class='animate__animated animate__delay-2s animate__zoomIn'>
-        <view>个 人</view>
-			  <view>简 历</view>
+  <van-dropdown-menu active-color="#e7525c">
+    <van-dropdown-item value="{{ type }}" bindchange="changeType" options="{{ option1 }}" />
+    <van-dropdown-item value="{{ sort }}" bindchange="changeSort" options="{{ option2 }}" />
+  </van-dropdown-menu>
+  <view class='list' wx:if="{{templateList.length && loadSuccess}}">
+    <view class='item' wx:for="{{templateList}}" wx:for-item="temp" wx:for-index="i" wx:key="_id">
+      <image src="{{temp.coverImg}}" class='coverImg'></image>
+      <view class='btn-box flex-row'>
+        <van-button size="mini" disabled="{{temp.state !=='1'}}" type="info" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="view" data-code="{{temp.code}}" data-url="{{temp.url}}">预览({{temp.viewNum<100?temp.viewNum:'99+'}})</van-button>
+        <van-button size="mini" disabled="{{temp.state !=='1'}}" type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="use" data-code="{{temp.code}}">使用({{temp.useNum<100?temp.useNum:'99+'}})</van-button>
       </view>
-      <image src='../../images/image-6.png' class="image-7 animate__animated animate__delay-2s animate__fadeInUp"></image>
-		</view>
-		<view class='resume-text animate__animated animate__delay-2s animate__flipInX'>R E S U M E</view>
-		<view class='card-box animate__delay-2-5s animate__animated animate__fadeIn'>
-			<view class='card-box-title'>
-				<view class='animate__animated animate__delay-2-5s animate__rubberBand'>求职意向：前端工程师</view>
-			</view>
-			<view class='flex-row animate__animated animate__delay-3s animate__lightSpeedInLeft'>
-        <view class='label'>姓名：</view>
-				<view>于佳明</view>
-			</view>
-			<view class='flex-row animate__animated animate__delay-3s animate__lightSpeedInRight'>
-				<view class='label'>专业：</view>
-				<view>计算机科学与技术</view>
-			</view>
-			<view class='flex-row animate__animated animate__delay-3s animate__lightSpeedInLeft'>
-				<view class='label'>电话/微信：</view>
-				<view>17660822280</view>
-			</view>
-		</view>
-	</view>
-  <view class='btn-box flex-row animate__animated animate__fadeIn animate__delay-3-5s'>
-    <van-button type="info" class='animate__animated animate__slideInLeft animate__delay-3-5s'>游客访问</van-button>
-    <van-button class='animate__animated animate__slideInRight animate__delay-3-5s' type="primary" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" bindtap="onGetOpenid">受邀访问</van-button>
+      <view class='tag' wx:if="{{temp.state ==='0'}}">即将上线</view>
+      <view class='tag' wx:if="{{temp.state ==='2'}}">已下线</view>
+      <view class='tag' wx:if="{{temp.state ==='1'&&temp.tag}}">{{temp.tag}}</view>
+    </view>
+  </view>
+  <view wx:if="{{templateList.length === 0 && loadSuccess}}" class="list no-data">
+    <image src='../../images/no-data.png' class='no-template'></image>
+    <view>暂无模版</view>
   </view>
 </view>

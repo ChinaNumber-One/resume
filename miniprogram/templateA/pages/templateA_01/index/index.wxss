@@ -1,0 +1,243 @@
+/* miniprogram/pages/introduction/introduction.wxss */
+
+.page-content-border {
+  margin: 48rpx;
+  height: calc( 100vh - 96rpx );
+  width: calc( 100vw - 96rpx );
+  border: 1px dashed #FA5845;
+  border-radius: 32rpx;
+  box-sizing: border-box;
+  padding: 32rpx;
+}
+.page-content-resume-text {
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 300; 
+  margin-bottom: 20rpx;
+}
+.page-content-resume-title {
+  background-color: #FA5845;
+  border-radius: 12rpx;
+  line-height: 52rpx;
+  font-size: 32rpx;
+  color: #fff;
+  width: 280rpx;
+  text-align: center;
+  color: #fff;
+  margin: 0 auto;
+  font-weight: 300;
+  margin-bottom: 32rpx;
+}
+.bottom-img {
+  position: fixed;
+  bottom: 64rpx;
+  left: 15vw;
+  width: 70vw;
+  height: 170rpx;
+}
+.head-img {
+  width: 220rpx;
+  height: 308rpx;
+  display: block;
+  margin-right: 32rpx;
+  /* box-shadow: -8rpx -6rpx 6rpx 0rpx rgba(0,0,0,.7); */
+  flex-shrink: 0;
+  /* border: 1px solid #F05c40; */
+}
+.text{
+  font-weight: 400;
+  color: #F05c40;
+  line-height: 20px;
+  font-size: 12px;
+  word-break: break-all;
+}
+.head-info {
+  flex:1;
+  align-items: flex-start;
+  height: 308rpx;
+  justify-content: space-evenly;
+}
+.evaluate {
+  height: calc( 100vh - 780rpx );
+  overflow: auto;
+}
+.progress-box {
+  width: 100%;
+  background: #ddd;
+  height: 16rpx;
+  border-radius: 8rpx;
+  width: 80%;
+}
+.skill-item-name {
+  font-size: 32rpx;
+  font-weight: 900;
+  margin-bottom: 4rpx;
+}
+.skill-item-desc {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+.progress-item {
+  border-radius: 8rpx;
+  height: 16rpx;
+  position: relative;
+  width: 0;
+  transition: .2s;
+}
+.skill-item {
+  margin-bottom: 24rpx;
+}
+.skill-value {
+  font-size: 24rpx;
+  line-height: 28rpx;
+  color: #000;
+  text-align: center;
+  flex:1;
+}
+.skill-list,
+.work-experience {
+  height: calc( 100vh - 426rpx );
+  overflow: auto;
+}
+.collapse-title {
+  position: sticky;
+  top: 250rpx;
+  left: 0;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.bottom-img {
+  position: absolute;
+  bottom: 16rpx;
+  left: 0;
+  width: 100vw;
+  height: 243rpx;
+  z-index: 1;
+}
+.image-1 {
+  position: absolute;
+  left: -68rpx;
+  top: 8.4vh;
+  width: 148rpx;
+  height: 128rpx;
+  z-index: 1;
+}
+.image-2 {
+  position: absolute;
+  left: -32rpx;
+  top: 37vh;
+  width: 73rpx;
+  height: 66rpx;
+  z-index: 1;
+}
+.image-3 {
+  position: absolute;
+  right: -68rpx;
+  top: 13.4vh;
+  width: 130rpx;
+  height: 174rpx;
+  z-index: 1;
+}
+.image-4 {
+  position: absolute;
+  right: -70rpx;
+  top: 46vh;
+  width: 135rpx;
+  height: 232rpx;
+  z-index: 1;
+}
+.image-5 {
+  position: absolute;
+  left: -38rpx;
+  top: 64vh;
+  width: 118rpx;
+  height: 101rpx;
+  z-index: 1;
+}
+
+.image-6 {
+  position: absolute;
+  left: 0;
+  bottom: 0rpx;
+  width: 10rpx;
+  height: 138rpx;
+}
+.image-7 {
+  position: absolute;
+  right: 0;
+  top: 0rpx;
+  width: 10rpx;
+  height: 138rpx;
+}
+
+.page-title {
+  width: 60vw;
+  margin: 0vh auto 32rpx;
+  text-align: center;
+  font-size: 128rpx;
+  font-weight: 400;
+  line-height: 144rpx;
+  position: relative;
+}
+.card-box {
+  width: 70%;
+  border-radius: 32rpx;
+  min-height: 300rpx;
+  border: 1px solid #FA5845;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-weight: 500;
+  color: #F05c40;
+  line-height: 64rpx;
+  padding-top: 32rpx;
+  box-sizing: border-box;
+  font-weight: 300;
+  margin-bottom:259rpx;
+}
+.card-box-title {
+  position: absolute;
+  padding: 14rpx 8rpx;
+  line-height: 32rpx;
+  width: 70%;
+  color: #fff;
+  background: #FA5845;
+  border-radius: 8rpx;
+  margin: 0 auto;
+  top: -30rpx;
+  left: 15%;
+  box-sizing: border-box;
+}
+.card-box-title-text {
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis; */
+  width: 100%;
+  text-align: center;
+}
+.resume-text {
+  text-align: center;
+  font-size: 52rpx;
+  font-weight: 300;
+  margin-bottom: 5vh;
+}
+.bottom-img-s {
+  position: absolute;
+  bottom: 48rpx;
+  left: 80rpx;
+  width: calc( 100vw - 160rpx);
+  height: calc( (100vw - 160rpx)*212/645);
+  z-index: 1;
+}

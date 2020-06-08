@@ -11,4 +11,7 @@
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
 template表的 type     ---->  1免费   2活动    3付费
+
+
+
 template表的 state    ----   1 正常  0 不可用

@@ -13,7 +13,8 @@
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
-template表的 type     ---->  1免费   2活动    3付费
+## 数据库的一些状态 生命
+template表的 type     ---->  1免费   2活动    3付费（暂时不接入微信支付功能）
 
 
 

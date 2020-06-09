@@ -119,9 +119,7 @@ Page({
   },
   async getUserInfo(e) {
     if (e.detail.errMsg === "getUserInfo:ok") {
-      if(!wx.getStorageSync('HEADIMG')||!wx.getStorageSync('NICKNAME')) {
-        await this.upDateUserInfo(e.detail.userInfo)
-      }
+      await this.upDateUserInfo(e.detail.userInfo)
       await this.changeTemplateViewNumOrUseNum(e.target.dataset.type,e.target.dataset.code)
       if(e.target.dataset.type === 'view') {
         wx.navigateTo({
@@ -154,7 +152,6 @@ Page({
         code
       },
       success: res => {
-        console.log(res)
       },
       fail: err => {
         console.error('[云函数] [changeTemplateViewNumOrUseNum] 调用失败: ', err)
@@ -162,8 +159,6 @@ Page({
     })
   },
   async upDateUserInfo(detail) {
-    wx.setStorageSync('HEADIMG', detail.avatarUrl)
-    wx.setStorageSync('NICKNAME', detail.nickName)
     let res = await db.collection('user').where({
       _openid: app.globalData.openid
     }).get()

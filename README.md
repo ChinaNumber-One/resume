@@ -16,6 +16,8 @@
 ## 数据库的一些状态 生命
 template表的 type     ---->  1免费   2活动    3付费（暂时不接入微信支付功能）
 
-
-
 template表的 state    ----   1 正常  0 不可用
+
+1寸照片：
+width: 220rpx;
+height: 308rpx;

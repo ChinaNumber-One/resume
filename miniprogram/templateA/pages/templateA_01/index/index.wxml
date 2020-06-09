@@ -32,7 +32,7 @@
 							<view>{{info.major}}</view>
 						</view>
 						<view class='flex-row animate__animated animate__delay-3s animate__lightSpeedInLeft'>
-							<view class='label'>电话/微信：</view>
+							<view class='label'>电话：</view>
 							<view>{{info.phone}}</view>
 						</view>
 					</view>
@@ -107,7 +107,7 @@
 				<view style="padding-left:0;padding-right:0;" class='page-content-border {{current === 3 ? "animate__animated animate__delay-1s animate__fadeIn":""}}'>
 					<view class='page-content-resume-title {{current === 3 ? "animate__animated animate__delay-1s animate__backInDown":""}}'>◆ 工作经验 ◆</view>
 					<view class='work-experience'>
-						<van-collapse value="{{ activeName }}" bind:change="onChange" accordion>
+						<!-- <van-collapse value="{{ activeName }}" bind:change="onChange" accordion>
 							<van-collapse-item name="{{i+1}}" wx:for="{{info.workExperience}}" wx:key="i" wx:for-index="i" wx:for-item="experience">
 								<view class='collapse-title' slot="title">
 									<text style="margin-right: 24rpx">{{experience.beginDate}} - {{experience.endDate}}</text>
@@ -115,7 +115,48 @@
 								</view>
 								<view style="color:#000;margin-bottom:12rpx;" wx:for="{{experience.tips}}" wx:key="index">{{item}}</view>
 							</van-collapse-item>
-						</van-collapse>
+						</van-collapse> -->
+						<view class='experience-box' wx:for="{{info.workExperience}}" wx:key="i" wx:for-index="i" wx:for-item="experience">
+							<view class='experience-title'>
+								<text style="font-weight:normal">{{experience.beginDate}} - {{experience.endDate}}</text>
+								<text style="margin-left:12rpx">{{experience.companyName}}</text>
+							</view>
+							<view class='experience-tips'>
+								<view class='experience-tips-item' wx:for="{{experience.tips}}" wx:key="index">{{item}}</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</swiper-item>
+		<!-- 项目经验 -->
+		<swiper-item>
+			<view class='container' wx:if="{{current === 4}}">
+				<image src="../images/bottom.png" class='bottom-img-s {{current === 4 ? "animate__animated animate__delay-0-2s animate__fadeInUp":""}}'></image>
+				<image src="../images/image-1.png" class='image-1 {{ current === 4 ? "animate__animated animate__delay-0-4s animate__fadeInUpBig":""}}'></image>
+				<image src="../images/image-2.png" class='image-2 {{current === 4 ? "animate__animated animate__delay-0-6s animate__fadeInUpBig":""}}'></image>
+				<image src="../images/image-3.png" class='image-3 {{current === 4 ? "animate__animated animate__delay-0-8s animate__fadeInDownBig":""}}'></image>
+				<image src="../images/image-4.png" class='image-4 {{current === 4 ? "animate__animated animate__delay-1s animate__fadeInDownBig":""}}'></image>
+				<image src="../images/image-5.png" class='image-5 {{current === 4 ? "animate__animated animate__delay-1-2s animate__fadeInUpBig":""}}'></image>
+				<view style="padding-left:0;padding-right:0;" class='page-content-border {{current === 4 ? "animate__animated animate__delay-1s animate__fadeIn":""}}'>
+					<view class='page-content-resume-title {{current === 4 ? "animate__animated animate__delay-1s animate__backInDown":""}}'>◆ 项目经验 ◆</view>
+					<view class='work-experience'>
+						<view class='experience-box' wx:for="{{info.projectExperience}}" wx:key="i" wx:for-index="i" wx:for-item="experience">
+							<view class='experience-title'>
+								<text>{{experience.projectName}}</text>
+								<text style="font-weight:normal;font-size:24rpx;margin-left:8rpx;">({{experience.beginDate}} - {{experience.endDate}})</text>
+							</view>
+							<view class='url-str' wx:if="{{experience.projectUrl}}">
+								地址：{{experience.projectUrl}}<text bindtap="copyUrl" data-data='{{experience.projectUrl}}'>复制</text>
+							</view>
+							<view class='view-qrcode-btn' bindtap="viewQrcodeImg" wx:if="{{experience.projectQrcode}}" data-url="{{experience.projectQrcode}}">
+								查看二维码
+							</view>
+							<view class='experience-tips'>
+								<view class='experience-tips-item' wx:for="{{experience.tips}}" wx:key="index">{{item}}</view>
+							</view>
+						</view>
+
 					</view>
 				</view>
 			</view>

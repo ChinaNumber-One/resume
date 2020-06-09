@@ -6,10 +6,10 @@ Page({
    */
   data: {
     info:{},
-    current:0,
+    current:3,
     activeName: 1,
     color:['#FF1493','#00CED1','#FFA500','#32CD32','#FF4500','#FFD700'],
-    title:['简历封面','个人简介','个人技能','工作经验']
+    title:['简历封面','个人简介','个人技能','工作经验','项目经验'],
   },
 
   /**
@@ -55,6 +55,18 @@ Page({
     this.setData({
       activeName: event.detail,
     });
+  },
+  copyUrl(e) {
+    let url = e.currentTarget.dataset.data
+    wx.setClipboardData({
+      data: url,
+    })
+  },
+  viewQrcodeImg(e) {
+    let url = e.currentTarget.dataset.url
+    wx.previewImage({
+      urls: [url],
+    })
   },
   onShareAppMessage() {}
 })

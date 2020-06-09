@@ -1,0 +1,30 @@
+<view class='container' wx:if="{{hasPhone !== null}}">
+	<view wx:if="{{!hasPhone}}">
+		<view class='title'>请输入您的手机号：</view>
+		<view class='phone-input-box'>
+			<input bindinput='changePhone' type="number" maxlength='11' class='input'></input>
+		</view>
+		<view class='tips'>
+			注意：绑定手机号将用于您的账号安全及简历中展示，请填写您目前正在使用的手机号码。
+		</view>
+	</view>
+	<view wx:else>
+		<view class='title'>您绑定的手机号为：{{encryption}}</view>
+		<view class='title'>请填写原手机号：</view>
+		<view class='phone-input-box'>
+			<input bindinput='checkPhone' type="number" maxlength='11' class='input'></input>
+		</view>
+		<view wx:if="{{showSetNewPhone}}" style='margin-top:64rpx'>
+			<view class='title'>请填写新手机号：</view>
+			<view class='phone-input-box'>
+				<input bindinput='changePhone' type="number" maxlength='11' class='input'></input>
+			</view>
+		</view>
+		<view class='tips'>
+			注意：绑定手机号将用于您的账号安全及简历中展示，请填写您目前正在使用的手机号码。
+		</view>
+	</view>
+	<view class='submit-btn {{!canSubmit?"disabled":""}}' bindtap="submit">
+		{{hasPhone?'更换':'提交'}}
+	</view>
+</view>

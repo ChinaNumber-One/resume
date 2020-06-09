@@ -1,0 +1,36 @@
+.submit-btn {
+  background: linear-gradient(to right, #4bb0ff, #6149f6);
+  color: #fff;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  text-align: center;
+  position: fixed;
+  bottom: 80rpx;
+  left: 64rpx;
+  right: 64rpx;
+  border-radius: 44rpx;
+}
+.container {
+  padding: 0 40rpx;
+}
+.phone-input-box {
+  border-bottom: 2rpx solid #000;
+  padding-bottom: 8rpx;
+}
+
+.title {
+  padding: 32rpx 0;
+  font-weight: 500;
+  font-size: 32rpx;
+}
+.input {
+  font-size: 36rpx;
+}
+.tips {
+  margin-top: 32rpx;
+  color: red;
+  font-size: 24rpx;
+}
+.disabled {
+  background: #ddd;
+}

@@ -67,6 +67,26 @@
 					"pathName": "pages/userCenter/userCenter",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/userCenter/bindPhone/bindPage",
+					"pathName": "pages/userCenter/bindPhone/bindPage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的简历",
+					"pathName": "pages/userCenter/myResume/myResume",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "模版1",
+					"pathName": "templateA/pages/templateA_01/index/index",
+					"scene": null
 				}
 			]
 		}

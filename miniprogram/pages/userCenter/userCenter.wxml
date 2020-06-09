@@ -1,27 +1,50 @@
 <view class='container'>
-  <view class='head-box'>
-    <view class='user-info'>
-      <image class='user-img' wx:if="{{info.avatarUrl}}" src="{{info.avatarUrl}}"></image>
-      <view wx:else class='user-img'>帅</view>
-      <view class='user-nickname' wx:if="{{info.nickName}}">{{info.nickName}}</view>
-      <van-button wx:else class='get-info' type="info" open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击授权登录</van-button>
-    </view>
-  </view>
-  <view class='cell-box'>
-    <view class='flex-row flex-row-between cell-item'>
-      <view class='flex-row'>
-        <image src="../../images/my-template-icon.png" class='cell-img'></image>
-        <view>我的简历模版</view>
-      </view>
-      <image src='../../images/arrow_right.png' class='arrow-img'></image>
-    </view>
+	<view class='head-box'>
+		<view class='user-info'>
+			<image class='user-img' wx:if="{{info.avatarUrl}}" src="{{info.avatarUrl}}"></image>
+			<view wx:else class='user-img'></view>
+			<view class='user-nickname' wx:if="{{info.nickName}}">{{info.nickName}}</view>
+			<van-button wx:else class='get-info' type="info" open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击授权登录</van-button>
+		</view>
+	</view>
+	<view class='cell-box'>
+		<view class='flex-row flex-row-between cell-item'>
+			<view class='flex-row'>
+				<image src="../../images/my-template-icon.png" class='cell-img'></image>
+				<view>我的模版</view>
+			</view>
+			<image src='../../images/arrow_right.png' class='arrow-img'></image>
+		</view>
 
-    <view class='flex-row flex-row-between cell-item'>
+    <navigator url="./myResume/myResume" class='flex-row flex-row-between cell-item'>
+			<view class='flex-row'>
+				<image src="../../images/my-resume-icon.png" class='cell-img'></image>
+				<view>我的简历</view>
+			</view>
+			<image src='../../images/arrow_right.png' class='arrow-img'></image>
+		</navigator>
+
+		<view class='flex-row flex-row-between cell-item'>
+			<view class='flex-row'>
+				<image src="../../images/view-record-icon.png" class='cell-img'></image>
+				<view>访问记录</view>
+			</view>
+			<image src='../../images/arrow_right.png' class='arrow-img'></image>
+		</view>
+
+		<navigator url="./bindPhone/bindPage" class='flex-row flex-row-between cell-item' >
+			<view class='flex-row'>
+				<image src="../../images/bind-phone.png" class='cell-img'></image>
+				<view>绑定手机号</view>
+			</view>
+			<image src='../../images/arrow_right.png' class='arrow-img'></image>
+		</navigator>
+    <button open-type="contact" class='flex-row flex-row-between cell-item'>
       <view class='flex-row'>
-        <image src="../../images/my-template-icon.png" class='cell-img'></image>
-        <view>我的简历模版</view>
-      </view>
-      <image src='../../images/arrow_right.png' class='arrow-img'></image>
-    </view>
-  </view>
+				<image src="../../images/kefu-icon.png" class='cell-img'></image>
+				<view>联系客服</view>
+			</view>
+			<image src='../../images/arrow_right.png' class='arrow-img'></image>
+    </button>
+	</view>
 </view>

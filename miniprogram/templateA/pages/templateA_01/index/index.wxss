@@ -125,7 +125,7 @@
 .image-1 {
   position: absolute;
   left: -68rpx;
-  top: 8.4vh;
+  top: 4.4vh;
   width: 148rpx;
   height: 128rpx;
   z-index: 1;
@@ -240,4 +240,46 @@
   width: calc( 100vw - 160rpx);
   height: calc( (100vw - 160rpx)*212/645);
   z-index: 1;
+}
+.experience-box {
+  padding: 0 24rpx;
+  margin-bottom: 24rpx;
+}
+.experience-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 32rpx;
+  padding: 8rpx 0;
+}
+.experience-tips {
+  padding: 12rpx;
+}
+.experience-tips-item {
+  line-height: 36rpx;
+  font-size: 28rpx;
+  position: relative;
+  color: #666;
+  text-indent: 12rpx;
+}
+.experience-tips-item::after {
+  content: '';
+  position: absolute;
+  top: 12rpx;
+  left: -10rpx;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #666;
+}
+.view-qrcode-btn {
+  color: cornflowerblue;
+  font-size: 24rpx;
+}
+.url-str {
+  font-size: 24rpx;
+  color: cornflowerblue;
+}
+.url-str text {
+  color: #333;
+  margin-left: 32rpx;
 }

@@ -6,7 +6,7 @@ Page({
    */
   data: {
     info:{},
-    current:3,
+    current:0,
     activeName: 1,
     color:['#FF1493','#00CED1','#FFA500','#32CD32','#FF4500','#FFD700'],
     title:['简历封面','个人简介','个人技能','工作经验','项目经验'],
@@ -66,6 +66,12 @@ Page({
     let url = e.currentTarget.dataset.url
     wx.previewImage({
       urls: [url],
+    })
+  },
+  viewImgs(e) {
+    let index = e.currentTarget.dataset.index
+    wx.previewImage({
+      urls: this.data.info.projectExperience[index].projectImgs,
     })
   },
   onShareAppMessage() {}

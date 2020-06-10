@@ -152,6 +152,9 @@
 							<view class='view-qrcode-btn' bindtap="viewQrcodeImg" wx:if="{{experience.projectQrcode}}" data-url="{{experience.projectQrcode}}">
 								查看二维码
 							</view>
+							<view class='view-qrcode-btn' bindtap="viewImgs" wx:if="{{experience.projectImgs.length}}" data-index="{{i}}">
+								查看图片
+							</view>
 							<view class='experience-tips'>
 								<view class='experience-tips-item' wx:for="{{experience.tips}}" wx:key="index">{{item}}</view>
 							</view>

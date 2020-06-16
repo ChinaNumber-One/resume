@@ -87,7 +87,7 @@ Page({
     wx.hideLoading()
     if(res.errMsg === 'document.update:ok') {
       wx.showToast({
-        title: '绑定成功',
+        title: !this.data.hasPhone?'绑定成功':'换绑成功',
         duration:2000
       })
       setTimeout(()=>{

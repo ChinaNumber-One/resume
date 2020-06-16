@@ -1,0 +1,16 @@
+<van-cell title-width="{{(title.length+2)+'em'}}" title="{{title}}"  is-link="{{!rightIcon}}" bindtap="openDialog" value="{{value||'请输入'}}" >
+  <van-icon wx:if="{{rightIcon}}" catchtap="rightIconClick" slot="right-icon" name="{{rightIcon}}" class="custom-icon" />
+</van-cell>
+
+<van-dialog
+  use-slot
+  title="{{title}}"
+  show="{{ visible }}"
+  show-cancel-button
+  bind:cancel="closeDialog"
+	bind:confirm="confirm"
+>
+  <view style="padding: 32rpx;">
+    <van-field show-confirm-bar="{{false}}" clearable custom-style="border:1rpx solid #eee;border-radius:16rpx;" value="{{ inputValue }}" type="{{type}}" autosize="{{autosize}}" placeholder="{{placeholder}}"  maxlength='{{maxlength}}' bind:change="changeInput" show-word-limit="{{type==='textarea'&&maxlength !== -1}}" border="{{false}}"/>
+  </view> 
+</van-dialog>

@@ -21,7 +21,7 @@ Page({
       { text: '浏览量排序', value: 'viewNum' },
       { text: '使用量排序', value: 'useNum' },
     ],
-    type: '0',
+    type: '1',
     sort: '0',
     loadSuccess: false
   },
@@ -81,6 +81,7 @@ Page({
       })
     } else {
       let data = res.data[0]
+      app.globalData.phone = data.phone
       db.collection('user').doc(res.data[0]._id).update({
         data: {
           lastLoginTime: new Date()
@@ -89,16 +90,18 @@ Page({
     }
   },
   async getTemplateList() {
-    let sort = 'viewNum'
     this.setData({
       loadSuccess:false
     })
     let param = {}
+    let sort;
     if(this.data.type !=='0') {
       param.type = this.data.type
     }
     if(this.data.sort !== '0') {
       sort = this.data.sort
+    } else {
+      sort = 'createTime'
     }
     let res = await db.collection('template').where(param).orderBy(sort, 'desc')
     .skip(this.data.current * 10)

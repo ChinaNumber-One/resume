@@ -1,0 +1,12 @@
+var handelDate = {
+  getTimes:function (val){ 
+    if(val) {
+      return getDate(val).getTime()
+    } else {
+      return getDate().getTime()
+    }
+  }
+}
+module.exports = {
+  getTimes: handelDate.getTimes
+}

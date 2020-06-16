@@ -70,7 +70,9 @@ Page({
   },
   viewImgs(e) {
     let index = e.currentTarget.dataset.index
+    let cuttentimgindex = e.currentTarget.dataset.cuttentimgindex
     wx.previewImage({
+      current:this.data.info.projectExperience[index].projectImgs[cuttentimgindex],
       urls: this.data.info.projectExperience[index].projectImgs,
     })
   },

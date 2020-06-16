@@ -1,0 +1,5 @@
+<wxs module="handelDate" src="../../utils/getTimes.wxs"></wxs>
+<van-cell  title="{{title}}" is-link bindtap="openPicker" value="{{value||'请选择'}}" />
+<van-popup close-on-click-overlay="{{true}}" show="{{visible}}" round position="bottom">
+	<van-datetime-picker title='{{title}}' type="date" max-date="{{maxDate}}" min-date="{{minDate}}" value="{{handelDate.getTimes(value)||maxDate}}" formatter="{{ formatter }}" bind:confirm="confirm" bind:cancel="closePicker" />
+</van-popup>

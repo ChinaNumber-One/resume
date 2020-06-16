@@ -1,3 +1,118 @@
+<wxs module="handelDate" src="../../../utils/getTimes.wxs"></wxs>
 <view class='container'>
+	<van-tabs active="{{ active }}" color="#e7525c">
+		<van-tab title="基本信息">
+			<view class='tab-item-box'>
+				<view class='tab-item-content'>
+					<van-cell-group>
+						<dialogInput data-node='baseInfo' bind:change='changeData' data-key='employmentIntention' value="{{ resume.baseInfo.employmentIntention }}" title="求职意向" />
+						<van-cell title="证件照片" center label="请上传 1 寸证件照">
+							<image wx:if="{{resume.baseInfo.headImg}}" bindtap="uploadHeadImg" src="{{resume.baseInfo.headImg}}" class='head-img' mode="aspectFit"></image>
+							<image bindtap="uploadHeadImg" wx:else src="../../../images/img-upload.png" class='head-img-null' mode="aspectFit"></image>
+						</van-cell>
+						<dialogInput data-node='baseInfo' bind:change='changeData' data-key='realName' value="{{ resume.baseInfo.realName }}" title="姓名" />
 
+						<datePicker title="生日" value="{{resume.baseInfo.birth}}" data-key="birth" data-node='baseInfo' bind:change="changeData">
+						</datePicker>
+
+						<van-cell title="性别">
+							<van-radio-group style="display:flex;justify-content:flex-end;" value="{{ resume.baseInfo.gender }}" bind:change="changeData" data-node='baseInfo' data-key="gender">
+								<van-radio checked-color="#1989fa" style="margin-right:32rpx;" name="1">男</van-radio>
+								<van-radio checked-color="#e7525c" name="2">女</van-radio>
+							</van-radio-group>
+						</van-cell>
+
+						<dialogInput data-node='baseInfo' type="textarea" maxlength='255' bind:change='changeData' data-key='addr' value="{{ resume.baseInfo.addr }}" title="籍贯" />
+
+						<van-cell  url='../bindPhone/bindPage' is-link title="手机" value="{{resume.baseInfo.phone||'未绑定'}}" />
+						<van-cell  data-picker="eduPicker" title="学历" is-link bindtap='openPicker' value="{{resume.baseInfo.education||'请选择'}}" />
+						<dialogInput data-node='baseInfo' type="textarea" maxlength='100' bind:change='changeData' data-key='university' value="{{ resume.baseInfo.university }}" title="毕业院校" />
+						<dialogInput data-node='baseInfo' type="textarea" maxlength='100' bind:change='changeData' data-key='major' value="{{ resume.baseInfo.major }}" title="专业" />
+						<dialogInput data-node='baseInfo' type="textarea" maxlength='500' bind:change='changeData' data-key='evaluate' value="{{ resume.baseInfo.evaluate }}" title="自我评价" />
+					</van-cell-group>
+
+					<van-popup close-on-click-overlay="{{true}}" show="{{eduPicker}}" round position="bottom">
+						<van-picker default-index='{{eduIndex<0?0:eduIndex}}' columns="{{ eduOptions }}" data-picker='eduPicker' data-key='education' data-node='baseInfo' title="学历选择" show-toolbar bind:confirm="changeData" bind:cancel="closePicker" />
+					</van-popup>
+				</view>
+
+				<view class='submit-btn' bindtap="upDateResumeData" data-key='baseInfo'>
+					保存
+				</view>
+			</view>
+		</van-tab>
+		<van-tab title="个人技能">
+			<view class='tab-item-box'>
+				<view class='tab-item-content'>
+					<view class='skill-item' wx:for="{{resume.skills}}" wx:key="index">
+						<van-cell-group>
+							
+							<dialogInput data-node='skills' data-index='{{index}}' bind:change='changeData' data-key='name' value="{{ item.name }}" title="技能名" />
+
+							<dialogInput data-node='skills' data-index='{{index}}' bind:change='changeData' data-key='value' value="{{ item.value }}" type="digit"  title="熟练度" placeholder="0-100的正整数"/>
+
+							<dialogInput data-node='skills' data-index='{{index}}' bind:change='changeData' data-key='desc' value="{{ item.desc }}" maxlength='100' type="textarea"  title="简述" placeholder="请简述该技能掌握情况"/>
+
+						</van-cell-group>
+						<view class='del-box'>
+							<view class='del-btn' bindtap="delSkill" data-index='{{index}}'>
+								<van-icon name="delete" size='16px' style='margin-right:8rpx' /> 删除
+							</view>
+						</view>
+					</view>
+					<view class='add-btn' bindtap="addSkill">
+						<van-icon name="add-o" style='margin-right:8rpx' /> 添加
+					</view>
+				</view>
+				<view class='submit-btn' bindtap="upDateResumeData" data-key='skills'>
+					保存
+				</view>
+			</view>
+		</van-tab>
+		<van-tab title="工作经历">
+			<view class='tab-item-box'>
+				<view class='tab-item-content'>
+					<view class='skill-item' wx:for="{{resume.workExperience}}" wx:key="index">
+						<van-cell-group>
+
+							<dialogInput data-node='workExperience' data-index='{{index}}' bind:change='changeData' data-key='companyName' value="{{ item.companyName }}" title="公司名称" />
+
+							<datePicker title="入职时间" value="{{item.beginDate}}" data-key="beginDate" data-node='workExperience' data-index='{{index}}' bind:change="changeData">
+							</datePicker>
+							<datePicker title="离职时间" value="{{item.endDate}}" data-key="endDate" data-node='workExperience' data-index='{{index}}' bind:change="changeData">
+							</datePicker>
+
+							<dialogInput data-node='workExperience' data-index='{{index}}' bind:change='changeData' data-key='companyName' data-tapindex='{{tip_index}}' title="{{tip_index === 0?'简述':'简述'+(tip_index+1)}}" placeholder="请简述任职工作内容及表现"  maxlength='100' wx:key="tip_index" wx:for-index="tip_index" wx:for-item="tip" wx:for="{{item.tips}}" value="{{ tip }}" rightIcon='{{item.tips.length > 1?"delete":""}}' bind:clickRightIcon="delWorkExperienceTips" type='textarea'/>
+
+
+							<view class='del-box' style="justify-content:flex-start;">
+								<view  style="color:#1989fa" class='del-btn' bindtap="addWorkExperienceTips" data-index='{{index}}'>
+									<van-icon name="plus" style='margin-right:8rpx' size="18px" /> 添加
+								</view>
+							</view>
+						</van-cell-group>
+						<view class='del-box'>
+							<view class='del-btn' bindtap="delWorkExperience" data-index='{{index}}'>
+								<van-icon name="delete" size='18px' style='margin-right:8rpx' /> 删除
+							</view>
+						</view>
+					</view>
+					<view class='add-btn' bindtap="addWorkExperience">
+						<van-icon name="add-o" style='margin-right:8rpx' /> 添加一段工作经历
+					</view>
+					<view class='notice-tips'>*若是应届生则填写学习经历</view>
+				</view>
+				<view class='submit-btn' bindtap="upDateResumeData" data-key="workExperience">
+					保存
+				</view>
+			</view>
+		</van-tab>
+		<van-tab title="项目经验">
+			<view class='tab-item-box'>
+				<view class='submit-btn' bindtap="upDateResumeData" data-key="projectExperience">
+					保存
+				</view>
+			</view>
+		</van-tab>
+	</van-tabs>
 </view>

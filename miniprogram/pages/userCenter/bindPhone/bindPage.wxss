@@ -1,5 +1,5 @@
 .submit-btn {
-  background: linear-gradient(to right, #4bb0ff, #6149f6);
+  background: linear-gradient(to right, #ffa535, #e7525c);
   color: #fff;
   line-height: 88rpx;
   font-size: 32rpx;

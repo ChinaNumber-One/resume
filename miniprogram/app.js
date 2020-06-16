@@ -8,11 +8,12 @@ App({
         traceUser: true,
       })
     }
-
     this.globalData = {
       db: wx.cloud.database({
         throwOnNotFound: false
-      })
+      }),
+      openid:'ohgEq45MVPEOkGw42NhwCl4nE7fg',
+      phone:'17660822280'
     }
   }
 })

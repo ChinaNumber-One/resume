@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/userCenter/userCenter",
     "pages/userCenter/bindPhone/bindPage",
-    "pages/userCenter/myResume/myResume"
+    "pages/userCenter/myResume/myResume",
+    "components/cellUploader/cellUploader"
   ],
   "subpackages": [
     {

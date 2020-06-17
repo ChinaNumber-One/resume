@@ -14,8 +14,10 @@
     "van-slider": "@vant/weapp/slider/index",
     "van-icon": "@vant/weapp/icon/index",
     "datePicker":"../../../components/datePicker/datePicker",
-    "dialogInput":"../../../components/dialogInput/dialogInput"
+    "dialogInput":"../../../components/dialogInput/dialogInput",
+    "cellUploader":"../../../components/cellUploader/cellUploader"
   },
   "navigationBarTitleText": "我的简历",
+  "enablePullDownRefresh": false,
   "backgroundTextStyle": "dark"
 }

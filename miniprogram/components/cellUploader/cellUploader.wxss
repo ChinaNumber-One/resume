@@ -1,0 +1,14 @@
+/* components/cellUploader/cellUploadere.wxss */
+.img-list {
+  padding-bottom: 24rpx;
+  margin: 0 auto;
+  width: calc(100vw - 64rpx);
+  background: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+.van-uploader__preview {
+  margin-right: 24rpx;
+}
+.van-uploader__preview:nth-child(3n) {
+  margin-right: 0;
+}

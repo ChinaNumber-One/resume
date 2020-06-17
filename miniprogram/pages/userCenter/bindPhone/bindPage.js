@@ -78,7 +78,10 @@ Page({
     }
   },
   async upDateUserInfo() {
-    wx.showLoading('提交中')
+    wx.showLoading({
+      mask: true,
+      title:'提交中'
+    })
     let res = await db.collection('user').doc(this.data._id).update({
       data: {
         phone: this.data.phone

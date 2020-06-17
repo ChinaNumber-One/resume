@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-cell": "@vant/weapp/cell/index"
+  }
+}

@@ -63,9 +63,12 @@ Page({
     })
   },
   viewQrcodeImg(e) {
-    let url = e.currentTarget.dataset.url
+    let urls = e.currentTarget.dataset.urls.map(item=>{
+      return item.url
+    })
+
     wx.previewImage({
-      urls: [url],
+      urls,
     })
   },
   viewImgs(e) {
@@ -73,7 +76,9 @@ Page({
     let cuttentimgindex = e.currentTarget.dataset.cuttentimgindex
     wx.previewImage({
       current:this.data.info.projectExperience[index].projectImgs[cuttentimgindex],
-      urls: this.data.info.projectExperience[index].projectImgs,
+      urls: this.data.info.projectExperience[index].projectImgs.map(item=>{
+        return item.url
+      }),
     })
   },
   onShareAppMessage() {}

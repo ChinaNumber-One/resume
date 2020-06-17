@@ -1,0 +1,7 @@
+<view style="background:#fff">
+	<van-cell title="{{title}}" label="{{label}}" border="{{false}}">
+	</van-cell>
+	<view class='img-list'>
+		<van-uploader image-fit="aspectFill" file-list="{{ fileList }}" accept="image" sizeType="[compressed]" bind:after-read="afterRead" bind:oversize="oversize" bind:delete="delete" preview-size="212rpx" multiple max-size="{{3*1024*1024}}" />
+	</view>
+</view>

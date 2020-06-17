@@ -149,17 +149,17 @@
 							<view class='url-str' wx:if="{{experience.projectUrl}}">
 								地址：{{experience.projectUrl}}<text bindtap="copyUrl" data-data='{{experience.projectUrl}}'>复制</text>
 							</view>
-							<view class='view-qrcode-btn' bindtap="viewQrcodeImg" wx:if="{{experience.projectQrcode}}" data-url="{{experience.projectQrcode}}">
+							<view class='view-qrcode-btn' bindtap="viewQrcodeImg" wx:if="{{experience.projectQrcode.length}}" data-urls="{{experience.projectQrcode}}">
 								查看二维码
 							</view>
 							<view class='experience-tips'>
 								<view class='experience-tips-item' wx:for="{{experience.tips}}" wx:key="index">{{item}}</view>
 							</view>
+							<view wx:if="{{experience.projectImgs.length}}" style="color:#666;font-size:24rpx;margin:18rpx 0 12rpx;">项目截图：</view>
 							<view  class='img-9-list'  wx:if="{{experience.projectImgs.length}}">
-								<image bindtap="viewImgs" data-index="{{i}}" data-cuttentImgIndex = "{{imgIndex}}"  class='img-9-item' wx:key="imgIndex" wx:for="{{experience.projectImgs}}" wx:for-index="imgIndex" src="{{item}}" mode="aspectFill"></image>
+								<image bindtap="viewImgs" data-index="{{i}}" data-cuttentImgIndex = "{{imgIndex}}"  class='img-9-item' wx:key="imgIndex" wx:for="{{experience.projectImgs}}" wx:for-index="imgIndex" src="{{item.url}}" mode="aspectFill"></image>
 							</view>
 						</view>
-
 					</view>
 				</view>
 			</view>

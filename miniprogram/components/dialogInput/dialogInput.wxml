@@ -1,4 +1,4 @@
-<van-cell title-width="{{(title.length+2)+'em'}}" title="{{title}}"  is-link="{{!rightIcon}}" bindtap="openDialog" value="{{value||'请输入'}}" >
+<van-cell label="{{label}}" title-width="{{(title.length+2)+'em'}}" title="{{title}}"  is-link="{{!rightIcon}}" bindtap="openDialog" value="{{value||placeholder}}" >
   <van-icon wx:if="{{rightIcon}}" catchtap="rightIconClick" slot="right-icon" name="{{rightIcon}}" class="custom-icon" />
 </van-cell>
 

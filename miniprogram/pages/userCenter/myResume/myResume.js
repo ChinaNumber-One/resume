@@ -8,7 +8,7 @@ Page({
   data: {
     birthPicker: false,
     eduPicker: false,
-    active: 2,
+    active: 0,
     resume: {
       baseInfo: {},
       skills: [],
@@ -27,6 +27,7 @@ Page({
       }
       return value;
     },
+    headImgUploadpath: '',
     maxDate: new Date().getTime(),
     minDate: new Date('1900/01/01').getTime(),
     eduOptions: ['博士', '硕士', '研究生', '本科', '高中'],
@@ -51,8 +52,14 @@ Page({
       resume: this.data.resume
     })
   },
+  addProjectExperienceTips(e) {
+    let index = e.currentTarget.dataset.index
+    this.data.resume.projectExperience[index].tips.push("")
+    this.setData({
+      resume: this.data.resume
+    })
+  },
   delWorkExperienceTips(e) {
-    console.log(e)
     wx.showModal({
       title: '提示',
       content: '确定要删除？',
@@ -67,7 +74,22 @@ Page({
         }
       }
     })
-
+  },
+  delProjectExperienceTips(e) {
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除？',
+      success: (res) => {
+        if (res.confirm) {
+          let index = e.currentTarget.dataset.index
+          let tapindex = e.currentTarget.dataset.tapindex
+          this.data.resume.projectExperience[index].tips.splice(tapindex, 1)
+          this.setData({
+            resume: this.data.resume
+          })
+        }
+      }
+    })
   },
   changeData(e) {
     if (typeof e.detail !== 'object') {
@@ -89,11 +111,15 @@ Page({
       this.data.resume[node][index][key] = value
     }
     if (node === 'workExperience') {
-      console.log(tapindex)
       if (tapindex !== undefined) {
-        console.log(this.data.resume.workExperience)
-        this.data.resume[node][index]['tips'][tapindex] = value
-        console.log(this.data.resume.workExperience)
+        this.data.resume[node][index][key][tapindex] = value
+      } else {
+        this.data.resume[node][index][key] = value
+      }
+    }
+    if (node === 'projectExperience') {
+      if (tapindex !== undefined) {
+        this.data.resume[node][index][key][tapindex] = value
       } else {
         this.data.resume[node][index][key] = value
       }
@@ -113,47 +139,108 @@ Page({
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: (res) => {
-        wx.showLoading({
-          title: '上传中',
+        this.setData({
+          headImgUploadpath: res.tempFilePaths[0]
         })
-        const filePath = res.tempFilePaths[0]
-        const cloudPath = app.globalData.openid + '/headImg' + filePath.match(/\.[^.]+?$/)[0]
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          complete: (e) => {
-            wx.hideLoading()
-            if (e.errMsg === 'cloud.uploadFile:ok' && e.fileID) {
-              this.data.resume.baseInfo.headImg = e.fileID
-              this.setData({
-                resume: this.data.resume
-              })
-              wx.showToast({
-                title: '上传成功'
-              })
-            } else {
-              wx.showToast({
-                title: '上传失败',
-                icon: 'none'
-              })
-            }
-          }
-        })
-
-      },
-      fail: e => {
-        console.error(e)
       }
     })
   },
   async upDateResumeData(e) {
     wx.showLoading({
+      mask: true,
       title: '保存中',
     })
     const key = e.currentTarget.dataset.key
     const data = {
       [key]: this.data.resume[key]
     }
+    if (key === 'baseInfo' && this.data.headImgUploadpath) {
+      let res = await wx.cloud.uploadFile({
+        cloudPath: app.globalData.openid + '/headImg' + this.data.headImgUploadpath.match(/\.[^.]+?$/)[0],
+        filePath: this.data.headImgUploadpath,
+      })
+      if (res.errMsg === 'cloud.uploadFile:ok' && res.fileID) {
+        data.baseInfo.headImg = res.fileID
+        this.saveData(data)
+      } else {
+        wx.showToast({
+          title: '图片上传失败',
+          icon: 'none'
+        })
+      }
+    } else if (key === 'projectExperience') {
+      let imgList = []
+      this.data.resume.projectExperience.forEach((item,index)=>{
+        if(item.projectQrcode.length) {
+          item.projectQrcode.forEach((qrImg,qrIndex)=>{
+            imgList.push({
+              pindex:index,
+              url:qrImg.url,
+              index:qrIndex,
+              key:'projectQrcode'
+            })
+          })
+        }
+        if(item.projectImgs.length) {
+          item.projectImgs.forEach((img,imgIndex)=>{
+            imgList.push({
+              pindex:index,
+              url:img.url,
+              index:imgIndex,
+              key:'projectImgs'
+            })
+          })
+        }
+      })
+      if(imgList.length) {
+        let param = {
+          i:0,
+          list:imgList
+        }
+        this.upLoadProjectQrcodeRecursion(param);
+      } else {
+        this.saveData(data)
+      }
+    }  else {
+      this.saveData(data)
+    }
+  },
+  // 递归上传 二维码 （多图）
+  upLoadProjectQrcodeRecursion(data) {
+    let {i,list} = data
+    // 已上传的图片 跳过上传
+    if(list[i].url.indexOf('cloud://') !== -1 && list[i].url.indexOf(app.globalData.openid) !== -1){
+      i++
+      if(i === list.length) {
+        return this.saveData({
+          projectExperience: this.data.resume.projectExperience
+        })
+      } else {
+        data.i = i;
+        return this.upLoadProjectQrcodeRecursion(data);
+      }
+    }
+    wx.cloud.uploadFile({
+      cloudPath: app.globalData.openid + '/projectExperience/'+list[i].key+'/' + list[i].key+'_'+list[i].pindex+'_'+list[i].index+ list[i].url.match(/\.[^.]+?$/)[0],
+      filePath: list[i].url,
+      success: (res)=>{
+        console.log(list[i].pindex,list[i].key,list[i].index)
+        this.data.resume.projectExperience[list[i].pindex][list[i].key][list[i].index].url = res.fileID
+      },
+      complete: (res) =>{
+        i++
+        if(i === list.length) {
+          this.saveData({
+            projectExperience: this.data.resume.projectExperience
+          })
+        } else {
+          data.i = i;
+          this.upLoadProjectQrcodeRecursion(data);
+        }
+      }
+    })
+  },
+  async saveData(data) {
     let res = await db.collection('resumes').doc(this.data._id).update({
       data
     })
@@ -177,7 +264,8 @@ Page({
   },
   async init() {
     wx.showLoading({
-      title: '加载中'
+      title: '加载中',
+      mask:true
     })
     let res = await db.collection('resumes').where({
       _openid: app.globalData.openid,
@@ -217,6 +305,9 @@ Page({
     if (this.data.resume.workExperience.length === 0) {
       this.addWorkExperience()
     }
+    if (this.data.resume.projectExperience.length === 0) {
+      this.addProjectExperience()
+    }
   },
   addSkill() {
     this.data.resume.skills.push({
@@ -233,6 +324,20 @@ Page({
       companyName: '',
       beginDate: '',
       endDate: '',
+      tips: ['']
+    })
+    this.setData({
+      resume: this.data.resume
+    })
+  },
+  addProjectExperience() {
+    this.data.resume.projectExperience.push({
+      projectName: '',
+      beginDate: '',
+      endDate: '',
+      projectUrl: '',
+      projectQrcode: '',
+      projectImgs: '',
       tips: ['']
     })
     this.setData({
@@ -262,6 +367,21 @@ Page({
         if (res.confirm) {
           const index = e.currentTarget.dataset.index
           this.data.resume.workExperience.splice(index, 1)
+          this.setData({
+            resume: this.data.resume
+          })
+        }
+      }
+    })
+  },
+  delProjectExperience(e) {
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除？',
+      success: (res) => {
+        if (res.confirm) {
+          const index = e.currentTarget.dataset.index
+          this.data.resume.projectExperience.splice(index, 1)
           this.setData({
             resume: this.data.resume
           })

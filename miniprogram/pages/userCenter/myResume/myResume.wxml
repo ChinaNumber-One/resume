@@ -7,7 +7,7 @@
 					<van-cell-group>
 						<dialogInput data-node='baseInfo' bind:change='changeData' data-key='employmentIntention' value="{{ resume.baseInfo.employmentIntention }}" title="求职意向" />
 						<van-cell title="证件照片" center label="请上传 1 寸证件照">
-							<image wx:if="{{resume.baseInfo.headImg}}" bindtap="uploadHeadImg" src="{{resume.baseInfo.headImg}}" class='head-img' mode="aspectFit"></image>
+							<image wx:if="{{headImgUploadpath||resume.baseInfo.headImg}}" bindtap="uploadHeadImg" src="{{headImgUploadpath||resume.baseInfo.headImg}}" class='head-img' mode="aspectFit"></image>
 							<image bindtap="uploadHeadImg" wx:else src="../../../images/img-upload.png" class='head-img-null' mode="aspectFit"></image>
 						</van-cell>
 						<dialogInput data-node='baseInfo' bind:change='changeData' data-key='realName' value="{{ resume.baseInfo.realName }}" title="姓名" />
@@ -24,8 +24,8 @@
 
 						<dialogInput data-node='baseInfo' type="textarea" maxlength='255' bind:change='changeData' data-key='addr' value="{{ resume.baseInfo.addr }}" title="籍贯" />
 
-						<van-cell  url='../bindPhone/bindPage' is-link title="手机" value="{{resume.baseInfo.phone||'未绑定'}}" />
-						<van-cell  data-picker="eduPicker" title="学历" is-link bindtap='openPicker' value="{{resume.baseInfo.education||'请选择'}}" />
+						<van-cell url='../bindPhone/bindPage' is-link title="手机" value="{{resume.baseInfo.phone||'未绑定'}}" />
+						<van-cell data-picker="eduPicker" title="学历" is-link bindtap='openPicker' value="{{resume.baseInfo.education||'请选择'}}" />
 						<dialogInput data-node='baseInfo' type="textarea" maxlength='100' bind:change='changeData' data-key='university' value="{{ resume.baseInfo.university }}" title="毕业院校" />
 						<dialogInput data-node='baseInfo' type="textarea" maxlength='100' bind:change='changeData' data-key='major' value="{{ resume.baseInfo.major }}" title="专业" />
 						<dialogInput data-node='baseInfo' type="textarea" maxlength='500' bind:change='changeData' data-key='evaluate' value="{{ resume.baseInfo.evaluate }}" title="自我评价" />
@@ -46,12 +46,12 @@
 				<view class='tab-item-content'>
 					<view class='skill-item' wx:for="{{resume.skills}}" wx:key="index">
 						<van-cell-group>
-							
+
 							<dialogInput data-node='skills' data-index='{{index}}' bind:change='changeData' data-key='name' value="{{ item.name }}" title="技能名" />
 
-							<dialogInput data-node='skills' data-index='{{index}}' bind:change='changeData' data-key='value' value="{{ item.value }}" type="digit"  title="熟练度" placeholder="0-100的正整数"/>
+							<dialogInput data-node='skills' data-index='{{index}}' bind:change='changeData' data-key='value' value="{{ item.value }}" type="digit" title="熟练度" placeholder="0-100的正整数" />
 
-							<dialogInput data-node='skills' data-index='{{index}}' bind:change='changeData' data-key='desc' value="{{ item.desc }}" maxlength='100' type="textarea"  title="简述" placeholder="请简述该技能掌握情况"/>
+							<dialogInput data-node='skills' data-index='{{index}}' bind:change='changeData' data-key='desc' value="{{ item.desc }}" maxlength='100' type="textarea" title="简述" placeholder="请简述该技能掌握情况" />
 
 						</van-cell-group>
 						<view class='del-box'>
@@ -82,12 +82,13 @@
 							<datePicker title="离职时间" value="{{item.endDate}}" data-key="endDate" data-node='workExperience' data-index='{{index}}' bind:change="changeData">
 							</datePicker>
 
-							<dialogInput data-node='workExperience' data-index='{{index}}' bind:change='changeData' data-key='companyName' data-tapindex='{{tip_index}}' title="{{tip_index === 0?'简述':'简述'+(tip_index+1)}}" placeholder="请简述任职工作内容及表现"  maxlength='100' wx:key="tip_index" wx:for-index="tip_index" wx:for-item="tip" wx:for="{{item.tips}}" value="{{ tip }}" rightIcon='{{item.tips.length > 1?"delete":""}}' bind:clickRightIcon="delWorkExperienceTips" type='textarea'/>
+							<dialogInput data-node='workExperience' data-index='{{index}}' bind:change='changeData' data-key='tips' data-tapindex='{{tip_index}}' title="{{tip_index === 0?'简述':'简述'+(tip_index+1)}}" placeholder="请简述任职工作内容及表现" maxlength='100' wx:key="tip_index" wx:for-index="tip_index" wx:for-item="tip" wx:for="{{item.tips}}" value="{{ tip }}" rightIcon='{{item.tips.length > 1?"delete":""}}' bind:clickRightIcon="delWorkExperienceTips" type='textarea' />
 
 
 							<view class='del-box' style="justify-content:flex-start;">
-								<view  style="color:#1989fa" class='del-btn' bindtap="addWorkExperienceTips" data-index='{{index}}'>
-									<van-icon name="plus" style='margin-right:8rpx' size="18px" /> 添加
+								<view style="color:#1989fa" class='del-btn' bindtap="addWorkExperienceTips" data-index='{{index}}'>
+									<van-icon name="plus" style='margin-right:8rpx' size="18px" /> 添加简述
+									<text style="font-size:24rpx;text-indent:24rpx;color:#666;">(ps：分多条展示效果会更好哟~)</text>
 								</view>
 							</view>
 						</van-cell-group>
@@ -100,7 +101,7 @@
 					<view class='add-btn' bindtap="addWorkExperience">
 						<van-icon name="add-o" style='margin-right:8rpx' /> 添加一段工作经历
 					</view>
-					<view class='notice-tips'>*若是应届生则填写学习经历</view>
+					<!-- <view class='notice-tips'>*若是应届生则填写学习经历</view> -->
 				</view>
 				<view class='submit-btn' bindtap="upDateResumeData" data-key="workExperience">
 					保存
@@ -109,6 +110,42 @@
 		</van-tab>
 		<van-tab title="项目经验">
 			<view class='tab-item-box'>
+				<view class='tab-item-content'>
+					<view class='skill-item' wx:for="{{resume.projectExperience}}" wx:key="index">
+						<van-cell-group>
+
+							<dialogInput data-node='projectExperience' data-index='{{index}}' bind:change='changeData' data-key='companyName' value="{{ item.companyName }}" title="项目名" />
+							<datePicker title="开始时间" value="{{item.beginDate}}" data-key="beginDate" data-node='projectExperience' data-index='{{index}}' bind:change="changeData">
+							</datePicker>
+							<datePicker title="结束时间" value="{{item.endDate}}" data-key="endDate" data-node='projectExperience' data-index='{{index}}' bind:change="changeData">
+							</datePicker>
+
+
+							<dialogInput data-node='projectExperience' data-index='{{index}}' bind:change='changeData' type='textarea' data-key='projectUrl' value="{{ item.projectUrl }}" title="访问地址" maxlength='500' />
+
+							<cellUploader bind:change="changeData" data-node="projectExperience"  data-key="projectQrcode" data-index="{{index}}" title="二维码" imgs="{{item.projectQrcode}}" label="用于扫码预览或扫码下载"/>
+							<cellUploader bind:change="changeData" data-node="projectExperience"  data-key="projectImgs" data-index="{{index}}" title="项目截图" imgs="{{item.projectImgs}}"/>
+							
+							<dialogInput data-node='projectExperience' data-index='{{index}}' bind:change='changeData' data-key='tips' data-tapindex='{{tip_index}}' title="{{tip_index === 0?'简述':'简述'+(tip_index+1)}}" placeholder="请简述在该项目中负责的主要任务" maxlength='100' wx:key="tip_index" wx:for-index="tip_index" wx:for-item="tip" wx:for="{{item.tips}}" value="{{ tip }}" rightIcon='{{item.tips.length > 1?"delete":""}}' bind:clickRightIcon="delProjectExperienceTips" type='textarea' />
+
+							<view class='del-box' style="justify-content:flex-start;">
+								<view style="color:#1989fa" class='del-btn' bindtap="addProjectExperienceTips" data-index='{{index}}'>
+									<van-icon name="plus" style='margin-right:8rpx' size="18px" /> 添加简述
+									<text style="font-size:24rpx;text-indent:24rpx;color:#666;">(ps：分多条展示效果会更好哟~)</text>
+								</view>
+							</view>
+						</van-cell-group>
+						<view class='del-box'>
+							<view class='del-btn' bindtap="delProjectExperience" data-index='{{index}}'>
+								<van-icon name="delete" size='18px' style='margin-right:8rpx' /> 删除
+							</view>
+						</view>
+					</view>
+					<view class='add-btn' bindtap="addProjectExperience">
+						<van-icon name="add-o" style='margin-right:8rpx' /> 添加一段项目经验
+					</view>
+					<view class='notice-tips'>*如需账号密码，请在简述中告知，或者上传项目截图，便于他人更详细的查看项目。</view>
+				</view>
 				<view class='submit-btn' bindtap="upDateResumeData" data-key="projectExperience">
 					保存
 				</view>

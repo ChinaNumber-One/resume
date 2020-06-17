@@ -27,6 +27,10 @@ Component({
     rightIcon: {
       type: String,
       value:''
+    },
+    label: {
+      type: String,
+      value:''
     }
   },
 

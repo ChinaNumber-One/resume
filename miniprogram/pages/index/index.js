@@ -8,7 +8,7 @@ Page({
    */
   data: {
     templateList:[],
-    noData:[],
+    noData:false,
     current:0,
     option1: [
       { text: '全部商品', value: '0' },
@@ -17,13 +17,14 @@ Page({
       { text: '会员专属', value: '3' },
     ],
     option2: [
-      { text: '默认排序', value: '0' },
+      // { text: '默认排序', value: '0' },
       { text: '浏览量排序', value: 'viewNum' },
       { text: '使用量排序', value: 'useNum' },
     ],
-    type: '1',
-    sort: '0',
-    loadSuccess: false
+    type: '0',
+    sort: 'viewNum',
+    loadSuccess: false,
+    notifyList:[]
   },
 
   /**
@@ -32,7 +33,8 @@ Page({
   async onLoad (options) {
     await this.getOpenId()
     await this.checkUser()
-    await this.getTemplateList()
+    this.getNotice()
+    this.getTemplateList()
   },
   changeType(e) {
     this.setData({
@@ -81,8 +83,8 @@ Page({
       })
     } else {
       let data = res.data[0]
-      app.globalData.phone = data.phone
-      db.collection('user').doc(res.data[0]._id).update({
+      app.globalData.phone = data.phone||''
+      db.collection('user').doc(data._id).update({
         data: {
           lastLoginTime: new Date()
         }
@@ -112,7 +114,7 @@ Page({
     })
     if(res&&res.data) {
       this.setData({
-        templateList:res.data
+        templateList:this.data.current === 0?res.data:this.data.templateList.concat(res.data)
       })
     } else {
       this.setData({
@@ -122,14 +124,52 @@ Page({
   },
   async getUserInfo(e) {
     if (e.detail.errMsg === "getUserInfo:ok") {
-      await this.upDateUserInfo(e.detail.userInfo)
-      await this.changeTemplateViewNumOrUseNum(e.target.dataset.type,e.target.dataset.code)
+      // await this.upDateUserInfo(e.detail.userInfo)
       if(e.target.dataset.type === 'view') {
+        await this.changeTemplateViewNumOrUseNum(e.target.dataset.type,e.target.dataset.id)
         wx.navigateTo({
-          url: e.target.dataset.url,
+          url: e.target.dataset.url +'?templateId='+e.target.dataset.id,
         })
       } else {
         // 检查手机号，不存在的话 录入，存在的话进入表单填写页面
+        if(!app.globalData.phone) {
+          wx.navigateTo({
+            url: '../userCenter/bindPhone/bindPage',
+          })
+        } else {
+          wx.showLoading({
+            title: '请稍后',
+          })
+          await this.changeTemplateViewNumOrUseNum(e.target.dataset.type,e.target.dataset.id)
+          // 添加模版 id 与 user 关联
+          let res = await db.collection('user').where({
+            _openid: app.globalData.openid
+          }).get()
+          let myTemplateList = res.data[0].myTemplateList && res.data[0].myTemplateList.length?res.data[0].myTemplateList:[]
+          let isHas = false
+          myTemplateList.forEach(item=>{
+            if(item.templateId === e.target.dataset.id) {
+              isHas = true
+              return
+            }
+          })
+          if(!isHas) {
+            myTemplateList.push({
+              upDateTime:new Date(),
+              templateId:e.target.dataset.id,
+              peopleViewNum:0
+            })
+            await db.collection('user').doc(res.data[0]._id).update({
+              data: {
+                myTemplateList
+              }
+            })
+          }
+          wx.hideLoading()
+          wx.navigateTo({
+            url: e.target.dataset.url+'?openid='+ app.globalData.openid + '&templateId='+e.target.dataset.id,
+          })
+        }
       }
     } else {
       Dialog.alert({
@@ -147,12 +187,12 @@ Page({
       }
     })
   },
-  changeTemplateViewNumOrUseNum(type,code) {
+  changeTemplateViewNumOrUseNum(type,id) {
     wx.cloud.callFunction({
       name: 'changeTemplateViewNumOrUseNum',
       data: {
         type,
-        code
+        _id:id
       },
       success: res => {
       },
@@ -173,8 +213,22 @@ Page({
       }
     })
   },
+  async getNotice() {
+    wx.cloud.callFunction({
+      name: 'getNotify',
+      success: res => {
+        this.setData({
+          notifyList:res.result.data
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [getNotify] 调用失败: ', err)
+      }
+    })
+  },
   async onPullDownRefresh () {
     await this.getTemplateList()
+    await this.getNotice()
     wx.stopPullDownRefresh()
   },
 
@@ -182,7 +236,10 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.setData({
+      current: this.data.current + 1
+    })
+    this.getTemplateList()
   },
 
   /**

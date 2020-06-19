@@ -13,7 +13,7 @@ App({
         throwOnNotFound: false
       }),
       openid:'ohgEq45MVPEOkGw42NhwCl4nE7fg',
-      phone:'17660822280'
+      phone:'15555555555'
     }
   }
 })

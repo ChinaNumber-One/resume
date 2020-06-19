@@ -114,7 +114,7 @@
 					<view class='skill-item' wx:for="{{resume.projectExperience}}" wx:key="index">
 						<van-cell-group>
 
-							<dialogInput data-node='projectExperience' data-index='{{index}}' bind:change='changeData' data-key='companyName' value="{{ item.companyName }}" title="项目名" />
+							<dialogInput data-node='projectExperience' data-index='{{index}}' bind:change='changeData' data-key='projectName' value="{{ item.projectName }}" title="项目名" />
 							<datePicker title="开始时间" value="{{item.beginDate}}" data-key="beginDate" data-node='projectExperience' data-index='{{index}}' bind:change="changeData">
 							</datePicker>
 							<datePicker title="结束时间" value="{{item.endDate}}" data-key="endDate" data-node='projectExperience' data-index='{{index}}' bind:change="changeData">

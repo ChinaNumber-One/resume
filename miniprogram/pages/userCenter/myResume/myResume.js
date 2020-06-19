@@ -15,7 +15,6 @@ Page({
       workExperience: [],
       projectExperience: []
     },
-    phone: '',
     _id: '',
     formatter(type, value) {
       if (type === 'year') {
@@ -224,7 +223,6 @@ Page({
       cloudPath: app.globalData.openid + '/projectExperience/'+list[i].key+'/' + list[i].key+'_'+list[i].pindex+'_'+list[i].index+ list[i].url.match(/\.[^.]+?$/)[0],
       filePath: list[i].url,
       success: (res)=>{
-        console.log(list[i].pindex,list[i].key,list[i].index)
         this.data.resume.projectExperience[list[i].pindex][list[i].key][list[i].index].url = res.fileID
       },
       complete: (res) =>{
@@ -271,13 +269,14 @@ Page({
       _openid: app.globalData.openid,
       real: true
     }).get()
-    wx.hideLoading()
     if (res.data[0]) {
+      res.data[0].baseInfo.phone = app.globalData.phone
       this.setData({
         resume: res.data[0],
         eduIndex: this.data.eduOptions.findIndex(item => item === res.data[0].baseInfo.education)
       })
       this.data._id = res.data[0]._id
+      wx.hideLoading()
     } else {
       let res = await db.collection('resumes').add({
         data: {
@@ -298,6 +297,7 @@ Page({
           resume: this.data.resume
         })
       }
+      wx.hideLoading()
     }
     if (this.data.resume.skills.length === 0) {
       this.addSkill()

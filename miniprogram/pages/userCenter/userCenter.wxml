@@ -8,7 +8,7 @@
 		</view>
 	</view>
 	<view class='cell-box'>
-		<view class='flex-row flex-row-between cell-item'>
+		<view catchtap="jumpPage" data-url="./myTemplate/myTemplate" class='flex-row flex-row-between cell-item'>
 			<view class='flex-row'>
 				<image src="../../images/my-template-icon.png" class='cell-img'></image>
 				<view>我的模版</view>
@@ -16,13 +16,13 @@
 			<image src='../../images/arrow_right.png' class='arrow-img'></image>
 		</view>
 
-    <navigator url="./myResume/myResume" class='flex-row flex-row-between cell-item'>
+    <view  catchtap="jumpPage" data-url="./myResume/myResume" class='flex-row flex-row-between cell-item'>
 			<view class='flex-row'>
 				<image src="../../images/my-resume-icon.png" class='cell-img'></image>
 				<view>我的简历</view>
 			</view>
 			<image src='../../images/arrow_right.png' class='arrow-img'></image>
-		</navigator>
+		</view>
 
 		<view class='flex-row flex-row-between cell-item'>
 			<view class='flex-row'>
@@ -32,13 +32,13 @@
 			<image src='../../images/arrow_right.png' class='arrow-img'></image>
 		</view>
 
-		<navigator url="./bindPhone/bindPage" class='flex-row flex-row-between cell-item' >
+		<view  catchtap="jumpPage" data-url="./bindPhone/bindPage" class='flex-row flex-row-between cell-item' >
 			<view class='flex-row'>
 				<image src="../../images/bind-phone.png" class='cell-img'></image>
 				<view>绑定手机号</view>
 			</view>
 			<image src='../../images/arrow_right.png' class='arrow-img'></image>
-		</navigator>
+		</view>
     <button open-type="contact" class='flex-row flex-row-between cell-item'>
       <view class='flex-row'>
 				<image src="../../images/kefu-icon.png" class='cell-img'></image>

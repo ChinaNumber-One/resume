@@ -2,7 +2,8 @@
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
     "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
-    "van-dropdown-item": "@vant/weapp/dropdown-item/index"
+    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index"
   },
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark"

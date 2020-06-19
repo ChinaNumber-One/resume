@@ -4,7 +4,8 @@
     "pages/userCenter/userCenter",
     "pages/userCenter/bindPhone/bindPage",
     "pages/userCenter/myResume/myResume",
-    "components/cellUploader/cellUploader"
+    "components/cellUploader/cellUploader",
+    "pages/userCenter/myTemplate/myTemplate"
   ],
   "subpackages": [
     {
@@ -33,7 +34,7 @@
         "selectedIconPath": "../miniprogram/images/footer-icon-1-active.png"
       },
       {
-        "text": "我的",
+        "text": "个人中心",
         "pagePath": "pages/userCenter/userCenter",
         "iconPath": "../miniprogram/images/footer-icon-2.png",
         "selectedIconPath": "../miniprogram/images/footer-icon-2-active.png"

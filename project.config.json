@@ -27,7 +27,7 @@
 	},
 	"appid": "wx7c44380cb6aacc7a",
 	"projectname": "resume_wxcloud",
-	"libVersion": "2.10.4",
+	"libVersion": "2.11.1",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
@@ -53,7 +53,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
@@ -84,9 +84,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "模版1",
 					"pathName": "templateA/pages/templateA_01/index/index",
+					"query": "openid=ohgEq45MVPEOkGw42NhwCl4nE7fg&isShare=1&templateId=331568005ecbd7b100342ac833102d55",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "myTemplate",
+					"pathName": "pages/userCenter/myTemplate/myTemplate",
+					"query": "",
 					"scene": null
 				}
 			]

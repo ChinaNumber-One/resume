@@ -18,6 +18,6 @@
     "cellUploader":"../../../components/cellUploader/cellUploader"
   },
   "navigationBarTitleText": "我的简历",
-  "enablePullDownRefresh": false,
+  "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark"
 }

@@ -1,0 +1,60 @@
+/* components/visitDialog/visitDialog.wxss */
+.visit-dialog-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.6);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.visit-dialog-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 24rpx;
+  width: 84vw;
+  margin-bottom: 200rpx;
+  overflow: hidden;
+}
+.visit-dialog-head {
+  padding: 24rpx 0;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-bottom: 1rpx solid #eee;
+  width: 100%;
+}
+.visit-dialog-body {
+  width: 100%;
+}
+.visit-dialog-foot {
+  width: 100%;
+  display: flex;
+  border-top: 1rpx solid #eee;
+}
+.exit-btn {
+  width: 50%;
+  border-right: 1rpx solid #eee;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  line-height: 88rpx;
+}
+.confirm-btn {
+  width: 50%;
+  text-align: center;
+  font-size: 28rpx;
+  line-height: 88rpx;
+  border: none;
+  background: none;
+  color: #1989fa;
+}
+.confirm-btn::after {
+  display: none;
+}

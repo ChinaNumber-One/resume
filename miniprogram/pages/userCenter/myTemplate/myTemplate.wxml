@@ -1,0 +1,16 @@
+<view class='container'>
+	<!-- <view class='acount'>数量：{{list.length}}</view> -->
+	<view class='list' wx:if="{{list.length && loadSuccess}}">
+		<view class='item' bindtap="viewTemp" data-id="{{temp._id}}" data-url="{{temp.url}}" wx:for="{{list}}" wx:for-item="temp" wx:for-index="i" wx:key="_id">
+			<image src="{{temp.coverImg}}" class='coverImg'></image>
+      <view class='tag'>
+        <van-icon name="eye-o" size="16px" color="#fff"/>
+        <view style="font-size:24rpx;color:#fff;margin-left:12rpx"> {{temp.peopleViewNum}} </view>
+      </view>
+		</view>
+	</view>
+	<view wx:if="{{list.length === 0 && loadSuccess}}" class="list no-data">
+		<image src='../../../images/no-data.png' class='no-template'></image>
+		<view>暂无模版</view>
+	</view>
+</view>

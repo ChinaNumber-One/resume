@@ -58,8 +58,8 @@
   margin-right: 32rpx;
 }
 .arrow-img {
-  height: 40rpx;
-  width: 40rpx;
+  height: 32rpx;
+  width: 32rpx;
 }
 .cell-item {
   height: 100rpx;

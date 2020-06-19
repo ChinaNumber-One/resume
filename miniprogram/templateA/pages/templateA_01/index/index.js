@@ -10,22 +10,58 @@ Page({
     activeName: 1,
     color:['#FF1493','#00CED1','#FFA500','#32CD32','#FF4500','#FFD700'],
     title:['简历封面','个人简介','个人技能','工作经验','项目经验'],
+    sumbitInfoDone:false,
+    visitDialog:false,
+    optionOpenId:'',
+    templateId:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   async onLoad (options) {
-    wx.setNavigationBarTitle({
-      title: this.data.title[0],
-    })
     let param = {}
     if(options.openid) {
       param._openid = options.openid,
       param.real = true
+      this.setData({
+        optionOpenId:options.openid
+      })
     } else {
       param.real = false
+      wx.hideShareMenu();
     }
+    this.setData({
+      templateId: options.templateId
+    })
+    this.setData({
+      param
+    })
+    if(options.isShare === '1') {
+      // && options.openid !== app.globalData.openid
+      wx.setNavigationBarTitle({
+        title: '访问登记',
+      })
+      wx.hideHomeButton()
+      this.setData({
+        visitDialog:true
+      })
+    } else {
+      wx.setNavigationBarTitle({
+        title: this.data.title[0],
+      })
+      await this.getData(param)
+      this.setData({sumbitInfoDone:true})
+    }
+  },
+  async submit() {
+    this.setData({
+      visitDialog:false,
+    })
+    await this.getData(this.data.param)
+    this.setData({sumbitInfoDone:true})
+  },
+  async getData(param) {
     let { data } = await db.collection('resumes').where(param).get()
     if(data[0].skills.length) {
       data[0].skills.map((item,index)=>{
@@ -81,5 +117,11 @@ Page({
       }),
     })
   },
-  onShareAppMessage() {}
+  onShareAppMessage() {
+    return {
+      title: '姓名：' + this.data.info.baseInfo.realName + '    求职意向：'+this.data.info.baseInfo.employmentIntention,
+      path: '/templateA/pages/templateA_01/index/index?openid=' + this.data.optionOpenId +'&isShare=1&templateId='+this.data.templateId,
+      imageUrl: this.data.info.baseInfo.headImg || `../../../../images/headImg_${this.data.info.baseInfo.gender}.png`
+    }
+  },
 })

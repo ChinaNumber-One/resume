@@ -21,8 +21,6 @@ Page({
       let res = await db.collection('user').where({
         _openid: app.globalData.openid
       }).get()
-      wx.setStorageSync('HEADIMG', detail.avatarUrl)
-      wx.setStorageSync('NICKNAME', detail.nickName)
       await db.collection('user').doc(res.data[0]._id).update({
         data: {
           avatarUrl: detail.avatarUrl,
@@ -46,5 +44,11 @@ Page({
         info: Object.assign(this.data.info,res.data[0]),
       })
     } 
+  },
+  jumpPage(e) {
+    let url = e.currentTarget.dataset.url
+    wx.navigateTo({
+      url
+    })
   },
 })

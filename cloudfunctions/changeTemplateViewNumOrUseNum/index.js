@@ -6,7 +6,7 @@ const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
   let res = await db.collection('template').where({
-    code:event.code
+    _id:event._id
   }).get()
   if(event.type === 'view') {
     db.collection('template').doc(res.data[0]._id).update({

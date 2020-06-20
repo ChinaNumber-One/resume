@@ -8,13 +8,15 @@ Page({
   data: {
     current:0,
     list:[],
-    loadSuccess:false
+    loadSuccess:false,
+    info:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
+    wx.hideShareMenu()
     this.getTemplate()
   },
   async getTemplate() {
@@ -24,7 +26,20 @@ Page({
     let res = await db.collection('user').where({
       _openid: app.globalData.openid
     }).get()
+    let info = await db.collection('resumes').where({
+      _openid: app.globalData.openid
+    }).get()
+    this.setData({
+      info: info.data[0]
+    })
     let myTemplateList = res.data[0].myTemplateList||[]
+    if(myTemplateList.length ===0) {
+      wx.hideLoading()
+      this.setData({
+        loadSuccess:true
+      })
+      return
+    }
     let list = myTemplateList.map(item=>{
       return item.templateId
     })
@@ -68,4 +83,15 @@ Page({
     })
     this.getTemplate()
   },
+  async shareMessage(e) {
+    // 防止事件捕获
+  },
+  onShareAppMessage(e) {
+    let templateId = e.target.dataset.templateId
+    return {
+      title: '姓名：' + this.data.info.baseInfo.realName + '  求职意向：'+this.data.info.baseInfo.employmentIntention,
+      path: '/templateA/pages/templateA_01/index/index?openid=' + app.globalData.openid +'&isShare=1&templateId='+templateId,
+      imageUrl: this.data.info.baseInfo.headImg || `../../../../images/headImg_${this.data.info.baseInfo.gender}.png`
+    }
+  }
 })

@@ -11,12 +11,12 @@
 .coverImg {
   width: 100%;
   height: calc( (100vw - 40rpx)/2*410/270 );
+  display: block;
 }
 .item {
   position: relative;
   width: calc( (100vw - 40rpx)/2 );
   background-color: #fff;
-  padding-bottom: 16rpx;
   border-radius: 12rpx;
   display: inline-block;
   margin-bottom: 24rpx;
@@ -26,7 +26,6 @@
   margin-right: 16rpx;
 }
 .btn-box {
-  margin-top: 12rpx;
   justify-content: space-evenly;
 }
 .tag {
@@ -51,4 +50,32 @@
   width: 180rpx;
   height: 116rpx;
   margin: 80rpx auto 32rpx;
+}
+.btn-view {
+  width: 50%;
+  height: 48rpx;
+  border: none;
+  background: #1989fa;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-size: 24rpx;
+  line-height: 48rpx;
+}
+.btn-use {
+  width: 50%;
+  height: 48rpx;
+  border: none;
+  background: #07c160;
+  border-radius: 0;
+  font-size: 24rpx;
+  line-height: 48rpx;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+.btn-use::after ,
+.btn-view::after {
+  display: none;
 }

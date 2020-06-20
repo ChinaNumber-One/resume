@@ -19,10 +19,10 @@ Component({
    */
   data: {
     visitInfo: {
-      name:'张三',
-      phone:'18888888888',
+      name:'',
+      phone:'',
       identityType:'1',
-      companyName:'某某某公司'
+      companyName:''
     },
     loading:false,
   },

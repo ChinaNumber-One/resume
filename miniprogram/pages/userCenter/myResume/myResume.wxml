@@ -1,6 +1,6 @@
 <wxs module="handelDate" src="../../../utils/getTimes.wxs"></wxs>
 <view class='container'>
-	<van-tabs active="{{ active }}" color="#e7525c">
+	<van-tabs active="{{ active }}" color="#e7525c" bind:change="onChangeTab">
 		<van-tab title="基本信息">
 			<view class='tab-item-box'>
 				<view class='tab-item-content'>

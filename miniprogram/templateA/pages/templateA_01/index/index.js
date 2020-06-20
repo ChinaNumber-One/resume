@@ -114,7 +114,7 @@ Page({
     let index = e.currentTarget.dataset.index
     let cuttentimgindex = e.currentTarget.dataset.cuttentimgindex
     wx.previewImage({
-      current:this.data.info.projectExperience[index].projectImgs[cuttentimgindex],
+      current:this.data.info.projectExperience[index].projectImgs[cuttentimgindex].url,
       urls: this.data.info.projectExperience[index].projectImgs.map(item=>{
         return item.url
       }),

@@ -39,7 +39,7 @@
 			</view>
 			<image src='../../images/arrow_right.png' class='arrow-img'></image>
 		</view>
-    <button open-type="contact" class='flex-row flex-row-between cell-item'>
+    <button show-message-card open-type="contact" class='flex-row flex-row-between cell-item'>
       <view class='flex-row'>
 				<image src="../../images/kefu-icon.png" class='cell-img'></image>
 				<view>联系客服</view>

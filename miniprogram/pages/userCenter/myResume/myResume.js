@@ -32,6 +32,11 @@ Page({
     eduOptions: ['博士', '硕士', '研究生', '本科', '高中'],
     eduIndex: 0
   },
+  onChangeTab(e) {
+    this.setData({
+      active:e.detail.name
+    })
+  },
   openPicker(e) {
     let pickerKey = e.currentTarget.dataset.picker
     this.setData({
@@ -153,6 +158,7 @@ Page({
     const data = {
       [key]: this.data.resume[key]
     }
+    
     if (key === 'baseInfo' && this.data.headImgUploadpath) {
       let res = await wx.cloud.uploadFile({
         cloudPath: app.globalData.openid + '/headImg' + this.data.headImgUploadpath.match(/\.[^.]+?$/)[0],
@@ -283,7 +289,8 @@ Page({
           createTime: new Date(),
           real: true,
           baseInfo: {
-            phone: app.globalData.phone || ''
+            phone: app.globalData.phone || '',
+            gender:'1'
           },
           skills: [],
           workExperience: [],

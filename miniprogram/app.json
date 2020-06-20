@@ -5,7 +5,8 @@
     "pages/userCenter/bindPhone/bindPage",
     "pages/userCenter/myResume/myResume",
     "components/cellUploader/cellUploader",
-    "pages/userCenter/myTemplate/myTemplate"
+    "pages/userCenter/myTemplate/myTemplate",
+    "pages/userCenter/visitRecord/visitRecord"
   ],
   "subpackages": [
     {

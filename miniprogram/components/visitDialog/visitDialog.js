@@ -118,7 +118,8 @@ Component({
           companyName:this.data.visitInfo.companyName,
           ...e.detail.userInfo,
           openid:this.data.optionOpenId,
-          visitTime:new Date()
+          visitTime:new Date(),
+          delFlag: false
         }
         this.setData({
           loading:true

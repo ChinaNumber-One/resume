@@ -1,0 +1,29 @@
+<view class='container'>
+	<view class='list' wx:if="{{list.length && loadSuccess}}" >
+		<van-swipe-cell name="{{item._id}}" id="swipe-cell" wx:for="{{list}}" wx:key="_id" right-width="{{ 65 }}" async-close bind:close="onClose">
+			<view class='item'>
+				<image src="{{item.avatarUrl}}" mode="aspectFit" class='item-img'></image>
+				<view class='item-info-box'>
+					<view class='text-row'>
+						<view class='item-name'>{{item.name}}</view>
+						<view class='item-phone' bindtap="callPhone" data-phone="{{item.phone}}">
+							<image src="../../../images/call-icon.png" mode="aspectFit" class='icon-font'></image>
+							<view>{{item.phone}}</view>
+						</view>
+					</view>
+					<view class='item-company'>{{item.companyName}}</view>
+          <view class='item-time'>{{item.visitTimeStr}}</view>
+				</view>
+			</view>
+			<view slot="right" class='delete-btn'>
+        <text>删除</text>
+      </view>
+		</van-swipe-cell>
+
+	</view>
+  <view wx:if="{{list.length === 0 && loadSuccess}}" class="no-data">
+		<image src='../../../images/no-data.svg' mode="aspectFit" class='no-template'></image>
+		<view>还没有人看过你呢</view>
+    <view>赶快去<navigator style='color:#1E90FF;marign:0 4rpx;display:inline-block;' url="../myTemplate/myTemplate">分享</navigator>您的简历吧～</view>
+	</view>
+</view>

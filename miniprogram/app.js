@@ -1,4 +1,5 @@
 //app.js
+import {env} from './env'
 App({
   onLaunch: function () {
     if (!wx.cloud) {
@@ -6,14 +7,16 @@ App({
     } else {
       wx.cloud.init({
         traceUser: true,
+        env
       })
     }
     this.globalData = {
       db: wx.cloud.database({
-        throwOnNotFound: false
+        throwOnNotFound: false,
+        env
       }),
-      openid:'ohgEq45MVPEOkGw42NhwCl4nE7fg',
-      phone:'15555555555'
+      openid:'',
+      phone:''
     }
   }
 })

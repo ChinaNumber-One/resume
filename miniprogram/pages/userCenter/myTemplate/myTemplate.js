@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    current:0,
     list:[],
     loadSuccess:false
   },
@@ -30,7 +31,10 @@ Page({
     const _ = db.command
     let {data} = await db.collection('template').where({
       _id: _.in(list)
-    }).get()
+    })
+    .skip(this.data.current * 10)
+    .limit(10)
+    .get()
     let arr = data.map(item=>{
       return {
         ...item,
@@ -40,7 +44,7 @@ Page({
     })
     wx.hideLoading()
     this.setData({
-      list: arr.sort((a,b)=>{return b.orderByTime-a.orderByTime}),
+      list: this.data.current === 0? arr.sort((a,b)=>{return b.orderByTime-a.orderByTime}) : this.data.list.concat(arr).sort((a,b)=>{return b.orderByTime-a.orderByTime}),
       loadSuccess:true
     })
   },
@@ -49,14 +53,19 @@ Page({
       url: e.currentTarget.dataset.url+'?openid=' + app.globalData.openid+'&templateId='+e.target.dataset.id,
     })
   },
-  onPullDownRefresh: function () {
-
+  async onPullDownRefresh () {
+    this.setData({current:0})
+    await this.getTemplate()
+    wx.stopPullDownRefresh()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.setData({
+      current: this.data.current + 1
+    })
+    this.getTemplate()
   },
 })

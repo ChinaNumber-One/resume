@@ -46,6 +46,7 @@
   background: none;
   border: none;
   font-size: 32rpx;
+  color: #000;
 }
 .cell-box {
   margin-top: 138rpx;

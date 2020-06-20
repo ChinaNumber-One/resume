@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index"
+  },
+  "navigationBarTitleText": "看过我的人",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

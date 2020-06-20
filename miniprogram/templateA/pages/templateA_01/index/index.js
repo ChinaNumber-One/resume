@@ -58,6 +58,9 @@ Page({
     this.setData({
       visitDialog:false,
     })
+    wx.setNavigationBarTitle({
+      title: this.data.title[0],
+    })
     await this.getData(this.data.param)
     this.setData({sumbitInfoDone:true})
   },

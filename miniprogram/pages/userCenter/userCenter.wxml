@@ -2,7 +2,7 @@
 	<view class='head-box'>
 		<view class='user-info'>
 			<image class='user-img' wx:if="{{info.avatarUrl}}" src="{{info.avatarUrl}}"></image>
-			<view wx:else class='user-img'></view>
+			<image class='user-img' wx:else src="../../images/default_headImg.png"></image>
 			<view class='user-nickname' wx:if="{{info.nickName}}">{{info.nickName}}</view>
 			<van-button wx:else class='get-info' type="info" open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击授权登录</van-button>
 		</view>
@@ -24,10 +24,10 @@
 			<image src='../../images/arrow_right.png' class='arrow-img'></image>
 		</view>
 
-		<view class='flex-row flex-row-between cell-item'>
+		<view catchtap="jumpPage" data-url="./visitRecord/visitRecord" class='flex-row flex-row-between cell-item'>
 			<view class='flex-row'>
 				<image src="../../images/view-record-icon.png" class='cell-img'></image>
-				<view>访问记录</view>
+				<view>看过我的人</view>
 			</view>
 			<image src='../../images/arrow_right.png' class='arrow-img'></image>
 		</view>
@@ -46,5 +46,12 @@
 			</view>
 			<image src='../../images/arrow_right.png' class='arrow-img'></image>
     </button>
+		<view class='flex-row flex-row-between cell-item' >
+			<view class='flex-row'>
+				<image src="../../images/info-icon.png" style="width:48rpx;height:48rpx;" class='cell-img'></image>
+				<view>版本信息</view>
+			</view>
+			<image src='../../images/arrow_right.png' class='arrow-img'></image>
+		</view>
 	</view>
 </view>

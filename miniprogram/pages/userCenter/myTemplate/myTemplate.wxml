@@ -10,7 +10,7 @@
 		</view>
 	</view>
 	<view wx:if="{{list.length === 0 && loadSuccess}}" class="list no-data">
-		<image src='../../../images/no-data.png' class='no-template'></image>
+		<image src='../../../images/no-goods.svg' class='no-template'></image>
 		<view>暂无模版</view>
 	</view>
 </view>

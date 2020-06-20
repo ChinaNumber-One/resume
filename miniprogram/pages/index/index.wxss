@@ -48,7 +48,7 @@
   color: #999;
 }
 .no-template {
-  width: 214rpx;
-  height: 140rpx;
+  width: 180rpx;
+  height: 116rpx;
   margin: 80rpx auto 32rpx;
 }

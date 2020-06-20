@@ -148,7 +148,8 @@
 								<text style="font-weight:normal;font-size:24rpx;margin-left:8rpx;">({{experience.beginDate}} - {{experience.endDate}})</text>
 							</view>
 							<view class='url-str' wx:if="{{experience.projectUrl}}">
-								地址：{{experience.projectUrl}}<text bindtap="copyUrl" data-data='{{experience.projectUrl}}'>复制</text>
+								<view class='url-text'>地址：{{experience.projectUrl}}</view>
+								<view bindtap="copyUrl" class='copy-btn' data-data='{{experience.projectUrl}}'>复制</view>
 							</view>
 							<view class='view-qrcode-btn' bindtap="viewQrcodeImg" wx:if="{{experience.projectQrcode.length}}" data-urls="{{experience.projectQrcode}}">
 								查看二维码

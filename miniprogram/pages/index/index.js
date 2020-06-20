@@ -48,7 +48,6 @@ Page({
    */
   async onLoad(options) {
     await this.getOpenId()
-    await this.checkUser()
     this.getNotice()
     this.getTemplateList()
   },
@@ -64,24 +63,19 @@ Page({
     })
     this.getTemplateList()
   },
-  getOpenId() {
+  async getOpenId() {
     if (!wx.getStorageSync('OPENID')) {
-      wx.cloud.callFunction({
+      let res = await wx.cloud.callFunction({
         name: 'login',
-        data: {},
-        success: res => {
-          if (res.result.openid) {
-            app.globalData.openid = res.result.openid
-            wx.setStorage({
-              data: res.result.openid,
-              key: 'OPENID',
-            })
-          }
-        },
-        fail: err => {
-          console.error('[云函数] [login] 调用失败: ', err)
-        }
       })
+      if (res.result.openid) {
+        app.globalData.openid = res.result.openid
+        wx.setStorage({
+          data: res.result.openid,
+          key: 'OPENID',
+        })
+      }
+      this.checkUser()
     } else {
       app.globalData.openid = wx.getStorageSync('OPENID')
     }

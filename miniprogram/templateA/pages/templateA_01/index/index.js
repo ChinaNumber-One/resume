@@ -7,7 +7,7 @@ Page({
   data: {
     info:{},
     current:0,
-    activeName: 1,
+    // activeName: 1,
     color:['#FF1493','#00CED1','#FFA500','#32CD32','#FF4500','#FFD700'],
     title:['简历封面','个人简介','个人技能','工作经验','项目经验'],
     sumbitInfoDone:false,
@@ -37,8 +37,7 @@ Page({
     this.setData({
       param
     })
-    if(options.isShare === '1') {
-      // && options.openid !== app.globalData.openid
+    if(options.isShare === '1' && options.openid !== app.globalData.openid) {
       wx.setNavigationBarTitle({
         title: '访问登记',
       })
@@ -90,11 +89,11 @@ Page({
       title: this.data.title[e.detail.current],
     })
   },
-  onChange(event) {
-    this.setData({
-      activeName: event.detail,
-    });
-  },
+  // onChange(event) {
+  //   this.setData({
+  //     activeName: event.detail,
+  //   });
+  // },
   copyUrl(e) {
     let url = e.currentTarget.dataset.data
     wx.setClipboardData({

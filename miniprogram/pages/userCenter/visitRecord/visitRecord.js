@@ -33,10 +33,14 @@ Page({
       let minutes = ('0' + new Date(item.visitTime).getMinutes()).substr(-2)
       let second = ('0' +  new Date(item.visitTime).getSeconds()).substr(-2)
       item.visitTimeStr = year + '-' + month + '-' + day +' ' +hour +':' +minutes+':'+second
+      item.visitTimeNum = new Date(item.visitTime)
       return item
     })
+    let arr = data.sort((a,b)=>{
+      return b.visitTimeNum - a.visitTimeNum
+    })
     this.setData({
-      list: this.data.current === 0?data:this.data.list.concat(data),
+      list: this.data.current === 0?data:this.data.list.concat(arr),
       loadSuccess: true
     })
     wx.hideLoading()

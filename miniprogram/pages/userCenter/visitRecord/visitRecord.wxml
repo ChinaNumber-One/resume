@@ -11,7 +11,8 @@
 							<view>{{item.phone}}</view>
 						</view>
 					</view>
-					<view class='item-company'>{{item.companyName}}</view>
+					<view class='item-company' wx:if="{{item.identityType === '1'}}">{{item.companyName}}</view>
+					<view class='item-company' wx:if="{{item.identityType === '2'}}">个人</view>
           <view class='item-time'>{{item.visitTimeStr}}</view>
 				</view>
 			</view>

@@ -278,6 +278,20 @@
 .url-str {
   font-size: 24rpx;
   color: cornflowerblue;
+  display: flex;
+  align-items: center;
+}
+.url-text {
+  flex:1;
+  word-break: break-all;
+}
+.copy-btn {
+  width: 3em;
+  text-align: center;
+  margin-left: 16rpx;
+  flex-shrink: 0;
+  color: #000;
+  font-weight: 900;
 }
 .url-str text {
   color: #333;

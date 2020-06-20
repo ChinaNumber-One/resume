@@ -65,7 +65,7 @@ Page({
   },
   viewTemp(e) {
     wx.navigateTo({
-      url: e.currentTarget.dataset.url+'?openid=' + app.globalData.openid+'&templateId='+e.target.dataset.id,
+      url: e.currentTarget.dataset.url+'?openid=' + app.globalData.openid+'&templateId='+e.currentTarget.dataset.id,
     })
   },
   async onPullDownRefresh () {
@@ -87,7 +87,7 @@ Page({
     // 防止事件捕获
   },
   onShareAppMessage(e) {
-    let templateId = e.target.dataset.templateId
+    let templateId = e.target.dataset.templateid
     return {
       title: '姓名：' + this.data.info.baseInfo.realName + '  求职意向：'+this.data.info.baseInfo.employmentIntention,
       path: '/templateA/pages/templateA_01/index/index?openid=' + app.globalData.openid +'&isShare=1&templateId='+templateId,

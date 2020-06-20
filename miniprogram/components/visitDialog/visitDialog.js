@@ -46,9 +46,6 @@ Component({
         visitInfo:this.data.visitInfo
       })
     },
-    onClose(e) {
-      console.log(e)
-    },
     addTempViewNum() {
       wx.cloud.callFunction({
         name: 'addTempViewNum',

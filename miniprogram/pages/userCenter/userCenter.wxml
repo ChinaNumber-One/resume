@@ -24,6 +24,15 @@
 			<image src='../../images/arrow_right.png' class='arrow-img'></image>
 		</view>
 
+		<view catchtap="jumpPage" data-url="./invitationCode/invitationCode" class='flex-row flex-row-between cell-item' >
+			<view class='flex-row'>
+				<image src="../../images/power-icon.png" class='cell-img'></image>
+				<view>设置邀请码</view>
+				<image src="../../images/wenhao-icon.png" class='cell-img' style="width:28rpx;height:28rpx;margin-left:16rpx;" catchtap="invitationCode"></image>
+			</view>
+			<image src='../../images/arrow_right.png' class='arrow-img'></image>
+		</view>
+
 		<view catchtap="jumpPage" data-url="./visitRecord/visitRecord" class='flex-row flex-row-between cell-item'>
 			<view class='flex-row'>
 				<image src="../../images/view-record-icon.png" class='cell-img'></image>

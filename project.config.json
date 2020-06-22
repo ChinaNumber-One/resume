@@ -108,6 +108,14 @@
 					"id": -1,
 					"name": "versionInfo",
 					"pathName": "pages/userCenter/versionInfo/versionInfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "invitationCode",
+					"pathName": "pages/userCenter/invitationCode/invitationCode",
+					"query": "code=123456",
 					"scene": null
 				}
 			]

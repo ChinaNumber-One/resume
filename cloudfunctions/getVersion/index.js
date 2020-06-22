@@ -10,6 +10,6 @@ exports.main = async (event, context) => {
   const _ = db.command
   let res = await db.collection('version').where({
     updateTime:_.lt(new Date)
-  }).limit(10).skip(current * 10).orderBy('updateTime',"desc").get()
+  }).limit(10).skip(current * 10).orderBy('updateTime',"asc").get()
   return res
 }

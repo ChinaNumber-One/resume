@@ -10,7 +10,7 @@
     <view class='item' wx:for="{{list}}" wx:key="_id">
       <view class='flex-row-between'>
         <view class='version-no'>v {{item.v}}</view>
-        <view class='update-time'>{{item.updateTimeStr}}</view>
+        <view class='update-time'>更新时间：{{item.updateTimeStr}}</view>
       </view>
       <view wx:for="{{item.desc}}" wx:for-item="tip" wx:for-index="_i" wx:key="_i" class='tip'>
         {{tip}}

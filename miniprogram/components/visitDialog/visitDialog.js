@@ -1,4 +1,5 @@
-// components/visitDialog/visitDialog.js
+const app = getApp()
+const db = app.globalData.db
 Component({
   /**
    * 组件的属性列表
@@ -22,11 +23,25 @@ Component({
       name:'',
       phone:'',
       identityType:'1',
-      companyName:''
+      companyName:'',
+      code:''
     },
     loading:false,
+    code:''
   },
-
+  lifetimes: {
+    async attached() {
+      let {data} = await db.collection('invitationCode').where({
+        _openid: this.data.optionOpenId,
+        closeFlag:false
+      }).get()
+      if(data.length) {
+        this.setData({
+          code: data[0].code
+        })
+      }
+    },
+  },
   /**
    * 组件的方法列表
    */
@@ -108,6 +123,19 @@ Component({
             visitInfo: this.data.visitInfo
           })
         } 
+        if(this.data.visitInfo.code ==='') {
+          this.data.visitInfo.error_code = '请输入邀请码'
+          return this.setData({
+            visitInfo: this.data.visitInfo
+          })
+        }
+        if(this.data.visitInfo.code !== this.data.code) {
+          this.data.visitInfo.error_code = '邀请码输入错误，请核实'
+          return this.setData({
+            visitInfo: this.data.visitInfo
+          })
+        }
+
         let param = {
           name:this.data.visitInfo.name,
           phone:this.data.visitInfo.phone,

@@ -51,4 +51,12 @@ Page({
       url
     })
   },
+  invitationCode() {
+    wx.showModal({
+      title:'什么是邀请码？',
+      content:'为了保护用户的信息安全，您可以设置邀请码，他人在访问您的简历前必须输入邀请码才能看到您的简历。',
+      showCancel:false,
+      confirmText:'知道了'
+    })
+  }
 })

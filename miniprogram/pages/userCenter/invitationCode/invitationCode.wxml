@@ -1,0 +1,17 @@
+<view class='container'>
+  <view class='title flex-row-between'>
+    <view>{{code.length===6?'您的邀请码':'设置邀请码'}}</view>
+    <van-switch size="24px" active-color="#e7525c" inactive-color="#999" checked="{{ !closeFlag }}" bind:change="onChange" />
+  </view>
+  <view class='code-box {{closeFlag?"disbled-border":""}}' bindtap="getFocus">
+    <view class='input' wx:for="{{6}}" wx:key="index">{{code[index]}}</view>
+    <input focus="{{focus&&!closeFlag}}" bindinput="changeInput" type='number' maxlength="6" value="{{code}}" class='real-input'></input>
+  </view>
+  <view class='tips'>
+    <view>设置邀请码，让您的简历信息更加安全。</view>
+    <view>您可以通过左上角开关，来 关闭or开启 邀请码验证。</view>
+  </view>
+  <view class='submit-btn {{code.length !== 6?"disabled":""}}' bindtap="submit">
+		保存
+	</view>
+</view>

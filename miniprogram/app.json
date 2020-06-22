@@ -6,7 +6,8 @@
     "pages/userCenter/myResume/myResume",
     "pages/userCenter/myTemplate/myTemplate",
     "pages/userCenter/visitRecord/visitRecord",
-    "pages/userCenter/versionInfo/versionInfo"
+    "pages/userCenter/versionInfo/versionInfo",
+    "pages/userCenter/invitationCode/invitationCode"
   ],
   "subpackages": [
     {

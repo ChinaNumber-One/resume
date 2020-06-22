@@ -11,6 +11,7 @@
 				</van-radio-group>
 			</van-cell>
 			<van-field wx:if="{{visitInfo.identityType === '1'}}" data-key="companyName" value="{{ visitInfo.companyName }}" placeholder="请输入公司名" label="公司：" type="text" maxlength="100" bind:change="changeVisitData" error-message="{{visitInfo.error_companyName}}" border="{{false}}" />
+			<van-field value="{{ visitInfo.code }}" placeholder="请输入邀请码" label="邀请码：" type="number" data-key='code' bind:change="changeVisitData" error-message="{{visitInfo.error_code}}" />
 		</view>
     <view class='visit-dialog-foot'>
       <navigator class='exit-btn' open-type="exit" target="miniProgram">退出</navigator>

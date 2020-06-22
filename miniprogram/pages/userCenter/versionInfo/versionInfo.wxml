@@ -1,0 +1,20 @@
+<view class='container'>
+  <view class='head-box'>
+    <image src="cloud://prod-dpwdi.7072-prod-dpwdi-1302239910/logo.png" mode='aspectFit' class='logo-img'></image>
+    <view class='CH-name'>简历秀</view>
+    <view class='EN-name'>Resume Show</view>
+    <view class='version'>Version 1.0.0</view>
+  </view>
+  <view class='list'>
+    <view class='list-title'>更新日志</view>
+    <view class='item' wx:for="{{list}}" wx:key="_id">
+      <view class='flex-row-between'>
+        <view class='version-no'>v {{item.v}}</view>
+        <view class='update-time'>{{item.updateTimeStr}}</view>
+      </view>
+      <view wx:for="{{item.desc}}" wx:for-item="tip" wx:for-index="_i" wx:key="_i" class='tip'>
+        {{tip}}
+      </view>
+    </view>
+  </view>
+</view>

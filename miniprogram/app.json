@@ -5,7 +5,8 @@
     "pages/userCenter/bindPhone/bindPage",
     "pages/userCenter/myResume/myResume",
     "pages/userCenter/myTemplate/myTemplate",
-    "pages/userCenter/visitRecord/visitRecord"
+    "pages/userCenter/visitRecord/visitRecord",
+    "pages/userCenter/versionInfo/versionInfo"
   ],
   "subpackages": [
     {
@@ -19,7 +20,7 @@
     "backgroundColor": "#FFFFFF",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "云简历平台",
+    "navigationBarTitleText": "简历秀",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",

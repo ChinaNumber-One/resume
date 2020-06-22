@@ -46,7 +46,7 @@
 			</view>
 			<image src='../../images/arrow_right.png' class='arrow-img'></image>
     </button>
-		<view class='flex-row flex-row-between cell-item' >
+		<view class='flex-row flex-row-between cell-item' catchtap="jumpPage" data-url="./versionInfo/versionInfo">
 			<view class='flex-row'>
 				<image src="../../images/info-icon.png" style="width:48rpx;height:48rpx;" class='cell-img'></image>
 				<view>版本信息</view>

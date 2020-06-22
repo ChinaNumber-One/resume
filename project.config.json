@@ -103,6 +103,12 @@
 					"pathName": "pages/userCenter/visitRecord/visitRecord",
 					"query": "openid=ohgEq45MVPEOkGw42NhwCl4nE7fg&isShare=1&templateId=331568005ecbd7b100342ac833102d55",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "versionInfo",
+					"pathName": "pages/userCenter/versionInfo/versionInfo",
+					"scene": null
 				}
 			]
 		}

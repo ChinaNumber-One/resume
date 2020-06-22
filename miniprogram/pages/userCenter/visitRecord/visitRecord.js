@@ -24,7 +24,7 @@ Page({
     let {data} = await db.collection('visitRecord').where({
       openid: app.globalData.openid,
       delFlag: false
-    }).skip(this.data.current * 10).limit(10).get()
+    }).orderBy('visitTime','desc').skip(this.data.current * 10).limit(10).get()
     data.map(item=>{
       let year = new Date(item.visitTime).getFullYear()
       let month = ('0' + (new Date(item.visitTime).getMonth() + 1)).substr(-2)
@@ -33,14 +33,10 @@ Page({
       let minutes = ('0' + new Date(item.visitTime).getMinutes()).substr(-2)
       let second = ('0' +  new Date(item.visitTime).getSeconds()).substr(-2)
       item.visitTimeStr = year + '-' + month + '-' + day +' ' +hour +':' +minutes+':'+second
-      item.visitTimeNum = new Date(item.visitTime)
       return item
     })
-    let arr = data.sort((a,b)=>{
-      return b.visitTimeNum - a.visitTimeNum
-    })
     this.setData({
-      list: this.data.current === 0?data:this.data.list.concat(arr),
+      list: this.data.current === 0?data:this.data.list.concat(data),
       loadSuccess: true
     })
     wx.hideLoading()

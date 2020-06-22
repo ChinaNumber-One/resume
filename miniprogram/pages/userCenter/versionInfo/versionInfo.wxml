@@ -3,7 +3,7 @@
     <image src="cloud://prod-dpwdi.7072-prod-dpwdi-1302239910/logo.png" mode='aspectFit' class='logo-img'></image>
     <view class='CH-name'>简历秀</view>
     <view class='EN-name'>Resume Show</view>
-    <view class='version'>Version 1.0.0</view>
+    <view class='version'>Version {{list[0].v}}</view>
   </view>
   <view class='list'>
     <view class='list-title'>更新日志</view>

@@ -274,6 +274,7 @@
 .view-qrcode-btn {
   color: cornflowerblue;
   font-size: 24rpx;
+  margin-top: 8rpx;
 }
 .url-str {
   font-size: 24rpx;

@@ -1,6 +1,6 @@
 <view class='container'>
   <view class='title flex-row-between'>
-    <view>{{code.length===6?'您的邀请码':'设置邀请码'}}</view>
+    <view>{{code.length===6?'我的邀请码':'设置邀请码'}}</view>
     <van-switch size="24px" active-color="#e7525c" inactive-color="#999" checked="{{ !closeFlag }}" bind:change="onChange" />
   </view>
   <view class='code-box {{closeFlag?"disbled-border":""}}' bindtap="getFocus">

@@ -7,7 +7,7 @@ Page({
    */
   data: {
     code:'',
-    focus:true,
+    focus:false,
     closeFlag:false
   },
 

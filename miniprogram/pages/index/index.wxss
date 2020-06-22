@@ -63,6 +63,7 @@
   font-size: 24rpx;
   line-height: 48rpx;
 }
+
 .btn-use {
   width: 50%;
   height: 48rpx;

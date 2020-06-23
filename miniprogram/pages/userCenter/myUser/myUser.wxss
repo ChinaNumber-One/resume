@@ -1,0 +1,95 @@
+/* miniprogram/pages/userCenter/myUser/myUser.wxss */
+.item {
+  display: flex;
+  /* align-items: center; */
+  padding: 24rpx 32rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+.item:last-child {
+  border-bottom: none;
+}
+.item-img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  margin-right: 32rpx;
+}
+.item-info-box {
+  flex:1;
+}
+.text-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+.item-name {
+  font-size: 32rpx;
+  font-weight: bolder;
+  
+  display: flex;
+  align-items: center;
+}
+.item-name-text {
+  max-width: 260rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.item-phone {
+  display: flex;
+  width: 240rpx;
+  justify-content: center;
+}
+.icon-font {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 4rpx;
+}
+.item-company {
+  color: #333;
+}
+.item-time {
+  color: #999;
+  font-size: 24rpx;
+}
+.delete-btn {
+  background:#1989fa;
+  height: 100%;
+  width: 65px;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.no-data {
+  text-align: center;
+  color: #999;
+  font-size: 24rpx;
+}
+.no-template {
+  width: 236rpx;
+  height: 208rpx;
+  margin: 140rpx auto 0;
+}
+.sex-box {
+  flex-shrink:0;
+  margin-left:24rpx;
+  font-size:24rpx;
+}
+.sex-box view {
+  font-size:24rpx;
+  color: #666;
+  font-weight: normal;
+}
+.total {
+  padding: 24rpx 32rpx;
+  color: #666;
+  font-size: 24rpx;
+  position: sticky;
+  top: 0;
+  border-bottom: 1rpx solid #eee;
+  background: #fff;
+}

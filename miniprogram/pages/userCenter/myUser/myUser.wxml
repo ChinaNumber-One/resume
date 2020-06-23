@@ -1,0 +1,31 @@
+<view class='container'>
+  <view class='total'>共有{{total}}个用户</view>
+	<view class='list' wx:if="{{list.length && loadSuccess}}">
+		<view class='item' wx:for="{{list}}" wx:key="_id">
+			<image wx:if="{{item.avatarUrl}}" src="{{item.avatarUrl}}" class='item-img'></image>
+			<image wx:else src="../../../images/default_headImg.png" class='item-img'></image>
+			<view class='item-info-box'>
+				<view class='text-row'>
+					<view class='item-name'>
+						<view class='item-name-text'>{{item.nickName||'未授权'}}</view>
+						<view class='sex-box'>
+							<view wx:if="{{item.gender===1}}">男</view>
+							<view wx:elif="{{item.gender===2}}">女</view>
+							<view wx:else="{{item.gender===0}}">未知</view>
+						</view>
+					</view>
+					<view class='item-phone' wx:if="{{item.phone}}" bindtap="callPhone" data-phone="{{item.phone}}">
+						<image src="../../../images/call-icon.png" mode="aspectFit" class='icon-font'></image>
+						<view>{{item.phone}}</view>
+					</view>
+				</view>
+				<view class='item-company'>上次登陆时间：{{item.lastLoginTimeStr}}</view>
+				<view class='item-time'>创建时间：{{item.createTimeStr}}</view>
+			</view>
+		</view>
+	</view>
+	<view wx:if="{{list.length === 0 && loadSuccess}}" class="no-data">
+		<image src='../../../images/no-data.svg' mode="aspectFit" class='no-template'></image>
+		<view>暂无数据</view>
+	</view>
+</view>

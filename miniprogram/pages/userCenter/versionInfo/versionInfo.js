@@ -34,6 +34,9 @@ Page({
     })
   },
   async onPullDownRefresh() {
+    this.setData({
+      current:0
+    })
     await this.getData()
     wx.stopPullDownRefresh()
   },

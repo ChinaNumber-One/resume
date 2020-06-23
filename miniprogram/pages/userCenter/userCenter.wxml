@@ -62,5 +62,12 @@
 			</view>
 			<image src='../../images/arrow_right.png' class='arrow-img'></image>
 		</view>
+		<view wx:if="{{info.type === '1'}}"  catchtap="jumpPage" data-url="./myUser/myUser" class='flex-row flex-row-between cell-item' >
+			<view class='flex-row'>
+				<image src="../../images/tongji-icon.png" class='cell-img'></image>
+				<view>用户统计</view>
+			</view>
+			<image src='../../images/arrow_right.png' class='arrow-img'></image>
+		</view>
 	</view>
 </view>

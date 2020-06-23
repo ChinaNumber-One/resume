@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+  },
+  "navigationBarTitleText": "我的用户",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

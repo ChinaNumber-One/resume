@@ -78,6 +78,7 @@ Page({
       this.checkUser()
     } else {
       app.globalData.openid = wx.getStorageSync('OPENID')
+      this.checkUser()
     }
   },
   async checkUser() {
@@ -273,6 +274,9 @@ Page({
     })
   },
   async onPullDownRefresh() {
+    this.setData({
+      current: 0
+    })
     await this.getTemplateList()
     await this.getNotice()
     wx.stopPullDownRefresh()

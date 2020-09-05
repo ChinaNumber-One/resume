@@ -17,18 +17,19 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"appid": "wx7c44380cb6aacc7a",
 	"projectname": "resume_wxcloud",
-	"libVersion": "2.11.1",
+	"libVersion": "2.11.2",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
@@ -117,6 +118,13 @@
 					"name": "invitationCode",
 					"pathName": "pages/userCenter/invitationCode/invitationCode",
 					"query": "code=123456",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "模版 A_02",
+					"pathName": "templateA/pages/templateA_02/index/index",
+					"query": "",
 					"scene": null
 				}
 			]

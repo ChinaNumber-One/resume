@@ -14,7 +14,8 @@
     {
       "root": "templateA",
       "pages": [
-        "pages/templateA_01/index/index"
+        "pages/templateA_01/index/index",
+        "pages/templateA_02/index/index"
       ]
     }
   ],

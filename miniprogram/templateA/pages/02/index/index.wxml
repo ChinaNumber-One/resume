@@ -4,7 +4,7 @@
 			<!-- 封面 -->
 			<swiper-item>
 				<view class="container" wx:if="{{current === 0}}">
-					<view class='center-title animate__animated animate__delay-1-5s animate__zoomIn'>MY RESUME</view>
+					<view class='center-title animate__animated animate__delay-1-8s animate__zoomIn'>MY RESUME</view>
 					<view class='cover-box'>
 						<view class='cover-item cover-item-1 animate__animated animate__delay-1s animate__fadeInLeft'>
 							<image src='../02/images/cover-1.png' class='cover-img' mode="aspectFit"></image>
@@ -19,6 +19,40 @@
 							<image src='../02/images/cover-4.png' class='cover-img' mode="aspectFit"></image>
 						</view>
 					</view>
+				</view>
+			</swiper-item>
+			<!-- 基本信息 -->
+			<swiper-item>
+				<view class='container'>
+					<view class='flex-row '>
+						<view class='base-title-en animate__animated animate__delay-0-5s animate__rotateInDownLeft'>
+							<view class='animate__animated animate__delay-1s animate__fadeInLeft'>BASIC</view>
+							<view class='animate__animated animate__delay-1s animate__fadeInLeft'>INFORMATION</view>
+						</view>
+						<image mode="aspectFill" wx:if="{{info.baseInfo.headImg}}" src="{{info.baseInfo.headImg}}" class='head-img animate__animated animate__delay-1-5s animate__fadeInRight'></image>
+						<image mode="aspectFill" wx:else src="../../../../01/images/headImg_{{info.baseInfo.gender}}.png" class='head-img animate__animated animate__delay-1-5s animate__fadeInRight'></image>
+					</view>
+					<view class='flex-row '>
+						<view class='base-info-box flex-column animate__animated animate__delay-1-5s animate__fadeInLeft'>
+							<view>姓名：{{info.baseInfo.realName}}</view>
+							<view>籍贯：{{info.baseInfo.addr}}</view>
+							<view>出生日期：{{info.baseInfo.birth}}</view>
+							<view>学历：{{info.baseInfo.education}}</view>
+							<view>专业：{{info.baseInfo.major}}</view>
+							<view>毕业院校：{{info.baseInfo.university}}</view>
+							<view>手机号：{{info.baseInfo.phone}}</view>
+						</view>
+						<view class='base-title-ch animate__animated animate__delay-0-5s animate__rotateInDownRight'>
+							<view class='animate__animated animate__delay-1s animate__fadeInLeft animate__fadeInUp'>基本信息</view>
+						</view>
+					</view>
+				</view>
+			</swiper-item>
+			<!-- 工作经验 -->
+			<swiper-item>
+				<view class="container">
+					<view class='work-line-row'></view>
+					<view class='work-line-column'></view>
 				</view>
 			</swiper-item>
 		</swiper>

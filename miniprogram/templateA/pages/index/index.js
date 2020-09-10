@@ -6,7 +6,7 @@ Page({
    */
   data: {
     info:{},
-    current:0,
+    current:1,
     color:['#FF1493','#00CED1','#FFA500','#32CD32','#FF4500','#FFD700'],
     title:['简历封面','个人简介','个人技能','工作经验','项目经验'],
     sumbitInfoDone:false,

@@ -1,0 +1,3 @@
+/* templateA/pages/index/index.wxss */
+@import '../01/index/index.wxss';
+@import '../02/index/index.wxss';

@@ -1,6 +1,5 @@
-/* miniprogram/pages/introduction/introduction.wxss */
 
-.page-content-border {
+.A_01 .page-content-border {
   margin: 48rpx;
   height: calc( 100vh - 96rpx );
   width: calc( 100vw - 96rpx );
@@ -9,13 +8,13 @@
   box-sizing: border-box;
   padding: 32rpx;
 }
-.page-content-resume-text {
+.A_01 .page-content-resume-text {
   text-align: center;
   font-size: 32rpx;
   font-weight: 300; 
   margin-bottom: 20rpx;
 }
-.page-content-resume-title {
+.A_01 .page-content-resume-title {
   background-color: #FA5845;
   border-radius: 12rpx;
   line-height: 52rpx;
@@ -28,14 +27,14 @@
   font-weight: 300;
   margin-bottom: 32rpx;
 }
-.bottom-img {
+.A_01 .bottom-img {
   position: fixed;
   bottom: 64rpx;
   left: 15vw;
   width: 70vw;
   height: 170rpx;
 }
-.head-img {
+.A_01 .head-img {
   width: 220rpx;
   height: 308rpx;
   display: block;
@@ -44,77 +43,77 @@
   flex-shrink: 0;
   /* border: 1px solid #F05c40; */
 }
-.text{
+.A_01 .text{
   font-weight: 400;
   color: #F05c40;
   line-height: 20px;
   font-size: 12px;
   word-break: break-all;
 }
-.head-info {
+.A_01 .head-info {
   flex:1;
   align-items: flex-start;
   height: 308rpx;
   justify-content: space-evenly;
 }
-.evaluate {
+.A_01 .evaluate {
   height: calc( 100vh - 780rpx );
   overflow: auto;
 }
-.progress-box {
+.A_01 .progress-box {
   width: 100%;
   background: #ddd;
   height: 16rpx;
   border-radius: 8rpx;
   width: 80%;
 }
-.skill-item-name {
+.A_01 .skill-item-name {
   font-size: 32rpx;
   font-weight: 900;
   margin-bottom: 4rpx;
 }
-.skill-item-desc {
+.A_01 .skill-item-desc {
   font-size: 24rpx;
   font-weight: 400;
   color: #666;
   margin-bottom: 8rpx;
 }
-.progress-item {
+.A_01 .progress-item {
   border-radius: 8rpx;
   height: 16rpx;
   position: relative;
   width: 0;
   transition: .2s;
 }
-.skill-item {
+.A_01 .skill-item {
   margin-bottom: 24rpx;
 }
-.skill-value {
+.A_01 .skill-value {
   font-size: 24rpx;
   line-height: 28rpx;
   color: #000;
   text-align: center;
   flex:1;
 }
-.skill-list,
-.work-experience {
+.A_01 .skill-list,
+.A_01 .work-experience {
   height: calc( 100vh - 426rpx );
   overflow: auto;
 }
-.collapse-title {
+.A_01 .collapse-title {
   position: sticky;
   top: 250rpx;
   left: 0;
 }
 
 
-.container {
+.A_01 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.bottom-img {
+.A_01 .bottom-img {
   position: absolute;
   bottom: 16rpx;
   left: 0;
@@ -122,7 +121,7 @@
   height: 243rpx;
   z-index: 1;
 }
-.image-1 {
+.A_01 .image-1 {
   position: absolute;
   left: -68rpx;
   top: 4.4vh;
@@ -130,7 +129,7 @@
   height: 128rpx;
   z-index: 1;
 }
-.image-2 {
+.A_01 .image-2 {
   position: absolute;
   left: -32rpx;
   top: 37vh;
@@ -138,7 +137,7 @@
   height: 66rpx;
   z-index: 1;
 }
-.image-3 {
+.A_01 .image-3 {
   position: absolute;
   right: -68rpx;
   top: 13.4vh;
@@ -146,7 +145,7 @@
   height: 174rpx;
   z-index: 1;
 }
-.image-4 {
+.A_01 .image-4 {
   position: absolute;
   right: -70rpx;
   top: 46vh;
@@ -154,7 +153,7 @@
   height: 232rpx;
   z-index: 1;
 }
-.image-5 {
+.A_01 .image-5 {
   position: absolute;
   left: -38rpx;
   top: 64vh;
@@ -163,14 +162,14 @@
   z-index: 1;
 }
 
-.image-6 {
+.A_01 .image-6 {
   position: absolute;
   left: 0;
   bottom: 0rpx;
   width: 10rpx;
   height: 138rpx;
 }
-.image-7 {
+.A_01 .image-7 {
   position: absolute;
   right: 0;
   top: 0rpx;
@@ -178,7 +177,7 @@
   height: 138rpx;
 }
 
-.page-title {
+.A_01 .page-title {
   width: 60vw;
   margin: 0vh auto 32rpx;
   text-align: center;
@@ -187,7 +186,7 @@
   line-height: 144rpx;
   position: relative;
 }
-.card-box {
+.A_01 .card-box {
   width: 70%;
   border-radius: 32rpx;
   min-height: 300rpx;
@@ -206,7 +205,7 @@
   font-weight: 300;
   margin-bottom:259rpx;
 }
-.card-box-title {
+.A_01 .card-box-title {
   position: absolute;
   padding: 14rpx 8rpx;
   line-height: 32rpx;
@@ -219,7 +218,7 @@
   left: 15%;
   box-sizing: border-box;
 }
-.card-box-title-text {
+.A_01 .card-box-title-text {
   /* white-space: nowrap;
   overflow: hidden;
   text-align: center;
@@ -227,13 +226,13 @@
   width: 100%;
   text-align: center;
 }
-.resume-text {
+.A_01 .resume-text {
   text-align: center;
   font-size: 52rpx;
   font-weight: 300;
   margin-bottom: 5vh;
 }
-.bottom-img-s {
+.A_01 .bottom-img-s {
   position: absolute;
   bottom: 48rpx;
   left: 80rpx;
@@ -241,27 +240,27 @@
   height: calc( (100vw - 160rpx)*212/645);
   z-index: 1;
 }
-.experience-box {
+.A_01 .experience-box {
   padding: 0 24rpx;
   margin-bottom: 24rpx;
 }
-.experience-title {
+.A_01 .experience-title {
   font-size: 32rpx;
   font-weight: bold;
   line-height: 32rpx;
   padding: 8rpx 0;
 }
-.experience-tips {
+.A_01 .experience-tips {
   padding: 12rpx;
 }
-.experience-tips-item {
+.A_01 .experience-tips-item {
   line-height: 36rpx;
   font-size: 28rpx;
   position: relative;
   color: #666;
   text-indent: 12rpx;
 }
-.experience-tips-item::after {
+.A_01 .experience-tips-item::after {
   content: '';
   position: absolute;
   top: 12rpx;
@@ -271,22 +270,22 @@
   border-radius: 50%;
   background: #666;
 }
-.view-qrcode-btn {
+.A_01 .view-qrcode-btn {
   color: cornflowerblue;
   font-size: 24rpx;
   margin-top: 8rpx;
 }
-.url-str {
+.A_01 .url-str {
   font-size: 24rpx;
   color: cornflowerblue;
   display: flex;
   align-items: center;
 }
-.url-text {
+.A_01 .url-text {
   flex:1;
   word-break: break-all;
 }
-.copy-btn {
+.A_01 .copy-btn {
   width: 3em;
   text-align: center;
   margin-left: 16rpx;
@@ -294,16 +293,16 @@
   color: #000;
   font-weight: 900;
 }
-.url-str text {
+.A_01 .url-str text {
   color: #333;
   margin-left: 32rpx;
 }
-.img-9-list {
+.A_01 .img-9-list {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
-.img-9-item {
+.A_01 .img-9-item {
   width: 192rpx;
   height: 192rpx;
   border: 1rpx solid #eee;
@@ -311,6 +310,6 @@
   box-sizing: border-box;
   margin-bottom: 12rpx;
 }
-.img-9-item:nth-child(3n-1) {
+.A_01 .img-9-item:nth-child(3n-1) {
   margin: 0 12rpx 12rpx;
 }

@@ -124,6 +124,10 @@ Page({
       loadSuccess: true
     })
     if (res && res.data) {
+      res.data.forEach(item=>{
+        item.templateType = item.code.split('_')[0]
+        item.templateNo = item.code.split('_')[1]
+      })
       this.setData({
         templateList: this.data.current === 0 ? res.data : this.data.templateList.concat(res.data)
       })
@@ -139,7 +143,7 @@ Page({
       if (e.target.dataset.type === 'view') {
         await this.changeTemplateViewNumOrUseNum(e.target.dataset.type, e.target.dataset.id)
         wx.navigateTo({
-          url: e.target.dataset.url + '?templateId=' + e.target.dataset.id,
+          url: `/template${e.target.dataset.templatetype}/pages/index/index?templateNo=${e.target.dataset.templateno}&templateType=${e.target.dataset.templatetype}`
         })
       } else {
         // 检查手机号，不存在的话 录入，存在的话进入表单填写页面
@@ -197,7 +201,7 @@ Page({
             }
             wx.hideLoading()
             wx.navigateTo({
-              url: e.target.dataset.url + '?openid=' + app.globalData.openid + '&templateId=' + e.target.dataset.id,
+              url: `/template${e.target.dataset.templatetype}/pages/index/index?templateNo=${e.target.dataset.templateno}&openid=${app.globalData.openid}&templateType=${e.target.dataset.templatetype}`
             })
           }
         }

@@ -53,6 +53,8 @@ Page({
     let arr = data.map(item=>{
       return {
         ...item,
+        templateNo: item.code.split('_')[1],
+        templateType: item.code.split('_')[0],
         orderByTime:new Date(myTemplateList.find(val=>val.templateId ===item._id).upDateTime).getTime(),
         peopleViewNum:myTemplateList.find(val=>val.templateId ===item._id).peopleViewNum
       }
@@ -65,7 +67,7 @@ Page({
   },
   viewTemp(e) {
     wx.navigateTo({
-      url: e.currentTarget.dataset.url+'?openid=' + app.globalData.openid+'&templateId='+e.currentTarget.dataset.id,
+      url: `/template${e.currentTarget.dataset.templatetype}/pages/index/index?templateNo=${e.currentTarget.dataset.templateno}&openid=${app.globalData.openid}&templateType=${e.currentTarget.dataset.templatetype}`
     })
   },
   async onPullDownRefresh () {
@@ -87,10 +89,12 @@ Page({
     // 防止事件捕获
   },
   onShareAppMessage(e) {
-    let templateId = e.target.dataset.templateid
+    let templateNo = e.target.dataset.templateno
+    let templateType = e.target.dataset.templatetype
+    console.log( `/template${templateType}/pages/index/index?openid=${app.globalData.openid}&isShare=1&templateNo=${templateNo}&templateType=${templateType}`)
     return {
       title: '姓名：' + this.data.info.baseInfo.realName + '  求职意向：'+this.data.info.baseInfo.employmentIntention,
-      path: '/templateA/pages/templateA_01/index/index?openid=' + app.globalData.openid +'&isShare=1&templateId='+templateId,
+      path: `/template${templateType}/pages/index/index?openid=${app.globalData.openid}&isShare=1&templateNo=${templateNo}&templateType=${templateType}`,
       imageUrl: this.data.info.baseInfo.headImg || `../../../../images/headImg_${this.data.info.baseInfo.gender}.png`
     }
   }

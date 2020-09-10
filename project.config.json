@@ -59,71 +59,22 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "模版A_01",
-					"pathName": "templateA/pages/templateA_01/index/index",
-					"query": "",
+					"name": "A_01",
+					"pathName": "templateA/pages/index/index",
+					"query": "templateNo=01&templateType=A",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/userCenter/userCenter",
-					"pathName": "pages/userCenter/userCenter",
-					"query": "",
+					"id": 1,
+					"name": "A_02",
+					"pathName": "templateA/pages/index/index",
+					"query": "templateNo=02&templateType=A",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/userCenter/bindPhone/bindPage",
-					"pathName": "pages/userCenter/bindPhone/bindPage",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的简历",
-					"pathName": "pages/userCenter/myResume/myResume",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "模版1",
-					"pathName": "templateA/pages/templateA_01/index/index",
-					"query": "openid=ohgEq45MVPEOkGw42NhwCl4nE7fg&isShare=1&templateId=331568005ecbd7b100342ac833102d55",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "myTemplate",
-					"pathName": "pages/userCenter/myTemplate/myTemplate",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "visitRecord",
-					"pathName": "pages/userCenter/visitRecord/visitRecord",
-					"query": "openid=ohgEq45MVPEOkGw42NhwCl4nE7fg&isShare=1&templateId=331568005ecbd7b100342ac833102d55",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "versionInfo",
-					"pathName": "pages/userCenter/versionInfo/versionInfo",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 8,
-					"name": "invitationCode",
-					"pathName": "pages/userCenter/invitationCode/invitationCode",
-					"query": "code=123456",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "模版 A_02",
-					"pathName": "templateA/pages/templateA_02/index/index",
+					"id": 2,
+					"name": "更新",
+					"pathName": "pages/index/index",
 					"query": "",
 					"scene": null
 				}

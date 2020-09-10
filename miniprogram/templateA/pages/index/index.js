@@ -7,13 +7,14 @@ Page({
   data: {
     info:{},
     current:0,
-    // activeName: 1,
     color:['#FF1493','#00CED1','#FFA500','#32CD32','#FF4500','#FFD700'],
     title:['简历封面','个人简介','个人技能','工作经验','项目经验'],
     sumbitInfoDone:false,
     visitDialog:false,
     optionOpenId:'',
-    templateId:''
+    templateId:'',
+    templateNo: '',
+    templateType: ''
   },
 
   /**
@@ -21,6 +22,11 @@ Page({
    */
   async onLoad (options) {
     let param = {}
+    this.setData({
+      templateNo: options.templateNo,
+      templateType: options.templateType
+    })
+    console.log(options)
     if(options.openid) {
       param._openid = options.openid,
       param.real = true
@@ -32,12 +38,9 @@ Page({
       wx.hideShareMenu();
     }
     this.setData({
-      templateId: options.templateId
-    })
-    this.setData({
       param
     })
-    if(options.isShare === '1' && options.openid !== app.globalData.openid) {
+    if(options.isShare === '1' && options.openid === app.globalData.openid) {
       wx.setNavigationBarTitle({
         title: '访问登记',
       })
@@ -76,7 +79,6 @@ Page({
         return item
       })
     }
-    app.globalData.resume = data[0]
     this.setData({
       info: data[0]
     })
@@ -89,11 +91,6 @@ Page({
       title: this.data.title[e.detail.current],
     })
   },
-  // onChange(event) {
-  //   this.setData({
-  //     activeName: event.detail,
-  //   });
-  // },
   copyUrl(e) {
     let url = e.currentTarget.dataset.data
     wx.setClipboardData({
@@ -122,7 +119,7 @@ Page({
   onShareAppMessage() {
     return {
       title: '姓名：' + this.data.info.baseInfo.realName + '    求职意向：'+this.data.info.baseInfo.employmentIntention,
-      path: '/templateA/pages/templateA_01/index/index?openid=' + this.data.optionOpenId +'&isShare=1&templateId='+this.data.templateId,
+      path: `/template${this.data.templateType}/pages/index/index?openid=${this.data.optionOpenId}&isShare=1&templateNo=${this.data.templateNo}&templateType=${this.data.templateType}`,
       imageUrl: this.data.info.baseInfo.headImg || `../../../../images/headImg_${this.data.info.baseInfo.gender}.png`
     }
   },

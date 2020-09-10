@@ -14,8 +14,7 @@
     {
       "root": "templateA",
       "pages": [
-        "pages/templateA_01/index/index",
-        "pages/templateA_02/index/index"
+        "pages/index/index"
       ]
     }
   ],
@@ -34,14 +33,14 @@
       {
         "text": "首页",
         "pagePath": "pages/index/index",
-        "iconPath": "../miniprogram/images/footer-icon-1.png",
-        "selectedIconPath": "../miniprogram/images/footer-icon-1-active.png"
+        "iconPath": "images/footer-icon-1.png",
+        "selectedIconPath": "images/footer-icon-1-active.png"
       },
       {
         "text": "个人中心",
         "pagePath": "pages/userCenter/userCenter",
-        "iconPath": "../miniprogram/images/footer-icon-2.png",
-        "selectedIconPath": "../miniprogram/images/footer-icon-2-active.png"
+        "iconPath": "images/footer-icon-2.png",
+        "selectedIconPath": "images/footer-icon-2-active.png"
       }
     ]
   }

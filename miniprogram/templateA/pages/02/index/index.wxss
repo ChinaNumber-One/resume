@@ -1,5 +1,4 @@
-/* templateA/pages/templateA_02/index/index.wxss */
-.cover-item {
+.A_02 .cover-item {
   width: 50vw;
   height: 50vh;
   display: flex;
@@ -8,18 +7,19 @@
   z-index: 2;
   position: absolute;
 }
-.cover-box {
+.A_02 .cover-box {
+  width: 100vw;
   background: #fff;
   height: 100vh;
   position: relative;
 }
-.cover-item-1 {
+.A_02 .cover-item-1 {
   background: #f5f5f5;
   top: 0;
   left: 0;
   z-index: 1;
 }
-.cover-item-1::after {
+.A_02 .cover-item-1::after {
   content: '';
   position: absolute;
   height: 100%;
@@ -29,7 +29,7 @@
   background: #000;
   border-right: 32rpx solid #f5f5f5;
 }
-.cover-item-4::after {
+.A_02 .cover-item-4::after {
   content: '';
   position: absolute;
   height: 100%;
@@ -39,7 +39,7 @@
   background: #f5f5f5;
   border-left: 32rpx solid #000;
 }
-.cover-item-2::after {
+.A_02 .cover-item-2::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -49,7 +49,7 @@
   background: #f5f5f5;
   border-bottom: 32rpx solid #000;
 }
-.cover-item-3::after {
+.A_02 .cover-item-3::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -59,19 +59,19 @@
   background: #000;
   border-right: 32rpx solid #f5f5f5;
 }
-.cover-item-4 {
+.A_02 .cover-item-4 {
   background: #f5f5f5;
   bottom: 0;
   right: 0;
   z-index: 3;
 }
-.cover-item-2 {
+.A_02 .cover-item-2 {
   background: #000;
   right: 0;
   top: 0;
   z-index: 2;
 }
-.cover-item-3 {
+.A_02 .cover-item-3 {
   background: #000;
   left: 0;
   bottom: 0;
@@ -79,10 +79,10 @@
 }
 
 
-.cover-img {
+.A_02 .cover-img {
   width: 70%;
 }
-.center-title {
+.A_02 .center-title {
   font-size: 52rpx;
   background: #fff;
   line-height: 100rpx;

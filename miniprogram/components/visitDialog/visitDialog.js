@@ -39,6 +39,10 @@ Component({
         this.setData({
           code: data[0].code
         })
+      } else {
+        this.setData({
+          code: ''
+        })
       }
     },
   },
@@ -82,6 +86,7 @@ Component({
       })
     },
     addVisitRecord(param) {
+      console.log(param)
       wx.cloud.callFunction({
         name: 'addVisitRecord',
         data: {
@@ -123,13 +128,13 @@ Component({
             visitInfo: this.data.visitInfo
           })
         } 
-        if(this.data.visitInfo.code ==='') {
+        if(this.data.code&&this.data.visitInfo.code ==='') {
           this.data.visitInfo.error_code = '请输入邀请码'
           return this.setData({
             visitInfo: this.data.visitInfo
           })
         }
-        if(this.data.visitInfo.code !== this.data.code) {
+        if(this.data.code&& this.data.visitInfo.code !== this.data.code) {
           this.data.visitInfo.error_code = '邀请码输入错误，请核实'
           return this.setData({
             visitInfo: this.data.visitInfo

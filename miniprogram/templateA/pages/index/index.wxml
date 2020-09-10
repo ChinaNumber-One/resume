@@ -1,0 +1,11 @@
+
+  <import src="../01/index/index.wxml"/>
+  <import src="../02/index/index.wxml"/>
+
+<view wx:if="{{templateNo}}">
+  <template is="{{templateNo}}" data="{{sumbitInfoDone,current,color,info}}"></template>
+</view>
+
+
+
+<visit-dialog bind:submitDone="submit"  optionOpenId="{{optionOpenId}}" templateId="{{templateId}}" wx:if="{{visitDialog}}"/>

@@ -1,11 +1,30 @@
-
-  <import src="../01/index/index.wxml"/>
-  <import src="../02/index/index.wxml"/>
+<import src="../01/index/index.wxml" />
+<import src="../02/index/index.wxml" />
 
 <view wx:if="{{templateNo}}">
-  <template is="{{templateNo}}" data="{{sumbitInfoDone,current,info}}"></template>
+	<template is="{{templateNo}}" data="{{sumbitInfoDone,current,info}}"></template>
 </view>
 
+<van-dialog use-slot confirmButtonText='关闭' title="{{experience.projectName||'项目名'}}" show="{{ projectDialog }}">
+	<view wx:if="{{experience}}" class='A_01' style='padding: 24rpx;max-height: 50vh;overflow:auto;'>
+		<view class='experience-title' style='text-align:center;'>
+			<text>{{experience.beginDate}} - {{experience.endDate}}</text>
+		</view>
+		<view class='url-str' wx:if="{{experience.projectUrl}}">
+			<view class='url-text'>地址：{{experience.projectUrl}}</view>
+			<view bindtap="copyUrl" class='copy-btn' data-data='{{experience.projectUrl}}'>复制</view>
+		</view>
+		<view class='view-qrcode-btn' bindtap="viewQrcodeImg" wx:if="{{experience.projectQrcode.length}}" data-urls="{{experience.projectQrcode}}">
+			查看二维码
+		</view>
+		<view class='experience-tips'>
+			<view class='experience-tips-item' wx:for="{{experience.tips}}" wx:key="index">{{item}}</view>
+		</view>
+		<view wx:if="{{experience.projectImgs.length}}" style="color:#666;font-size:24rpx;margin:18rpx 0 12rpx;">项目截图：</view>
+		<view class='img-9-list' wx:if="{{experience.projectImgs.length}}">
+			<image bindtap="viewImgs" data-index="{{i}}" data-cuttentImgIndex="{{imgIndex}}" class='img-9-item' wx:key="imgIndex" wx:for="{{experience.projectImgs}}" wx:for-index="imgIndex" style='width:180rpx;height:180rpx;' src="{{item.url}}" mode="aspectFill"></image>
+		</view>
+	</view>
+</van-dialog>
 
-
-<visit-dialog bind:submitDone="submit"  optionOpenId="{{optionOpenId}}" templateId="{{templateId}}" wx:if="{{visitDialog}}"/>
+<visit-dialog bind:submitDone="submit" optionOpenId="{{optionOpenId}}" templateId="{{templateId}}" wx:if="{{visitDialog}}" />

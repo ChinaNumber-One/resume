@@ -17,7 +17,9 @@ Page({
     optionOpenId: '',
     templateId: '',
     templateNo: '',
-    templateType: ''
+    templateType: '',
+    projectDialog: false,
+    experience: ''
   },
 
   /**
@@ -130,12 +132,28 @@ Page({
   viewImgs(e) {
     let index = e.currentTarget.dataset.index
     let cuttentimgindex = e.currentTarget.dataset.cuttentimgindex
+    let projectExperience = ''
+
+    if (index !== undefined) {
+      projectExperience = this.data.info.projectExperience[index]
+    } else {
+      if (this.data.experience) {
+        projectExperience = this.data.experience
+      }
+    }
     wx.previewImage({
-      current: this.data.info.projectExperience[index].projectImgs[cuttentimgindex].url,
-      urls: this.data.info.projectExperience[index].projectImgs.map(item => {
+      current: projectExperience.projectImgs[cuttentimgindex].url,
+      urls: projectExperience.projectImgs.map(item => {
         return item.url
       }),
     })
+  },
+  viewProjectDetail(e) {
+    this.setData({
+      experience: e.currentTarget.dataset.item,
+      projectDialog: true
+    })
+    console.log(this.data.projectDialog)
   },
   onShareAppMessage() {
     return {

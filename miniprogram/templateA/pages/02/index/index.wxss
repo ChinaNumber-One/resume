@@ -510,7 +510,6 @@
   background: #000;
   animation: 1s slideinX;
   transform-origin: center center;
-  z-index: 10;
 }
 
 .A_02 .project-line-column {
@@ -521,7 +520,6 @@
   background: #000;
   animation: 1s slideinY;
   transform-origin: center center;
-  z-index: 10;
 }
 
 @keyframes slideinY {
@@ -562,7 +560,7 @@
   position: absolute;
   top: calc((100vh - 240rpx)/2);
   left: calc((100vw - 240rpx)/2);
-  z-index: 10;
+  z-index: 1;
 }
 
 .A_02 .project-circle-outside {
@@ -623,6 +621,7 @@
   justify-content: center;
   flex-direction: column;
 }
+
 .A_02 .project-name {
   line-height: 48rpx;
   font-size: 24rpx;

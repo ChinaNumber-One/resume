@@ -131,9 +131,9 @@
 							</view>
 						</view>
 					</view>
-					<swiper style='height:100vh;with:100vw;' indicator-dots vertical>
+					<swiper indicator-active-color='red' indicator-color="#ddd" style='height:100vh;with:100vw;'  indicator-dots vertical>
 						<swiper-item class='project-content' wx:for="{{info.projectExperiencePage}}" wx:key="i" wx:for-index="i" wx:for-item="experience">
-							<view class='project-item' style="padding: {{_i>1?'48rpx':'0rpx'}} 0 {{_i<2?'48rpx':'0rpx'}} " wx:for="{{experience}}" wx:key="_i" wx:for-index="_i" wx:for-item="expe">
+							<view data-item='{{expe}}' catchtap="viewProjectDetail" class='project-item' style="padding: {{_i>1?'48rpx':'0rpx'}} 0 {{_i<2?'48rpx':'0rpx'}} " wx:for="{{experience}}" wx:key="_i" wx:for-index="_i" wx:for-item="expe">
 								<view wx:if='{{_i<2}}' class='project-name'>{{expe.projectName}}</view>
 								<image mode='widthFix' wx:if='{{expe.projectImgs&&expe.projectImgs.length}}' src='{{expe.projectImgs[0].url}}' class='project-img'></image>
 								<view wx:if='{{_i>1}}' class='project-name'>{{expe.projectName}}</view>

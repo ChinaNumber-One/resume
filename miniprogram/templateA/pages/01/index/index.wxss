@@ -67,6 +67,7 @@
   border-radius: 8rpx;
   width: 80%;
 }
+
 .A_01 .skill-item-name {
   font-size: 32rpx;
   font-weight: 900;

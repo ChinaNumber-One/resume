@@ -41,6 +41,7 @@
 							<view>专业：{{info.baseInfo.major}}</view>
 							<view>毕业院校：{{info.baseInfo.university}}</view>
 							<view>手机号：{{info.baseInfo.phone}}</view>
+							<view>求职意向：{{info.baseInfo.employmentIntention}}</view>
 						</view>
 						<view class='base-title-ch animate__animated animate__delay-0-5s animate__rotateInDownRight'>
 							<view class='animate__animated animate__delay-1s animate__fadeInLeft animate__fadeInUp'>基本信息</view>
@@ -48,14 +49,48 @@
 					</view>
 				</view>
 			</swiper-item>
-			<!-- 工作经验 -->
+			<!-- 个人技能 -->
 			<swiper-item>
 				<view class="container" wx:if="{{current === 2}}">
+					<view class='skill-top'>
+						<view class='skill-list'>
+							<view wx:for="{{info.skills}}" style="animation-delay:{{index/10 + 1.1}}s;" wx:key="index" class='skill-item animate__lightSpeedInLeft animate__animated'>
+								<view class='skill-left'>
+									<view class='skill-item-name'>{{item.name}}</view>
+									<view class='skill-item-desc'>{{item.desc}}</view>
+									<view style="width:100%;" class='flex-row'>
+										<view class='progress-box'>
+											<view class='progress-item' style="width:{{item.value}}%;background:#000"></view>
+										</view>
+									</view>
+								</view>
+								<view class='skill-right'>
+									<view class='skill-value'>{{item.value}}%</view>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class='skill-bottom animate__animated animate__delay-1s animate__fadeIn'>
+						<view>Personal</view>
+						<view>Skills</view>
+					</view>
+					<view class='skill-line-row'></view>
+					<view class='skill-line-column'></view>
+					<view class='skill-circle-outside'>
+						<view class='skill-circle-middle'>
+							<view class='skill-circle-inside'>个人技能</view>
+						</view>
+					</view>
+				</view>
+			</swiper-item>
+			<!-- 工作经验 -->
+			<swiper-item>
+				<view class="container" wx:if="{{current === 3}}">
 					<view class='work-line-row'></view>
 					<view class='work-line-column'></view>
-					<view class='circle-outside'>
-						<view class='circle-middle'>
-							<view class='circle-inside'>工作经历</view>
+					<view class='work-circle-outside'>
+						<view class='work-circle-middle'>
+							<view class='work-circle-inside'>工作经历</view>
 						</view>
 					</view>
 
@@ -64,16 +99,18 @@
 						<view>EXPERIENCE</view>
 					</view>
 					<view class='work-content'>
-						<view class='work-item flex-row' wx:for="{{info.workExperience}}" wx:key="index">
-							<view class='worl-item-left animate__animated animate__delay-1-2s animate__fadeInLeft'>
-								<view class='work-company-name'>{{item.companyName}}</view>
-								<view class='work-date'>{{item.beginDate}}</view>
-								<view class='work-date'>至</view>
-								<view class='work-date'>{{item.endDate}}</view>
-							</view>
-							<view class='worl-item-right'>
-								<view class='animate__animated animate__delay-1-2s animate__fadeInRight' wx:for="{{item.tips}}" wx:for-item='tip' wx:for-index='i' wx:key="{{i}}">
-									{{i+1}}、{{tip}}
+						<view class='work-list'>
+							<view class='work-item flex-row' wx:for="{{info.workExperience}}" wx:key="index">
+								<view class='work-item-left animate__animated animate__delay-1-2s animate__fadeInLeft'>
+									<view class='work-company-name'>{{item.companyName}}</view>
+									<view class='work-date'>{{item.beginDate}}</view>
+									<view class='work-date'>至</view>
+									<view class='work-date'>{{item.endDate}}</view>
+								</view>
+								<view class='worl-item-right'>
+									<view class='animate__animated animate__delay-1-2s animate__fadeInRight' wx:for="{{item.tips}}" wx:for-item='tip' wx:for-index='i' wx:key="{{i}}">
+										{{i+1}}、{{tip}}
+									</view>
 								</view>
 							</view>
 						</view>

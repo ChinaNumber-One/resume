@@ -3,7 +3,7 @@
   <import src="../02/index/index.wxml"/>
 
 <view wx:if="{{templateNo}}">
-  <template is="{{templateNo}}" data="{{sumbitInfoDone,current,color,info}}"></template>
+  <template is="{{templateNo}}" data="{{sumbitInfoDone,current,info}}"></template>
 </view>
 
 

@@ -153,6 +153,9 @@
   z-index: 10;
   background: #ddd;
 }
+
+
+
 .A_02 .work-line-row {
   width: 100vw;
   height: 12rpx;
@@ -160,7 +163,7 @@
   top: 220rpx;
   background: #000;
   animation: 2s slideinX;
-  transform-origin: center right;
+  transform-origin: center left;
 }
 .A_02 .work-line-column {
   width: 12rpx;
@@ -183,7 +186,7 @@
   from { transform: scale(0); }
   to   { transform: scale(1); }
 }
-.A_02 .circle-outside {
+.A_02 .work-circle-outside {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -195,10 +198,10 @@
   border-radius: 50%;
   background: #000;
   box-shadow: 0 0 4rpx 4rpx #000;
-  animation: 2s slideinCircle;
+  animation: 1.5s slideinCircle;
   transform-origin: center center;
 }
-.A_02 .circle-middle {
+.A_02 .work-circle-middle {
   width: 200rpx;
   height: 200rpx;
   border-radius: 50%;
@@ -206,11 +209,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: 3s slideinCircle;
+  animation: 2s slideinCircle;
   transform-origin: center center;
 }
 
-.A_02 .circle-inside {
+.A_02 .work-circle-inside {
   width: 160rpx;
   height: 160rpx;
   border-radius: 50%;
@@ -224,7 +227,7 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 12rpx 2rpx rgba(0,0,0,.5);
-  animation: 4s slideinCircle;
+  animation: 3s slideinCircle;
   transform-origin: center center;
 }
 .A_02 .work-top {
@@ -238,16 +241,20 @@
   padding: 0 64rpx;
 }
 .A_02 .work-content {
-  height: calc(100vh - 254rpx);
-  overflow: auto;
+  height: calc(100vh - 220rpx);
+  overflow: hide;
   box-sizing: border-box;
   padding-top: 120rpx;
+}
+.A_02 .work-list {
+  height: 100%;
+  overflow: auto;
 }
 .A_02 .work-item {
   margin-bottom: 64rpx;
   align-items: flex-start;
 }
-.A_02 .worl-item-left {
+.A_02 .work-item-left {
   width: 200rpx;
   margin-right: 64rpx;
   flex-shrink: 0;
@@ -269,4 +276,151 @@
   color: #666;
   text-align: center;
   width: 100%;
+}
+
+
+
+
+
+.A_02 .skill-line-row {
+  width: 100vw;
+  height: 12rpx;
+  position: absolute;
+  bottom: 220rpx;
+  left: 0;
+  background: #000;
+  animation: 2s slideinX;
+  transform-origin: center right;
+}
+.A_02 .skill-line-column {
+  width: 12rpx;
+  height: 100vh;
+  position: absolute;
+  right: 200rpx;
+  bottom: 0;
+  background: #000;
+  animation: 2s slideinY;
+  transform-origin: bottom center;
+}
+@keyframes slideinY {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+@keyframes slideinX {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes slideinCircle {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+.A_02 .skill-circle-outside {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 106rpx;
+  right: 86rpx;
+  width: 240rpx;
+  height: 240rpx;
+  border-radius: 50%;
+  background: #000;
+  box-shadow: 0 0 4rpx 4rpx #000;
+  animation: 1.5s slideinCircle;
+  transform-origin: center center;
+}
+.A_02 .skill-circle-middle {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  background: rgb(153, 153, 153);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: 2s slideinCircle;
+  transform-origin: center center;
+}
+
+.A_02 .skill-circle-inside {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 48rpx;
+  line-height: 52rpx;
+  padding: 32rpx;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12rpx 2rpx rgba(0,0,0,.5);
+  animation: 3s slideinCircle;
+  transform-origin: center center;
+}
+.A_02 .skill-top {
+  height: calc(100vh - 220rpx);
+  overflow: hidden;
+  padding: 64rpx 0 100rpx;
+  box-sizing: border-box;
+}
+.A_02 .skill-list {
+  height: 100%;
+  overflow: auto;
+}
+.A_02 .skill-bottom {
+  height: 220rpx;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 36rpx;
+  font-weight: 500;
+  padding: 0 64rpx;
+}
+
+.A_02 .skill-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx 0;
+  border-bottom: 1rpx solid #ddd;
+}
+.A_02 .skill-item:last-child {
+  border-bottom: none;
+}
+.A_02 .skill-left{
+  width: calc(100vw - 200rpx);
+  padding: 0 48rpx;
+  box-sizing: border-box;
+}
+.A_02 .skill-right {
+  flex: 1;
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 900;
+}
+.A_02 .skill-item-name {
+  font-size: 32rpx;
+  font-weight: 900;
+  margin-bottom: 4rpx;
+}
+.A_02 .skill-item-desc {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+.A_02 .progress-item {
+  border-radius: 8rpx;
+  height: 16rpx;
+  position: relative;
+  width: 0;
+  transition: .2s;
+}
+.A_02 .progress-box {
+  width: 100%;
+  background: #ddd;
+  height: 16rpx;
+  border-radius: 8rpx;
 }

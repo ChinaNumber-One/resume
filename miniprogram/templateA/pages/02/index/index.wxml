@@ -23,14 +23,14 @@
 			</swiper-item>
 			<!-- 基本信息 -->
 			<swiper-item>
-				<view class='container'>
+				<view class='container' wx:if="{{current === 1}}">
 					<view class='flex-row '>
 						<view class='base-title-en animate__animated animate__delay-0-5s animate__rotateInDownLeft'>
 							<view class='animate__animated animate__delay-1s animate__fadeInLeft'>BASIC</view>
 							<view class='animate__animated animate__delay-1s animate__fadeInLeft'>INFORMATION</view>
 						</view>
 						<image mode="aspectFill" wx:if="{{info.baseInfo.headImg}}" src="{{info.baseInfo.headImg}}" class='head-img animate__animated animate__delay-1-5s animate__fadeInRight'></image>
-						<image mode="aspectFill" wx:else src="../../../../01/images/headImg_{{info.baseInfo.gender}}.png" class='head-img animate__animated animate__delay-1-5s animate__fadeInRight'></image>
+						<image mode="aspectFill" wx:if="{{!info.baseInfo.headImg && info.baseInfo.gender}}" src="/images/headImg_{{info.baseInfo.gender}}.png" class='head-img animate__animated animate__delay-1-5s animate__fadeInRight'></image>
 					</view>
 					<view class='flex-row '>
 						<view class='base-info-box flex-column animate__animated animate__delay-1-5s animate__fadeInLeft'>
@@ -50,9 +50,34 @@
 			</swiper-item>
 			<!-- 工作经验 -->
 			<swiper-item>
-				<view class="container">
+				<view class="container" wx:if="{{current === 2}}">
 					<view class='work-line-row'></view>
 					<view class='work-line-column'></view>
+					<view class='circle-outside'>
+						<view class='circle-middle'>
+							<view class='circle-inside'>工作经历</view>
+						</view>
+					</view>
+
+					<view class='work-top animate__animated animate__delay-1s animate__fadeIn'>
+						<view>WORK</view>
+						<view>EXPERIENCE</view>
+					</view>
+					<view class='work-content'>
+						<view class='work-item flex-row' wx:for="{{info.workExperience}}" wx:key="index">
+							<view class='worl-item-left animate__animated animate__delay-1-2s animate__fadeInLeft'>
+								<view class='work-company-name'>{{item.companyName}}</view>
+								<view class='work-date'>{{item.beginDate}}</view>
+								<view class='work-date'>至</view>
+								<view class='work-date'>{{item.endDate}}</view>
+							</view>
+							<view class='worl-item-right'>
+								<view class='animate__animated animate__delay-1-2s animate__fadeInRight' wx:for="{{item.tips}}" wx:for-item='tip' wx:for-index='i' wx:key="{{i}}">
+									{{i+1}}、{{tip}}
+								</view>
+							</view>
+						</view>
+					</view>
 				</view>
 			</swiper-item>
 		</swiper>

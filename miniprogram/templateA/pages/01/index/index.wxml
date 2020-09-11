@@ -53,7 +53,7 @@
 						<view class='page-content-resume-title {{current === 1 ? "animate__animated animate__delay-1-2s animate__backInDown":""}}'>◆ 个人简介 ◆</view>
 						<view class='flex-row animate__animated {{current === 1 ? "animate__delay-1-6s animate__fadeIn":""}} ' style="align-items:flex-start;">
 							<image mode="aspectFit" wx:if="{{info.baseInfo.headImg}}" src="{{info.baseInfo.headImg}}" class='head-img'></image>
-							<image mode="aspectFit" wx:else src="../../../../01/images/headImg_{{info.baseInfo.gender}}.png" class='head-img'></image>
+							<image mode="aspectFit" wx:if="{{!info.baseInfo.headImg && info.baseInfo.gender}}" src="/images/headImg_{{info.baseInfo.gender}}.png" class='head-img'></image>
 							<view class='flex-column head-info'>
 								<view class='text {{current === 1 ? "animate__animated animate__delay-1-6s animate__slideInRight":""}}'>姓名：{{info.baseInfo.realName}}</view>
 								<view class='text {{current === 1 ? "animate__animated animate__delay-1-7s animate__slideInRight":""}}'>籍贯：{{info.baseInfo.addr}}</view>

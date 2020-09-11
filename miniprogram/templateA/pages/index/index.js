@@ -6,9 +6,12 @@ Page({
    */
   data: {
     info:{},
-    current:1,
+    current:2,
     color:['#FF1493','#00CED1','#FFA500','#32CD32','#FF4500','#FFD700'],
-    title:['简历封面','个人简介','个人技能','工作经验','项目经验'],
+    title:{
+      '01': ['简历封面','个人简介','个人技能','工作经验','项目经验'],
+      '02': ['简历封面','基础信息','工作经验','项目经验','个人总结'],
+    },
     sumbitInfoDone:false,
     visitDialog:false,
     optionOpenId:'',
@@ -50,7 +53,7 @@ Page({
       })
     } else {
       wx.setNavigationBarTitle({
-        title: this.data.title[0],
+        title: this.data.title[this.data.templateNo][this.data.current],
       })
       await this.getData(param)
       this.setData({sumbitInfoDone:true})
@@ -61,7 +64,7 @@ Page({
       visitDialog:false,
     })
     wx.setNavigationBarTitle({
-      title: this.data.title[0],
+      title: this.data.title[this.data.templateNo][this.data.current],
     })
     await this.getData(this.data.param)
     this.setData({sumbitInfoDone:true})
@@ -88,7 +91,7 @@ Page({
       current:e.detail.current
     })
     wx.setNavigationBarTitle({
-      title: this.data.title[e.detail.current],
+      title: this.data.title[this.data.templateNo][e.detail.current],
     })
   },
   copyUrl(e) {

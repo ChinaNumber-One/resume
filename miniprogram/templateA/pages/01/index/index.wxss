@@ -241,6 +241,7 @@
   height: calc( (100vw - 160rpx)*212/645);
   z-index: 1;
 }
+
 .A_01 .experience-box {
   padding: 0 24rpx;
   margin-bottom: 24rpx;

@@ -75,19 +75,23 @@ Page({
           content: '确定要删除？',
           async success (res) {
             if (res.confirm) {
+              wx.showLoading({
+                title: 'Loading...',
+              })
               wx.cloud.callFunction({
                 name: 'deleteVisitRecord',
                 data:{
                   _id:name
                 },
                 success: res => {
-                  console.log(res)
+                  wx.hideLoading()
                   if(res.result.errMsg === 'document.update:ok') {
                     instance.close();
                     that.getData()
                   }
                 },
                 fail: err => {
+                  wx.hideLoading()
                   instance.close();
                   console.error('[云函数] [deleteVisitRecord] 调用失败: ', err)
                 }

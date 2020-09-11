@@ -43,29 +43,29 @@
 			<!-- 个人简介 -->
 			<swiper-item>
 				<view class='container' wx:if="{{current === 1}}">
-					<image src="../01/images/bottom.png" class='bottom-img-s {{current === 1 ? "animate__animated animate__delay-0-2s animate__fadeInUp":""}}'></image>
-					<image src="../01/images/image-1.png" class='image-1 {{ current === 1 ? "animate__animated animate__delay-0-4s animate__fadeInUpBig":""}}'></image>
-					<image src="../01/images/image-2.png" class='image-2 {{current === 1 ? "animate__animated animate__delay-0-6s animate__fadeInUpBig":""}}'></image>
-					<image src="../01/images/image-3.png" class='image-3 {{current === 1 ? "animate__animated animate__delay-0-8s animate__fadeInDownBig":""}}'></image>
-					<image src="../01/images/image-4.png" class='image-4 {{current === 1 ? "animate__animated animate__delay-1s animate__fadeInDownBig":""}}'></image>
-					<image src="../01/images/image-5.png" class='image-5 {{current === 1 ? "animate__animated animate__delay-1-2s animate__fadeInUpBig":""}}'></image>
-					<view class='page-content-border {{current === 1 ? "animate__animated animate__delay-1s animate__fadeIn":""}}'>
-						<view class='page-content-resume-title {{current === 1 ? "animate__animated animate__delay-1-2s animate__backInDown":""}}'>◆ 个人简介 ◆</view>
-						<view class='flex-row animate__animated {{current === 1 ? "animate__delay-1-6s animate__fadeIn":""}} ' style="align-items:flex-start;">
+					<image src="../01/images/bottom.png" class='bottom-img-s animate__animated animate__delay-0-2s animate__fadeInUp'></image>
+					<image src="../01/images/image-1.png" class='image-1 animate__animated animate__delay-0-4s animate__fadeInUpBig'></image>
+					<image src="../01/images/image-2.png" class='image-2 animate__animated animate__delay-0-6s animate__fadeInUpBig'></image>
+					<image src="../01/images/image-3.png" class='image-3 animate__animated animate__delay-0-8s animate__fadeInDownBig'></image>
+					<image src="../01/images/image-4.png" class='image-4 animate__animated animate__delay-1s animate__fadeInDownBig'></image>
+					<image src="../01/images/image-5.png" class='image-5 animate__animated animate__delay-1-2s animate__fadeInUpBig'></image>
+					<view class='page-content-border animate__animated animate__delay-1s animate__fadeIn'>
+						<view class='page-content-resume-title animate__animated animate__delay-1-2s animate__backInDown'>◆ 个人简介 ◆</view>
+						<view class='flex-row animate__animated animate__delay-1-6s animate__fadeIn ' style="align-items:flex-start;">
 							<image mode="aspectFit" wx:if="{{info.baseInfo.headImg}}" src="{{info.baseInfo.headImg}}" class='head-img'></image>
 							<image mode="aspectFit" wx:if="{{!info.baseInfo.headImg && info.baseInfo.gender}}" src="/images/headImg_{{info.baseInfo.gender}}.png" class='head-img'></image>
 							<view class='flex-column head-info'>
-								<view class='text {{current === 1 ? "animate__animated animate__delay-1-6s animate__slideInRight":""}}'>姓名：{{info.baseInfo.realName}}</view>
-								<view class='text {{current === 1 ? "animate__animated animate__delay-1-7s animate__slideInRight":""}}'>籍贯：{{info.baseInfo.addr}}</view>
-								<view class='text {{current === 1 ? "animate__animated animate__delay-1-8s animate__slideInRight":""}}'>出生日期：{{info.baseInfo.birth}}</view>
-								<view class='text {{current === 1 ? "animate__animated animate__delay-1-9s animate__slideInRight":""}}'>学历：{{info.baseInfo.education}}</view>
-								<view class='text {{current === 1 ? "animate__animated animate__delay-2-1s animate__slideInRight":""}}'>专业：{{info.baseInfo.major}}</view>
-								<view class='text {{current === 1 ? "animate__animated animate__delay-2-2s animate__slideInRight":""}}'>毕业院校：{{info.baseInfo.university}}</view>
-								<view class='text {{current === 1 ? "animate__animated animate__delay-2-3s animate__slideInRight":""}}'>手机：{{info.baseInfo.phone}}</view>
+								<view class='text animate__animated animate__delay-1-6s animate__slideInRight'>姓名：{{info.baseInfo.realName}}</view>
+								<view class='text animate__animated animate__delay-1-7s animate__slideInRight'>籍贯：{{info.baseInfo.addr}}</view>
+								<view class='text animate__animated animate__delay-1-8s animate__slideInRight'>出生日期：{{info.baseInfo.birth}}</view>
+								<view class='text animate__animated animate__delay-1-9s animate__slideInRight'>学历：{{info.baseInfo.education}}</view>
+								<view class='text animate__animated animate__delay-2-1s animate__slideInRight'>专业：{{info.baseInfo.major}}</view>
+								<view class='text animate__animated animate__delay-2-2s animate__slideInRight'>毕业院校：{{info.baseInfo.university}}</view>
+								<view class='text animate__animated animate__delay-2-3s animate__slideInRight'>手机：{{info.baseInfo.phone}}</view>
 							</view>
 						</view>
 						<van-divider customStyle="color: #F05c40; border-color: #F05c40;" />
-						<view class='text evaluate {{current === 1 ? "animate__animated animate__delay-1-8s animate__backInUp":""}}'>
+						<view class='text evaluate animate__animated animate__delay-1-8s animate__backInUp'>
 							自我评价：{{info.baseInfo.evaluate}}
 						</view>
 					</view>
@@ -74,14 +74,14 @@
 			<!-- 个人技能 -->
 			<swiper-item>
 				<view class='container' wx:if="{{current === 2}}">
-					<image src="../01/images/bottom.png" class='bottom-img-s {{current === 2 ? "animate__animated animate__delay-0-2s animate__fadeInUp":""}}'></image>
-					<image src="../01/images/image-1.png" class='image-1 {{ current === 2 ? "animate__animated animate__delay-0-4s animate__fadeInUpBig":""}}'></image>
-					<image src="../01/images/image-2.png" class='image-2 {{current === 2 ? "animate__animated animate__delay-0-6s animate__fadeInUpBig":""}}'></image>
-					<image src="../01/images/image-3.png" class='image-3 {{current === 2 ? "animate__animated animate__delay-0-8s animate__fadeInDownBig":""}}'></image>
-					<image src="../01/images/image-4.png" class='image-4 {{current === 2 ? "animate__animated animate__delay-1s animate__fadeInDownBig":""}}'></image>
-					<image src="../01/images/image-5.png" class='image-5 {{current === 2 ? "animate__animated animate__delay-1-2s animate__fadeInUpBig":""}}'></image>
-					<view class='page-content-border {{current === 2 ? "animate__animated animate__delay-1s animate__fadeIn":""}}'>
-						<view class='page-content-resume-title {{current === 2 ? "animate__animated animate__delay-1s animate__backInDown":""}}'>◆ 个人技能 ◆</view>
+					<image src="../01/images/bottom.png" class='bottom-img-s animate__animated animate__delay-0-2s animate__fadeInUp'></image>
+					<image src="../01/images/image-1.png" class='image-1 animate__animated animate__delay-0-4s animate__fadeInUpBig'></image>
+					<image src="../01/images/image-2.png" class='image-2 animate__animated animate__delay-0-6s animate__fadeInUpBig'></image>
+					<image src="../01/images/image-3.png" class='image-3 animate__animated animate__delay-0-8s animate__fadeInDownBig'></image>
+					<image src="../01/images/image-4.png" class='image-4 animate__animated animate__delay-1s animate__fadeInDownBig'></image>
+					<image src="../01/images/image-5.png" class='image-5 animate__animated animate__delay-1-2s animate__fadeInUpBig'></image>
+					<view class='page-content-border animate__animated animate__delay-1s animate__fadeIn'>
+						<view class='page-content-resume-title animate__animated animate__delay-1s animate__backInDown'>◆ 个人技能 ◆</view>
 						<view class='skill-list'>
 							<view wx:for="{{info.skills}}" style="animation-delay:{{index/10 + 1.1}}s;" wx:key="index" class='skill-item {{current === 2 ? index%2===0?"animate__slideInRight":"animate__slideInLeft":""}} {{current === 2 ? "animate__animated":""}}'>
 								<view class='skill-item-name'>{{item.name}}</view>
@@ -100,14 +100,14 @@
 			<!-- 工作经验 -->
 			<swiper-item>
 				<view class='container' wx:if="{{current === 3}}">
-					<image src="../01/images/bottom.png" class='bottom-img-s {{current === 3 ? "animate__animated animate__delay-0-2s animate__fadeInUp":""}}'></image>
-					<image src="../01/images/image-1.png" class='image-1 {{ current === 3 ? "animate__animated animate__delay-0-4s animate__fadeInUpBig":""}}'></image>
-					<image src="../01/images/image-2.png" class='image-2 {{current === 3 ? "animate__animated animate__delay-0-6s animate__fadeInUpBig":""}}'></image>
-					<image src="../01/images/image-3.png" class='image-3 {{current === 3 ? "animate__animated animate__delay-0-8s animate__fadeInDownBig":""}}'></image>
-					<image src="../01/images/image-4.png" class='image-4 {{current === 3 ? "animate__animated animate__delay-1s animate__fadeInDownBig":""}}'></image>
-					<image src="../01/images/image-5.png" class='image-5 {{current === 3 ? "animate__animated animate__delay-1-2s animate__fadeInUpBig":""}}'></image>
-					<view style="padding-left:0;padding-right:0;" class='page-content-border {{current === 3 ? "animate__animated animate__delay-1s animate__fadeIn":""}}'>
-						<view class='page-content-resume-title {{current === 3 ? "animate__animated animate__delay-1s animate__backInDown":""}}'>◆ 工作经验 ◆</view>
+					<image src="../01/images/bottom.png" class='bottom-img-s animate__animated animate__delay-0-2s animate__fadeInUp'></image>
+					<image src="../01/images/image-1.png" class='image-1 animate__animated animate__delay-0-4s animate__fadeInUpBig'></image>
+					<image src="../01/images/image-2.png" class='image-2 animate__animated animate__delay-0-6s animate__fadeInUpBig'></image>
+					<image src="../01/images/image-3.png" class='image-3 animate__animated animate__delay-0-8s animate__fadeInDownBig'></image>
+					<image src="../01/images/image-4.png" class='image-4 animate__animated animate__delay-1s animate__fadeInDownBig'></image>
+					<image src="../01/images/image-5.png" class='image-5 animate__animated animate__delay-1-2s animate__fadeInUpBig'></image>
+					<view style="padding-left:0;padding-right:0;" class='page-content-border animate__animated animate__delay-1s animate__fadeIn'>
+						<view class='page-content-resume-title animate__animated animate__delay-1s animate__backInDown'>◆ 工作经验 ◆</view>
 						<view class='work-experience'>
 							<view class='experience-box' wx:for="{{info.workExperience}}" wx:key="i" wx:for-index="i" wx:for-item="experience">
 								<view class='experience-title'>
@@ -125,14 +125,14 @@
 			<!-- 项目经验 -->
 			<swiper-item>
 				<view class='container' wx:if="{{current === 4}}">
-					<image src="../01/images/bottom.png" class='bottom-img-s {{current === 4 ? "animate__animated animate__delay-0-2s animate__fadeInUp":""}}'></image>
-					<image src="../01/images/image-1.png" class='image-1 {{ current === 4 ? "animate__animated animate__delay-0-4s animate__fadeInUpBig":""}}'></image>
-					<image src="../01/images/image-2.png" class='image-2 {{current === 4 ? "animate__animated animate__delay-0-6s animate__fadeInUpBig":""}}'></image>
-					<image src="../01/images/image-3.png" class='image-3 {{current === 4 ? "animate__animated animate__delay-0-8s animate__fadeInDownBig":""}}'></image>
-					<image src="../01/images/image-4.png" class='image-4 {{current === 4 ? "animate__animated animate__delay-1s animate__fadeInDownBig":""}}'></image>
-					<image src="../01/images/image-5.png" class='image-5 {{current === 4 ? "animate__animated animate__delay-1-2s animate__fadeInUpBig":""}}'></image>
-					<view style="padding-left:0;padding-right:0;" class='page-content-border {{current === 4 ? "animate__animated animate__delay-1s animate__fadeIn":""}}'>
-						<view class='page-content-resume-title {{current === 4 ? "animate__animated animate__delay-1s animate__backInDown":""}}'>◆ 项目经验 ◆</view>
+					<image src="../01/images/bottom.png" class='bottom-img-s animate__animated animate__delay-0-2s animate__fadeInUp'></image>
+					<image src="../01/images/image-1.png" class='image-1 animate__animated animate__delay-0-4s animate__fadeInUpBig'></image>
+					<image src="../01/images/image-2.png" class='image-2 animate__animated animate__delay-0-6s animate__fadeInUpBig'></image>
+					<image src="../01/images/image-3.png" class='image-3 animate__animated animate__delay-0-8s animate__fadeInDownBig'></image>
+					<image src="../01/images/image-4.png" class='image-4 animate__animated animate__delay-1s animate__fadeInDownBig'></image>
+					<image src="../01/images/image-5.png" class='image-5 animate__animated animate__delay-1-2s animate__fadeInUpBig'></image>
+					<view style="padding-left:0;padding-right:0;" class='page-content-border animate__animated animate__delay-1s animate__fadeIn'>
+						<view class='page-content-resume-title animate__animated animate__delay-1s animate__backInDown'>◆ 项目经验 ◆</view>
 						<view class='work-experience'>
 							<view class='experience-box' wx:for="{{info.projectExperience}}" wx:key="i" wx:for-index="i" wx:for-item="experience">
 								<view class='experience-title'>

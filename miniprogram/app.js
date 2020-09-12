@@ -44,25 +44,9 @@ App({
           env
         }),
         openid: '',
-        phone: ''
+        phone: '',
+        isLogin: false
       }
-      this.getOpenId()
-    }
-  },
-  async getOpenId() {
-    if (!wx.getStorageSync('OPENID')) {
-      let res = await wx.cloud.callFunction({
-        name: 'login',
-      })
-      if (res.result.openid) {
-        this.globalData.openid = res.result.openid
-        wx.setStorage({
-          data: res.result.openid,
-          key: 'OPENID',
-        })
-      }
-    } else {
-      this.globalData.openid = wx.getStorageSync('OPENID')
     }
   },
 })

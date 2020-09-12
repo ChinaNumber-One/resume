@@ -1,5 +1,6 @@
 const app = getApp()
 const db = app.globalData.db
+import {login} from '../../../utils/login'
 Page({
   /**
    * 页面的初始数据
@@ -26,11 +27,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    let param = {}
+    if(!app.globalData.openid) {
+      await login()
+    }
     this.setData({
       templateNo: options.templateNo,
       templateType: options.templateType
     })
+    let param = {}
     if (options.openid) {
       param._openid = options.openid,
         param.real = true

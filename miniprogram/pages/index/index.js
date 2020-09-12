@@ -1,5 +1,6 @@
 const app = getApp()
 const db = app.globalData.db
+import {login} from '../../utils/login'
 Page({
 
   /**
@@ -47,7 +48,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    await this.getOpenId()
+    await login()
     this.getNotice()
     this.getTemplateList()
   },
@@ -63,45 +64,7 @@ Page({
     })
     this.getTemplateList()
   },
-  async getOpenId() {
-    if (!wx.getStorageSync('OPENID')) {
-      let res = await wx.cloud.callFunction({
-        name: 'login',
-      })
-      if (res.result.openid) {
-        app.globalData.openid = res.result.openid
-        wx.setStorage({
-          data: res.result.openid,
-          key: 'OPENID',
-        })
-      }
-      this.checkUser()
-    } else {
-      app.globalData.openid = wx.getStorageSync('OPENID')
-      this.checkUser()
-    }
-  },
-  async checkUser() {
-    let res = await db.collection('user').where({
-      _openid: app.globalData.openid
-    }).get()
-    if (res.data.length === 0) {
-      db.collection('user').add({
-        data: {
-          createTime: new Date(),
-          lastLoginTime: new Date(),
-        }
-      })
-    } else {
-      let data = res.data[0]
-      app.globalData.phone = data.phone || ''
-      db.collection('user').doc(data._id).update({
-        data: {
-          lastLoginTime: new Date()
-        }
-      })
-    }
-  },
+
   async getTemplateList() {
     this.setData({
       loadSuccess: false
@@ -117,8 +80,6 @@ Page({
       sort = 'createTime'
     }
     let res = await db.collection('template').where(param).orderBy(sort, 'desc')
-      .skip(this.data.current * 10)
-      .limit(10)
       .get()
     this.setData({
       loadSuccess: true
@@ -129,7 +90,7 @@ Page({
         item.templateNo = item.code.split('_')[1]
       })
       this.setData({
-        templateList: this.data.current === 0 ? res.data : this.data.templateList.concat(res.data)
+        templateList: res.data
       })
     } else {
       this.setData({
@@ -278,27 +239,10 @@ Page({
     })
   },
   async onPullDownRefresh() {
-    this.setData({
-      current: 0
-    })
     await this.getTemplateList()
     await this.getNotice()
     wx.stopPullDownRefresh()
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    this.setData({
-      current: this.data.current + 1
-    })
-    this.getTemplateList()
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function () {
 
   }

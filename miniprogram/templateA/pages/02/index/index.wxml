@@ -142,6 +142,24 @@
 					</swiper>
 				</view>
 			</swiper-item>
+			<!-- 个人总结 -->
+			<swiper-item>
+				<view class="container" wx:if="{{current === 5}}">
+					<view class='summary-head-box animate__animated animate__delay-0-2s animate__fadeInDown'>
+						<view class='summary-title flex-column'>
+							<view class='flex-column animate__animated animate__delay-1s animate__fadeIn'>PERSONAL</view>
+							<view class='flex-column animate__animated animate__delay-1s animate__fadeIn'>SUMMARY</view>
+						</view>
+						<view class='triangle-down'></view>
+					</view>
+					<view class='summary-circle-outside'>
+						<view class='summary-circle-middle'>
+							<view class='summary-circle-inside'>个人总结</view>
+						</view>
+					</view>
+					<view class='summary-content animate__animated animate__delay-1s animate__zoomIn'>{{info.baseInfo.evaluate}}</view>
+				</view>
+			</swiper-item>
 		</swiper>
 	</view>
 </template>

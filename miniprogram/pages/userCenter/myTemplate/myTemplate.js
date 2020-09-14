@@ -27,6 +27,14 @@ Page({
         openid: app.globalData.openid
       }
     })
+    let myTemplateList = res.data[0].myTemplateList||[]
+    if(myTemplateList.length ===0) {
+      this.setData({
+        loadSuccess:true
+      })
+      wx.hideLoading()
+      return
+    }
     let info = await app.cloudFunction({
       name: 'getResumeDetail',
       data: {
@@ -38,13 +46,6 @@ Page({
     this.setData({
       info: info.data[0]
     })
-    let myTemplateList = res.data[0].myTemplateList||[]
-    if(myTemplateList.length ===0) {
-      this.setData({
-        loadSuccess:true
-      })
-      return
-    }
     let list = myTemplateList.map(item=>{
       return item.templateId
     })
@@ -65,17 +66,16 @@ Page({
     })
     wx.hideLoading()
     this.setData({
-      list:  this.data.list.concat(arr).sort((a,b)=>{return b.orderByTime-a.orderByTime}),
+      list:  arr.sort((a,b)=>{return b.orderByTime-a.orderByTime}),
       loadSuccess:true
     })
   },
   viewTemp(e) {
     wx.navigateTo({
-      url: `/template${e.currentTarget.dataset.templatetype}/pages/index/index?templateNo=${e.currentTarget.dataset.templateno}&openid=${app.globalData.openid}&templateType=${e.currentTarget.dataset.templatetype}`
+      url: `/template${e.currentTarget.dataset.templatetype}/pages/index/index?templateNo=${e.currentTarget.dataset.templateno}&openid=${app.globalData.openid}&templateType=${e.currentTarget.dataset.templatetype}&templateId=${e.currentTarget.dataset.templateid}`
     })
   },
   async onPullDownRefresh () {
-    this.setData({current:0})
     await this.getTemplate()
     wx.stopPullDownRefresh()
   },
@@ -83,12 +83,13 @@ Page({
     // 防止事件捕获
   },
   onShareAppMessage(e) {
+    console.log(e.target.dataset)
     let templateNo = e.target.dataset.templateno
     let templateType = e.target.dataset.templatetype
-    console.log( `/template${templateType}/pages/index/index?openid=${app.globalData.openid}&isShare=1&templateNo=${templateNo}&templateType=${templateType}`)
+    let templateId = e.target.dataset.templateid
     return {
       title: '姓名：' + this.data.info.baseInfo.realName + '  求职意向：'+this.data.info.baseInfo.employmentIntention,
-      path: `/template${templateType}/pages/index/index?openid=${app.globalData.openid}&isShare=1&templateNo=${templateNo}&templateType=${templateType}`,
+      path: `/template${templateType}/pages/index/index?openid=${app.globalData.openid}&isShare=1&templateNo=${templateNo}&templateType=${templateType}&templateId=${templateId}`,
       imageUrl: this.data.info.baseInfo.headImg || `../../../../images/headImg_${this.data.info.baseInfo.gender}.png`
     }
   }

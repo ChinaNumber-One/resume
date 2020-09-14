@@ -308,6 +308,7 @@ Page({
             skills: [],
             workExperience: [],
             projectExperience: [],
+            _openid: app.gender.openid
           }
         }
       })

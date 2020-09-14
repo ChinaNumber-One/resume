@@ -107,7 +107,7 @@ Page({
       this.changeTemplateViewNumOrUseNum(e.target.dataset.type, e.target.dataset.id)
       if (e.target.dataset.type === 'view') {
         wx.navigateTo({
-          url: `/template${e.target.dataset.templatetype}/pages/index/index?templateNo=${e.target.dataset.templateno}&templateType=${e.target.dataset.templatetype}`
+          url: `/template${e.target.dataset.templatetype}/pages/index/index?templateNo=${e.target.dataset.templateno}&templateType=${e.target.dataset.templatetype}&templateId=${e.target.dataset.templateid}`
         })
       } else {
         // 检查手机号，不存在的话 录入，存在的话进入表单填写页面
@@ -152,7 +152,7 @@ Page({
             wx.hideLoading()
             if(!res) {
               wx.navigateTo({
-                url: `/template${e.target.dataset.templatetype}/pages/index/index?templateNo=${e.target.dataset.templateno}&openid=${app.globalData.openid}&templateType=${e.target.dataset.templatetype}`
+                url: `/template${e.target.dataset.templatetype}/pages/index/index?templateNo=${e.target.dataset.templateno}&openid=${app.globalData.openid}&templateType=${e.target.dataset.templatetype}&templateId=${e.target.dataset.templateid}`
               })
             } else {
               wx.showModal({

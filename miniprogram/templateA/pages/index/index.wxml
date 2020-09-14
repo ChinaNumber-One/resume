@@ -1,7 +1,7 @@
 <import src="../01/index/index.wxml" />
 <import src="../02/index/index.wxml" />
 
-<view wx:if="{{templateNo}}">
+<view wx:if="{{templateNo && !visitDialog}}">
 	<template is="{{templateNo}}" data="{{sumbitInfoDone,current,info}}"></template>
 </view>
 

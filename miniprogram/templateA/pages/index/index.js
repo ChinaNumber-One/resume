@@ -27,7 +27,8 @@ Page({
   async onLoad(options) {
     this.setData({
       templateNo: options.templateNo,
-      templateType: options.templateType
+      templateType: options.templateType,
+      templateId: options.templateId
     })
     let param = {}
     if (options.openid) {
@@ -43,7 +44,7 @@ Page({
     this.setData({
       param
     })
-    if (options.isShare === '1' && options.openid === app.globalData.openid) {
+    if (options.isShare === '1' && options.openid !== app.globalData.openid) {
       wx.setNavigationBarTitle({
         title: '访问登记',
       })
@@ -158,9 +159,10 @@ Page({
     console.log(this.data.projectDialog)
   },
   onShareAppMessage() {
+    console.log(`/template${this.data.templateType}/pages/index/index?openid=${this.data.optionOpenId}&isShare=1&templateNo=${this.data.templateNo}&templateType=${this.data.templateType}&templateId=${this.data.templateId}`)
     return {
       title: '姓名：' + this.data.info.baseInfo.realName + '    求职意向：' + this.data.info.baseInfo.employmentIntention,
-      path: `/template${this.data.templateType}/pages/index/index?openid=${this.data.optionOpenId}&isShare=1&templateNo=${this.data.templateNo}&templateType=${this.data.templateType}`,
+      path: `/template${this.data.templateType}/pages/index/index?openid=${this.data.optionOpenId}&isShare=1&templateNo=${this.data.templateNo}&templateType=${this.data.templateType}&templateId=${this.data.templateId}`,
       imageUrl: this.data.info.baseInfo.headImg || `../../../../images/headImg_${this.data.info.baseInfo.gender}.png`
     }
   },

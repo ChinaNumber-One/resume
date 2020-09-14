@@ -7,7 +7,7 @@ cloud.init({
 const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
-  let res = await db.collection('resumes').doc(event.id).update({
+  let res = await db.collection('user').doc(event.id).update({
     data: {
       phone: event.phone
     }

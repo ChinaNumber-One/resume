@@ -16,8 +16,8 @@
     <view class='item' wx:for="{{templateList}}" wx:for-item="temp" wx:for-index="i" wx:key="_id">
       <image src="{{temp.coverImg}}" class='coverImg' mode="aspectFill"></image>
       <view class='btn-box flex-row'>
-        <button class="btn-view"  disabled="{{temp.state !=='1'}}" type="info" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="view" data-templatetype="{{temp.templateType}}" data-templateNo="{{temp.templateNo}}" data-id='{{temp._id}}'>预览({{temp.viewNum<100?temp.viewNum:'99+'}})</button>
-        <button class='btn-use'  disabled="{{temp.state !=='1'}}" type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="use" data-templatetype="{{temp.templateType}}" data-templateNo="{{temp.templateNo}}" data-id='{{temp._id}}'>使用({{temp.useNum<100?temp.useNum:'99+'}})</button>
+        <button class="btn-view"  disabled="{{temp.state !=='1'}}" type="info" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="view" data-templatetype="{{temp.templateType}}" data-templateid="{{temp._id}}" data-templateNo="{{temp.templateNo}}" data-id='{{temp._id}}'>预览({{temp.viewNum<100?temp.viewNum:'99+'}})</button>
+        <button class='btn-use'  disabled="{{temp.state !=='1'}}" type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="use" data-templatetype="{{temp.templateType}}" data-templateid="{{temp._id}}" data-templateNo="{{temp.templateNo}}" data-id='{{temp._id}}'>使用({{temp.useNum<100?temp.useNum:'99+'}})</button>
       </view>
       <view class='tag' wx:if="{{temp.state ==='0'}}">下期预告</view>
       <view class='tag' wx:if="{{temp.state ==='2'}}">已下线</view>

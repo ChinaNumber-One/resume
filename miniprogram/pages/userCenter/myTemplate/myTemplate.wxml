@@ -1,13 +1,13 @@
 <view class='container'>
 	<!-- <view class='acount'>数量：{{list.length}}</view> -->
 	<view class='list' wx:if="{{list.length && loadSuccess}}">
-		<view class='item' catchtap="viewTemp" data-templateno="{{temp.templateNo}}" data-templatetype="{{temp.templateType}}" wx:for="{{list}}" wx:for-item="temp" wx:for-index="i" wx:key="_id">
+		<view class='item' catchtap="viewTemp" data-templateno="{{temp.templateNo}}" data-templatetype="{{temp.templateType}}" data-templateid='{{temp._id}}' wx:for="{{list}}" wx:for-item="temp" wx:for-index="i" wx:key="_id">
 			<image src="{{temp.coverImg}}" class='coverImg'></image>
       <view class='tag'>
         <van-icon name="eye-o" size="16px" color="#fff"/>
         <view style="font-size:24rpx;color:#fff;margin-left:12rpx"> {{temp.peopleViewNum}} </view>
       </view>
-			<button open-type="share" data-templateno="{{temp.templateNo}}" data-templatetype="{{temp.templateType}}" catchtap="shareMessage" class='tag-right'>
+			<button open-type="share" data-templateno="{{temp.templateNo}}" data-templatetype="{{temp.templateType}}" data-templateid='{{temp._id}}' catchtap="shareMessage" class='tag-right'>
 				<van-icon name="share" size="16px" color="#fff"/>
         <view style="font-size:24rpx;color:#fff;margin-left:12rpx"> 分享 </view>
       </button>

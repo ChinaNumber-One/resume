@@ -1,5 +1,4 @@
 const app = getApp()
-const db = app.globalData.db
 Page({
 
   /**
@@ -8,20 +7,30 @@ Page({
   data: {
     code:'',
     focus:false,
-    closeFlag:false
+    closeFlag:false,
+    data: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   async onLoad (options) {
-    let {data} = await db.collection('invitationCode').where({
-      _openid:app.globalData.openid
-    }).get()
+    wx.showLoading({
+      title: '加载中',
+    })
+    let res = await app.cloudFunction({
+      name:'getInvitationCode',
+      data: {
+        param: {
+          _openid: app.globalData.openid
+        }
+      }
+    })
+    wx.hideLoading()
     this.setData({
-      data,
-      code:data.length?data[0].code:'',
-      closeFlag:data.length?data[0].closeFlag:false,
+      data: res.data,
+      code:res.data.length?res.data[0].code:'',
+      closeFlag:res.data.length?res.data[0].closeFlag:false,
     })
   },
   changeInput(e) {
@@ -46,10 +55,13 @@ Page({
   async submit() {
     if(this.data.code.length !== 6) return
     if(this.data.data.length === 0) {
-      let res = await db.collection('invitationCode').add({
-        data:{
-          code:this.data.code,
-          closeFlag:this.data.closeFlag
+      let res = await app.cloudFunction({
+        name: 'addInvitationCode',
+        data: {
+          param :{
+            code:this.data.code,
+            closeFlag:this.data.closeFlag
+          }
         }
       })
       if(res.errMsg === 'collection.add:ok') {
@@ -62,9 +74,10 @@ Page({
         })
       }
     } else {
-      let _id = this.data.data[0]._id
-      let res = await db.collection('invitationCode').doc(_id).update({
-        data:{
+      let res = await app.cloudFunction({
+        name: 'updateInvitationCode',
+        data: {
+          id:this.data.data[0]._id,
           code: this.data.code,
           closeFlag:this.data.closeFlag
         }

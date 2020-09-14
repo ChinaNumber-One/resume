@@ -1,5 +1,4 @@
 const app = getApp()
-const db = app.globalData.db
 Page({
   data: {
     current:0
@@ -11,14 +10,14 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    let res = await wx.cloud.callFunction({
+    let result = await app.cloudFunction({
       name:'getVersion',
       data:{
         current:this.data.current
       }
     })
     wx.hideLoading()
-    res.result.data.map(item=>{
+    result.data.map(item=>{
       let year = new Date(item.updateTime).getFullYear()
       let month = ('0' + (new Date(item.updateTime).getMonth() + 1)).substr(-2)
       let day = ('0' + new Date(item.updateTime).getDate()).substr(-2)

@@ -1,6 +1,4 @@
 const app = getApp()
-const db = app.globalData.db
-import {login} from '../../../utils/login'
 Page({
   /**
    * 页面的初始数据
@@ -27,9 +25,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    if(!app.globalData.openid) {
-      await login()
-    }
     this.setData({
       templateNo: options.templateNo,
       templateType: options.templateType
@@ -79,9 +74,12 @@ Page({
     })
   },
   async getData(param) {
-    let {
-      data
-    } = await db.collection('resumes').where(param).get()
+    const {data} = await app.cloudFunction({
+      name: 'getResumeDetail',
+      data: {
+        param
+      }
+    })
     if (data[0].skills.length) {
       data[0].skills.map((item, index) => {
         if (index < this.data.color.length) {

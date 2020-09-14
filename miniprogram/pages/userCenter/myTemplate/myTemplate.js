@@ -1,12 +1,10 @@
 const app = getApp()
-const db = app.globalData.db
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    current:0,
     list:[],
     loadSuccess:false,
     info:[]
@@ -23,18 +21,25 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    let res = await db.collection('user').where({
-      _openid: app.globalData.openid
-    }).get()
-    let info = await db.collection('resumes').where({
-      _openid: app.globalData.openid
-    }).get()
+    let res = await app.cloudFunction({
+      name: 'getUserInfo',
+      data: {
+        openid: app.globalData.openid
+      }
+    })
+    let info = await app.cloudFunction({
+      name: 'getResumeDetail',
+      data: {
+        param: {
+          _openid: app.globalData.openid
+        }
+      }
+    })
     this.setData({
       info: info.data[0]
     })
     let myTemplateList = res.data[0].myTemplateList||[]
     if(myTemplateList.length ===0) {
-      wx.hideLoading()
       this.setData({
         loadSuccess:true
       })
@@ -43,14 +48,13 @@ Page({
     let list = myTemplateList.map(item=>{
       return item.templateId
     })
-    const _ = db.command
-    let {data} = await db.collection('template').where({
-      _id: _.in(list)
+    const getMyTemplate = await app.cloudFunction({
+      name: 'getMyTemplate',
+      data: {
+        list
+      }
     })
-    .skip(this.data.current * 10)
-    .limit(10)
-    .get()
-    let arr = data.map(item=>{
+    let arr = getMyTemplate.data.map(item=>{
       return {
         ...item,
         templateNo: item.code.split('_')[1],
@@ -61,7 +65,7 @@ Page({
     })
     wx.hideLoading()
     this.setData({
-      list: this.data.current === 0? arr.sort((a,b)=>{return b.orderByTime-a.orderByTime}) : this.data.list.concat(arr).sort((a,b)=>{return b.orderByTime-a.orderByTime}),
+      list:  this.data.list.concat(arr).sort((a,b)=>{return b.orderByTime-a.orderByTime}),
       loadSuccess:true
     })
   },
@@ -74,16 +78,6 @@ Page({
     this.setData({current:0})
     await this.getTemplate()
     wx.stopPullDownRefresh()
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    this.setData({
-      current: this.data.current + 1
-    })
-    this.getTemplate()
   },
   async shareMessage(e) {
     // 防止事件捕获

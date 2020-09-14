@@ -1,5 +1,4 @@
 const app = getApp()
-const db = app.globalData.db
 Page({
 
   /**
@@ -17,9 +16,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad (options) {
-    let res = await db.collection('user').where({
-      _openid: app.globalData.openid
-    }).get()
+    let res = await app.cloudFunction({
+      name: 'getUserInfo',
+      data: {
+        openid: app.globalData.openid
+      }
+    })
     if(res.data[0].phone) {
       this.setData({
         encryption:res.data[0].phone.substr(0,3)+'****'+res.data[0].phone.substr(-4),
@@ -82,9 +84,11 @@ Page({
       mask: true,
       title:'提交中'
     })
-    let res = await db.collection('user').doc(this.data._id).update({
+    let res = await app.cloudFunction({
+      name: 'updatePhone',
       data: {
-        phone: this.data.phone
+        phone: this.data.phone,
+        id: this.data._id
       }
     })
     wx.hideLoading()

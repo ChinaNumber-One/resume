@@ -1,6 +1,4 @@
 const app = getApp()
-const db = app.globalData.db
-import {login} from '../../utils/login'
 Page({
 
   /**
@@ -48,7 +46,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    await login()
+    await app.login()
     this.getNotice()
     this.getTemplateList()
   },
@@ -79,13 +77,18 @@ Page({
     } else {
       sort = 'createTime'
     }
-    let res = await db.collection('template').where(param).orderBy(sort, 'desc')
-      .get()
+    const res = await app.cloudFunction({
+      name: 'getTemplateList',
+      data: {
+        param,
+        sort
+      }
+    })
     this.setData({
       loadSuccess: true
     })
     if (res && res.data) {
-      res.data.forEach(item=>{
+      res.data.forEach(item => {
         item.templateType = item.code.split('_')[0]
         item.templateNo = item.code.split('_')[1]
       })
@@ -100,9 +103,9 @@ Page({
   },
   async getUserInfo(e) {
     if (e.detail.errMsg === "getUserInfo:ok") {
-      await this.upDateUserInfo(e.detail.userInfo)
+      this.upDateUserInfo(e.detail.userInfo)
+      this.changeTemplateViewNumOrUseNum(e.target.dataset.type, e.target.dataset.id)
       if (e.target.dataset.type === 'view') {
-        await this.changeTemplateViewNumOrUseNum(e.target.dataset.type, e.target.dataset.id)
         wx.navigateTo({
           url: `/template${e.target.dataset.templatetype}/pages/index/index?templateNo=${e.target.dataset.templateno}&templateType=${e.target.dataset.templatetype}`
         })
@@ -113,9 +116,12 @@ Page({
             url: '../userCenter/bindPhone/bindPage',
           })
         } else {
-          let result = await db.collection('resumes').where({
-            _openid: app.globalData.openid
-          }).get()
+          let result = await app.cloudFunction({
+            name: 'hasResumes',
+            data: {
+              openid: app.globalData.openid
+            }
+          })
           if (result.data.length === 0) {
             wx.showModal({
               title: '提示',
@@ -135,108 +141,80 @@ Page({
             wx.showLoading({
               title: '请稍后',
             })
-            // 添加模版 id 与 user 关联
-            let res = await db.collection('user').where({
-              _openid: app.globalData.openid
-            }).get()
-            let myTemplateList = res.data[0].myTemplateList && res.data[0].myTemplateList.length ? res.data[0].myTemplateList : []
-            let isHas = false
-            myTemplateList.forEach(item => {
-              if (item.templateId === e.target.dataset.id) {
-                isHas = true
-                return
+           const res =  await app.cloudFunction({
+              name: 'bindTemplateWithUser',
+              data: {
+                openid: app.globalData.openid,
+                id: e.target.dataset.id,
+                type: e.target.dataset.type
               }
             })
-            if (!isHas) {
-              await this.changeTemplateViewNumOrUseNum(e.target.dataset.type, e.target.dataset.id)
-              myTemplateList.push({
-                upDateTime: new Date(),
-                templateId: e.target.dataset.id,
-                peopleViewNum: 0
+            wx.hideLoading()
+            if(!res) {
+              wx.navigateTo({
+                url: `/template${e.target.dataset.templatetype}/pages/index/index?templateNo=${e.target.dataset.templateno}&openid=${app.globalData.openid}&templateType=${e.target.dataset.templatetype}`
               })
-              await db.collection('user').doc(res.data[0]._id).update({
-                data: {
-                  myTemplateList
-                }
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: '网络错误，请重试～',
+                showCancel: false,
               })
             }
-            wx.hideLoading()
-            wx.navigateTo({
-              url: `/template${e.target.dataset.templatetype}/pages/index/index?templateNo=${e.target.dataset.templateno}&openid=${app.globalData.openid}&templateType=${e.target.dataset.templatetype}`
-            })
           }
         }
       }
     } else {
       wx.showModal({
-        title:'',
-        content:"获取用户信息失败！",
-        showCancel:false,
+        title: '',
+        content: "获取用户信息失败！",
+        showCancel: false,
       })
     }
   },
-  async addTemplateViewNum(code) {
-    let res = await db.collection('template').where({
-      code
-    }).get()
-    db.collection('template').doc(res.data[0]._id).update({
-      data: {
-        viewNum: res.data[0].viewNum + 1
-      }
-    })
-  },
-  changeTemplateViewNumOrUseNum(type, id) {
-    wx.cloud.callFunction({
+  async changeTemplateViewNumOrUseNum(type, id) {
+    const result = await app.cloudFunction({
       name: 'changeTemplateViewNumOrUseNum',
       data: {
         type,
         _id: id
-      },
-      success: res => {
-        this.data.templateList.map(item => {
-          if (item._id === id) {
-            if (type === 'view') {
-              item.viewNum = item.viewNum + 1
-            }
-            if (type === 'use') {
-              item.viewNum = item.useNum + 1
-            }
-          }
-          return item
-        })
-        this.setData({
-          templateList: this.data.templateList
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [changeTemplateViewNumOrUseNum] 调用失败: ', err)
       }
     })
+    if (result.errMsg === 'document.update:ok') {
+      this.data.templateList.map(item => {
+        if (item._id === id) {
+          if (type === 'view') {
+            item.viewNum = item.viewNum + 1
+          }
+          if (type === 'use') {
+            item.useNum = item.useNum + 1
+          }
+        }
+        return item
+      })
+      this.setData({
+        templateList: this.data.templateList
+      })
+    }
   },
   async upDateUserInfo(detail) {
-    let res = await db.collection('user').where({
-      _openid: app.globalData.openid
-    }).get()
-    db.collection('user').doc(res.data[0]._id).update({
+    await app.cloudFunction({
+      name: 'updateUserInfo',
       data: {
-        avatarUrl: detail.avatarUrl,
-        nickName: detail.nickName,
-        gender: detail.gender
+        openid: app.globalData.openid,
+        detail
       }
     })
   },
   async getNotice() {
-    wx.cloud.callFunction({
-      name: 'getNotify',
-      success: res => {
-        this.setData({
-          notifyList: res.result.data
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [getNotify] 调用失败: ', err)
-      }
+    const result = await app.cloudFunction({
+      name: 'getNotify'
     })
+    if (result.data) {
+      this.setData({
+        notifyList: result.data
+      })
+    }
   },
   async onPullDownRefresh() {
     await this.getTemplateList()

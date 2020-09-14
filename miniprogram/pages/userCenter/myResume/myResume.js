@@ -1,5 +1,4 @@
 const app = getApp()
-const db = app.globalData.db
 Page({
 
   /**
@@ -34,7 +33,7 @@ Page({
   },
   onChangeTab(e) {
     this.setData({
-      active:e.detail.name
+      active: e.detail.name
     })
   },
   openPicker(e) {
@@ -158,7 +157,7 @@ Page({
     const data = {
       [key]: this.data.resume[key]
     }
-    
+
     if (key === 'baseInfo' && this.data.headImgUploadpath) {
       let res = await wx.cloud.uploadFile({
         cloudPath: app.globalData.openid + '/headImg' + this.data.headImgUploadpath.match(/\.[^.]+?$/)[0],
@@ -175,48 +174,51 @@ Page({
       }
     } else if (key === 'projectExperience') {
       let imgList = []
-      this.data.resume.projectExperience.forEach((item,index)=>{
-        if(item.projectQrcode.length) {
-          item.projectQrcode.forEach((qrImg,qrIndex)=>{
+      this.data.resume.projectExperience.forEach((item, index) => {
+        if (item.projectQrcode.length) {
+          item.projectQrcode.forEach((qrImg, qrIndex) => {
             imgList.push({
-              pindex:index,
-              url:qrImg.url,
-              index:qrIndex,
-              key:'projectQrcode'
+              pindex: index,
+              url: qrImg.url,
+              index: qrIndex,
+              key: 'projectQrcode'
             })
           })
         }
-        if(item.projectImgs.length) {
-          item.projectImgs.forEach((img,imgIndex)=>{
+        if (item.projectImgs.length) {
+          item.projectImgs.forEach((img, imgIndex) => {
             imgList.push({
-              pindex:index,
-              url:img.url,
-              index:imgIndex,
-              key:'projectImgs'
+              pindex: index,
+              url: img.url,
+              index: imgIndex,
+              key: 'projectImgs'
             })
           })
         }
       })
-      if(imgList.length) {
+      if (imgList.length) {
         let param = {
-          i:0,
-          list:imgList
+          i: 0,
+          list: imgList
         }
         this.upLoadProjectQrcodeRecursion(param);
       } else {
         this.saveData(data)
       }
-    }  else {
+    } else {
       this.saveData(data)
     }
   },
   // 递归上传 二维码 （多图）
   upLoadProjectQrcodeRecursion(data) {
-    let {i,list} = data
+    let {
+      i,
+      list
+    } = data
     // 已上传的图片 跳过上传
-    if(list[i].url.indexOf('cloud://') !== -1 && list[i].url.indexOf(app.globalData.openid) !== -1){
+    if (list[i].url.indexOf('cloud://') !== -1 && list[i].url.indexOf(app.globalData.openid) !== -1) {
       i++
-      if(i === list.length) {
+      if (i === list.length) {
         return this.saveData({
           projectExperience: this.data.resume.projectExperience
         })
@@ -226,14 +228,14 @@ Page({
       }
     }
     wx.cloud.uploadFile({
-      cloudPath: app.globalData.openid + '/projectExperience/'+list[i].key+'/' + list[i].key+'_'+list[i].pindex+'_'+list[i].index+ list[i].url.match(/\.[^.]+?$/)[0],
+      cloudPath: app.globalData.openid + '/projectExperience/' + list[i].key + '/' + list[i].key + '_' + list[i].pindex + '_' + list[i].index + list[i].url.match(/\.[^.]+?$/)[0],
       filePath: list[i].url,
-      success: (res)=>{
+      success: (res) => {
         this.data.resume.projectExperience[list[i].pindex][list[i].key][list[i].index].url = res.fileID
       },
-      complete: (res) =>{
+      complete: (res) => {
         i++
-        if(i === list.length) {
+        if (i === list.length) {
           this.saveData({
             projectExperience: this.data.resume.projectExperience
           })
@@ -245,8 +247,12 @@ Page({
     })
   },
   async saveData(data) {
-    let res = await db.collection('resumes').doc(this.data._id).update({
-      data
+    let res = await app.cloudFunction({
+      name: 'updateResume',
+      data: {
+        id: this.data._id,
+        data
+      }
     })
     wx.hideLoading()
     if (res.errMsg === 'document.update:ok') {
@@ -269,12 +275,17 @@ Page({
   async init() {
     wx.showLoading({
       title: '加载中',
-      mask:true
+      mask: true
     })
-    let res = await db.collection('resumes').where({
-      _openid: app.globalData.openid,
-      real: true
-    }).get()
+    let res = await app.cloudFunction({
+      name: 'getResumeDetail',
+      data: {
+        param: {
+          _openid: app.globalData.openid,
+          real: true
+        }
+      }
+    })
     if (res.data[0]) {
       res.data[0].baseInfo.phone = app.globalData.phone
       this.setData({
@@ -284,17 +295,20 @@ Page({
       this.data._id = res.data[0]._id
       wx.hideLoading()
     } else {
-      let res = await db.collection('resumes').add({
+      let res = await app.cloudFunction({
+        name: 'addResume',
         data: {
-          createTime: new Date(),
-          real: true,
-          baseInfo: {
-            phone: app.globalData.phone || '',
-            gender:'1'
-          },
-          skills: [],
-          workExperience: [],
-          projectExperience: [],
+          data: {
+            createTime: new Date(),
+            real: true,
+            baseInfo: {
+              phone: app.globalData.phone || '',
+              gender: '1'
+            },
+            skills: [],
+            workExperience: [],
+            projectExperience: [],
+          }
         }
       })
       if (res.errMsg === 'collection.add:ok' && res._id) {

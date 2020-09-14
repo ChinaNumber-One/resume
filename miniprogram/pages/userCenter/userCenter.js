@@ -1,5 +1,4 @@
 const app = getApp()
-const db = app.globalData.db
 Page({
 
   /**
@@ -17,15 +16,11 @@ Page({
   },
   async getUserInfo(e) {
     if (e.detail.errMsg === "getUserInfo:ok") {
-      let detail = e.detail.userInfo
-      let res = await db.collection('user').where({
-        _openid: app.globalData.openid
-      }).get()
-      await db.collection('user').doc(res.data[0]._id).update({
+      await app.cloudFunction({
+        name: 'updateUserInfo',
         data: {
-          avatarUrl: detail.avatarUrl,
-          nickName: detail.nickName,
-          gender: detail.gender
+          openid: app.globalData.openid,
+          detail
         }
       })
       this.getUserData()
@@ -36,9 +31,12 @@ Page({
     }
   },
   async getUserData() {
-    let res = await db.collection('user').where({
-      _openid: app.globalData.openid
-    }).get()
+    const res = await app.cloudFunction({
+      name: 'getUserInfo',
+      data: {
+        openid: app.globalData.openid
+      }
+    })
     if(res.data.length) {
       this.setData({
         info: Object.assign(this.data.info,res.data[0]),

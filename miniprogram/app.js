@@ -39,14 +39,30 @@ App({
         env
       })
       this.globalData = {
-        db: wx.cloud.database({
-          throwOnNotFound: false,
-          env
-        }),
         openid: '',
         phone: '',
         isLogin: false
       }
     }
   },
+  async login() {
+    const res = await wx.cloud.callFunction({
+      name: 'login'
+    })
+    this.globalData.openid = res.result.data[0]._openid
+    this.globalData.phone = res.result.data[0].phone
+  },
+  async cloudFunction ({name,data}){
+    console.log(data)
+    if(!this.globalData.openid && name !=='login') {
+      await this.login()
+    }
+    const res = await wx.cloud.callFunction({
+      name,
+      data
+    })
+    console.log('cloudFunction:'+name)
+    console.log(res.result)
+    return res.result
+  }
 })

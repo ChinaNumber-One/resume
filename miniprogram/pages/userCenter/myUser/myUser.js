@@ -1,5 +1,4 @@
 const app = getApp()
-const db = app.globalData.db
 Page({
 
   /**
@@ -23,15 +22,15 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    let res = await wx.cloud.callFunction({
+    let result = await app.cloudFunction({
       name:'getUsers',
       data: {
         current: this.data.current
       }
     })
     wx.hideLoading()
-    let list = res.result.data
-    let total = res.result.total
+    let list = result.data
+    let total = result.total
     list.map(item=>{
       let year = new Date(item.lastLoginTime).getFullYear()
       let month = ('0' + (new Date(item.lastLoginTime).getMonth() + 1)).substr(-2)

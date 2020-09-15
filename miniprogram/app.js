@@ -53,7 +53,6 @@ App({
     this.globalData.phone = res.result.data[0].phone
   },
   async cloudFunction ({name,data}){
-    console.log(data)
     if(!this.globalData.openid && name !=='login') {
       await this.login()
     }
@@ -61,8 +60,6 @@ App({
       name,
       data
     })
-    console.log('cloudFunction:'+name)
-    console.log(res.result)
     return res.result
   }
 })

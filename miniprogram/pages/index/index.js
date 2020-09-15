@@ -104,8 +104,8 @@ Page({
   async getUserInfo(e) {
     if (e.detail.errMsg === "getUserInfo:ok") {
       this.upDateUserInfo(e.detail.userInfo)
-      this.changeTemplateViewNumOrUseNum(e.target.dataset.type, e.target.dataset.id)
       if (e.target.dataset.type === 'view') {
+        await this.changeTemplateViewNumOrUseNum(e.target.dataset.type, e.target.dataset.id)
         wx.navigateTo({
           url: `/template${e.target.dataset.templatetype}/pages/index/index?templateNo=${e.target.dataset.templateno}&templateType=${e.target.dataset.templatetype}&templateId=${e.target.dataset.templateid}`
         })
@@ -141,7 +141,7 @@ Page({
             wx.showLoading({
               title: '请稍后',
             })
-           const res =  await app.cloudFunction({
+            await app.cloudFunction({
               name: 'bindTemplateWithUser',
               data: {
                 openid: app.globalData.openid,
@@ -149,18 +149,11 @@ Page({
                 type: e.target.dataset.type
               }
             })
+            await this.changeTemplateViewNumOrUseNum(e.target.dataset.type, e.target.dataset.id)
             wx.hideLoading()
-            if(!res) {
-              wx.navigateTo({
-                url: `/template${e.target.dataset.templatetype}/pages/index/index?templateNo=${e.target.dataset.templateno}&openid=${app.globalData.openid}&templateType=${e.target.dataset.templatetype}&templateId=${e.target.dataset.templateid}`
-              })
-            } else {
-              wx.showModal({
-                title: '提示',
-                content: '网络错误，请重试～',
-                showCancel: false,
-              })
-            }
+            wx.navigateTo({
+              url: `/template${e.target.dataset.templatetype}/pages/index/index?templateNo=${e.target.dataset.templateno}&openid=${app.globalData.openid}&templateType=${e.target.dataset.templatetype}&templateId=${e.target.dataset.templateid}`
+            })
           }
         }
       }

@@ -156,10 +156,8 @@ Page({
       experience: e.currentTarget.dataset.item,
       projectDialog: true
     })
-    console.log(this.data.projectDialog)
   },
   onShareAppMessage() {
-    console.log(`/template${this.data.templateType}/pages/index/index?openid=${this.data.optionOpenId}&isShare=1&templateNo=${this.data.templateNo}&templateType=${this.data.templateType}&templateId=${this.data.templateId}`)
     return {
       title: '姓名：' + this.data.info.baseInfo.realName + '    求职意向：' + this.data.info.baseInfo.employmentIntention,
       path: `/template${this.data.templateType}/pages/index/index?openid=${this.data.optionOpenId}&isShare=1&templateNo=${this.data.templateNo}&templateType=${this.data.templateType}&templateId=${this.data.templateId}`,

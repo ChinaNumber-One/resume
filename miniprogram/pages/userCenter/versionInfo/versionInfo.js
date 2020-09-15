@@ -27,7 +27,7 @@ Page({
       item.updateTimeStr = year + '-' + month + '-' + day +' ' +hour +':' +minutes+':'+second
       return item
     })
-    let list = this.data.current === 0?res.result.data:this.data.list.concat(res.result.data)
+    let list = this.data.current === 0?result.data:this.data.list.concat(result.data)
     this.setData({
       list
     })

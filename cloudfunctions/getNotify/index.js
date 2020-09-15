@@ -16,15 +16,5 @@ exports.main = async (event, context) => {
       endDate: _.gte(new Date())
     }
   ])).get()
-  if(res.data && res.data.length) {
-    return {
-      state: 200,
-      data: res.data
-    }
-  } else {
-    return {
-      state: 0,
-      data:[]
-    }
-  }
+  return res
 }

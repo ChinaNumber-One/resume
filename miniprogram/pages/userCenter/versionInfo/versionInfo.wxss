@@ -38,8 +38,7 @@
 .item {
   margin-top: 12rpx;
   border-bottom: 1rpx solid #eee;
-  padding: 12rpx 0;
-  padding: 0 24rpx;
+  padding: 12rpx 24rpx;
 }
 .version-no {
   font-size: 32rpx;

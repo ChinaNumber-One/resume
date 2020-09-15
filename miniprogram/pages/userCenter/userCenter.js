@@ -20,7 +20,7 @@ Page({
         name: 'updateUserInfo',
         data: {
           openid: app.globalData.openid,
-          detail
+          detail: e.detail.userInfo
         }
       })
       this.getUserData()

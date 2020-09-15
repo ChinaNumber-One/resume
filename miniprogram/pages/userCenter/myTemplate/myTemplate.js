@@ -83,7 +83,6 @@ Page({
     // 防止事件捕获
   },
   onShareAppMessage(e) {
-    console.log(e.target.dataset)
     let templateNo = e.target.dataset.templateno
     let templateType = e.target.dataset.templatetype
     let templateId = e.target.dataset.templateid

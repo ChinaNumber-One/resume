@@ -16,6 +16,7 @@ exports.main = async (event, context) => {
   if (res.data.length === 0) {
     await db.collection('user').add({
       data: {
+        _openid: openid,
         createTime: new Date(),
         lastLoginTime: new Date(),
       }

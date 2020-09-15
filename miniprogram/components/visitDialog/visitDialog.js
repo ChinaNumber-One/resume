@@ -87,7 +87,6 @@ Component({
       }
     },
     async addVisitRecord(param) {
-      console.log(param)
       const result = await app.cloudFunction({
         name: 'addVisitRecord',
         data: {

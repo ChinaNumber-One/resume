@@ -74,7 +74,6 @@ Page({
       instance,
       name
     } = event.detail;
-    console.log(name)
     switch (position) {
       case 'cell':
         instance.close();

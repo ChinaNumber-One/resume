@@ -24,13 +24,8 @@ exports.main = async (event, context) => {
         myTemplateList:updata
       }
     })
-    return {
-      ...res,
-      ...event
-    }
+    return res
   } else {
-    return {
-      errmsg:'找不到要访问的用户'
-    }
+    return false
   }
 }

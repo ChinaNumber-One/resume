@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@vant/weapp@^1.3.0":
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/@vant/weapp/-/weapp-1.3.2.tgz#b7548447625cce17a0e9d33e4f257cee44dae5c9"
-  integrity sha512-xH1Q9Zr+4Zv/SDXfqfSZJW4X9GetSWGjC+gygfaxHZs6d8Ty999cqnZeIx9UVlKbPzvQLcyhTCdMqRddsbEItw==
+"@vant/weapp@^1.5.0":
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/@vant/weapp/-/weapp-1.6.3.tgz#d00ea8058fa1f9a7bf746bb00761876ee7d22c63"
+  integrity sha512-XlyaJNrYXqnhGthF5lm3xnrDRj/u8PtyJ9zZZE1P/lOEt8oTqgGXOqXt2C6sojXe56fHYLOzZX5a4Vr4s3M+9g==
 
 ansi-colors@^1.0.1:
   version "1.1.0"
@@ -1039,9 +1039,9 @@ inherits@2, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.3:
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
 
 ini@^1.3.4:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
-  integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
+  integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
 
 interpret@^1.4.0:
   version "1.4.0"
@@ -1702,10 +1702,10 @@ postcss-pxtorem@^4.0.1:
     object-assign "^4.1.0"
     postcss "^5.2.10"
 
-postcss-pxtransform@^2.2.4:
-  version "2.2.8"
-  resolved "https://registry.yarnpkg.com/postcss-pxtransform/-/postcss-pxtransform-2.2.8.tgz#0aab6c284b02c6435cd3375baca50c21fea637b5"
-  integrity sha512-eqVfHZQWspNV2Sf6Th4AN5uP9hv5hjeAH40DinHrXEerCjuPFGWxqacpP8kpbL8p2mtmcAmBaonNFA/nviyiHg==
+postcss-pxtransform@^3.0.9:
+  version "3.0.18"
+  resolved "https://registry.yarnpkg.com/postcss-pxtransform/-/postcss-pxtransform-3.0.18.tgz#2dddd4e6e803e62d74c5499bc85cdc9f34172819"
+  integrity sha512-ejbwABS9i72tz+m/dwgBXIM0HBa9Tf1OoNIGX3OcTjko73PxHjCpKJhtPu4U46/Xg9tkcrpDnMBMKt6CJWft7Q==
   dependencies:
     postcss "^6.0.16"
     postcss-pxtorem "^4.0.1"
